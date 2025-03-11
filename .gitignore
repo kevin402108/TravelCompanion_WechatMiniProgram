@@ -1,4 +1,5 @@
 # 微信开发者
+db/
 project.config.json
 project.private.config.json
 node_modules/
