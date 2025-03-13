@@ -1,16 +1,17 @@
-from sqlalchemy.exc import SQLAlchemyError
-from app.database import get_database
+from fastapi.encoders import jsonable_encoder
+from sqlalchemy import text
+import uvicorn
+from app.database import get_database, engine, test_connection
 from sqlalchemy.orm import Session
 from app.utils.crypt import encrypt, decrypt
 from fastapi import FastAPI, Depends, HTTPException
 from pydantic import BaseModel
-import uvicorn
+import inspect
 import requests
 import time
 import os
 
 app = FastAPI()
-
 
 class LoginRequest(BaseModel):
     code: str
@@ -39,18 +40,25 @@ def login(loginCode: LoginRequest):
     return response
 
 
-# 测试数据库连接接口
-@app.get("/test_db")
-def test_db(db: Session = Depends(get_database)):
+# 启动时测试数据库连接
+test_connection()
+
+
+# 测试能否手动连接数据库
+@app.get("/ping_db")
+def ping_db(db: Session = Depends(get_database)):
     try:
-        result = db.excute("SELECT 1")
-        return {"result": result.scalar()}
-    except SQLAlchemyError as e:
-        db.rollback()
-        raise HTTPException(status_code=500, detail=f'SQL error: {str(e)}')
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f'Unexpected Error: {str(e)}')
+        result = db.execute(text("SHOW TABLES"))
+        # 将查询结果转换为字典列表
+        tables = [dict(row._mapping) for row in result]
+        return jsonable_encoder({"result": tables, "status": "数据库连接成功"})
+    except Exception as  e:
+        raise HTTPException(status_code=500, detail=f"数据库连接失败: {e}")
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+@app.get("/")
+def welcome():
+    return {"messgae":"Welcome to @KevinChan's Page!"}
+
+for route in app.routes:
+    print(route.path)

@@ -1,5 +1,5 @@
 from config.db_config import DB_URL, DB_CONFIG
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine,text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -19,26 +19,23 @@ sessionLocal = sessionmaker(
 # 基类，用于声明模型
 Base = declarative_base()
 
-
 # 创建数据库连接
 def get_database():
     db = sessionLocal()
     try:
         yield db
+    except Exception as e:
+        db.rollback()
+        raise e
     finally:
         db.close()
 
-
 # 测试数据库连接
-def test_db_connect() -> bool:
+def test_connection():
     try:
         with engine.connect() as connection:
-            result = connection.execute("SELECT * FROM USER")
-            print(result.fetchone())
-        return True
+            result = connection.execute(text("SHOW TABLES"))
+            print(result.fetchall())
+        print("数据库连接成功！")
     except Exception as e:
-        print(e)
-        return False
-
-
-print(test_db_connect())
+        print(f"数据库连接失败：{e}")
