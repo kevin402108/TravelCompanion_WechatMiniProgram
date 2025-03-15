@@ -1,8 +1,9 @@
 import os
 import time
-from fastapi import APIRouter, requests
+import requests
+from fastapi import APIRouter
 from pydantic import BaseModel
-from travel_companion_system.app.utils.crypt import encrypt
+from backEnd.app.utils.crypt import encrypt
 
 #登录模块路由
 login_router = APIRouter()

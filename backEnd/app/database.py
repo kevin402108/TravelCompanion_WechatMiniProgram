@@ -1,10 +1,8 @@
-import os
-import sys
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.encoders import jsonable_encoder
 from requests import Session
 
-from config.db_config import DB_URL, DB_CONFIG
+from backEnd.config.db_config import DB_URL, DB_CONFIG
 from sqlalchemy import create_engine,text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker

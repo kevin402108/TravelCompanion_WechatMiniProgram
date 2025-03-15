@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
-from requests import Session
+from sqlalchemy.orm import Session
 from sqlalchemy import text
-from travel_companion_system.app.database import get_database
+from backEnd.app.database import get_database
 
 db_router = APIRouter()
 
@@ -15,3 +15,5 @@ def ping_db(db: Session = Depends(get_database)):
         return {"result": tables, "status": "数据库连接成功"}
     except Exception as  e:
         raise HTTPException(status_code=500, detail=f"数据库连接失败: {e}")
+    finally:
+        db.close()

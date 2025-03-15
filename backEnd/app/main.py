@@ -1,20 +1,23 @@
 import os
 import sys
+
 project_root = os.path.dirname(os.path.abspath(__file__))
-print(project_root)
-sys.path.insert(0,project_root)
+sys.path.insert(0, project_root)
 
 from fastapi import FastAPI
-from travel_companion_system.app.database import test_connection
-from travel_companion_system.app.routers import db_router, login_router
+from backEnd.app.database import test_connection
+from backEnd.app.routers.db_router import db_router
+from backEnd.app.routers.login_router import login_router
 
 app = FastAPI()
 app.include_router(db_router)
 app.include_router(login_router)
 
+
 @app.get("/")
 def welcome():
-    return {"message":"You're visting @Kevin-467's page!"}
+    return {"message": "You're visting @Kevin-467's page!"}
+
 
 # 启动时测试数据库连接
 try:
@@ -24,4 +27,3 @@ except Exception as e:
 
 for route in app.routes:
     print(route.path)
-

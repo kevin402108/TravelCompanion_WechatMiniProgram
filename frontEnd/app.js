@@ -7,20 +7,6 @@ App({
   },
 
   onLaunch: function () {
-    // 启动uvicorn服务
-    const url = "http://127.0.0.1:8002"
-    wx.request({
-      url:`${url}/start_uvicorn`,
-      method:'GET',
-      success: function(res) {
-        console.log("uvicorn服务启动成功!",res.data)
-      },
-      fail: function(err) {
-        console.log("uvicorn启动失败！")
-        console.log(err)
-      }
-    })
-
     //检查用户登录情况
     loginUtils.checkLogin()
   },
