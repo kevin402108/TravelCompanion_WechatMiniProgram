@@ -22,7 +22,7 @@ const login = ()=>{
     wx.login({
       success:(res)=>{
         wx.request({
-          url:'http://127.0.0.1:8000/auth/login',
+          url:'http://127.0.0.1:8001/auth/login',
           method:'POST',
           data:{
             code:res.code
