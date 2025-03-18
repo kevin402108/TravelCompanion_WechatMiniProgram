@@ -1,14 +1,11 @@
-.button {
-    padding: 10px 20px;
-    margin-top: 10px;
-}
-
 .page-title {
     margin: 10rpx;
+    padding:5rpx 0;
     height: 50rpx;
     text-align: center;
+    line-height: 50rpx;
     font-size: 40rpx;
-    border: 1px solid #999;
+    border: 2rpx solid #999;
     border-radius: 25rpx;
 }
 
@@ -19,27 +16,31 @@
 }
 
 .container {
-    padding: 20rpx;
+    padding: 10rpx;
 }
 
 .form-item {
-    margin-bottom: 20rpx;
-    padding: 10rpx 0;
+    margin: 20rpx 0;
+}
+
+.form-item .label {
+    font-size: 35rpx;
+    color:#636363;
 }
 
 .input-box {
-    width: 95%;
-    padding: 10rpx;
-    border: 1px solid #999;
-    border-radius: 10rpx;
     margin-top: 10rpx;
+    width: 96%;
+    padding: 10rpx;
+    border: 2rpx solid #999;
+    border-radius: 10rpx;
 }
 
 .value-show {
     align-items: center;
-    font-size: 16px;
+    font-size: 32rpx;
     color: #999;
-    margin-top: 10px;
+    margin-top: 20rpx;
 }
 
 .value-show text {
@@ -47,33 +48,9 @@
     font-weight: bold;
 }
 
-.date-picker {
-    margin-top: 10rpx;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.date-selector {
-    padding: 10px;
-    margin-right: 10px;
-    /* 给两个选择器之间增加间距 */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-    background-color: #f5f5f5;
-}
-
-.separator {
-    margin: 0 10px;
-    font-size: 18px;
-    color: #333;
-}
-
 .slider-box {
     width: 90%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 25rpx auto;
 }
 
 .btn-set {
@@ -82,19 +59,17 @@
 }
 
 .btn-set button {
-    width: 40vw;
+    margin-top: 10rpx;    
+    padding: 10rpx 10rpx;
+    color: white;
+    border-radius: 15rpx;
+    width: 300rpx;
 }
 
 .submit-btn {
     background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
 }
 
 .reset-btn {
     background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
 }

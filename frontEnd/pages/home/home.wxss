@@ -1,48 +1,49 @@
 .homePage_slider {
-  height: 175px;
+  height: 35vh;
 }
 
 .homePage_slider image {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.502);
     left: 0;
     top: 0;
 }
 
 .title {
-  margin:10px auto;
+  margin:30rpx auto;
   width:95vw;
-  height:3vh;
+  height:4vh;
+  line-height: 4vh;
   text-align: center;
-  font-size: 15px;
+  font-size: 30rpx;
   font-weight: bold;
-  border:1px solid #999;
-  border-radius: 1.5vh;
+  border:2rpx solid #999;
+  border-radius: 2vh;
 }
 
 .common-func .bd {
   width: 100%;
   min-height: 12vh;
-  margin: 5px auto;
+  margin: 10rpx auto;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 10rpx;
 }
 
 .common-func .bd > view {
   display: flex;
-  padding: 5px;
-  width: 65px;
-  height: 60px;
-  flex-direction: column; /* 使图片和文字竖直排列 */
-  align-items: center; /* 水平居中 */
+  padding: 10rpx;
+  width: 130rpx;
+  height: 120rpx;
+  flex-direction: column; 
+  align-items: center; 
   text-align: center;
   background-color:#faebd7;
-  border: 1px solid #000;
-  border-radius: 5px;
+  border: 2rpx solid #000;
+  border-radius: 10rpx;
 }
 
 .common-func .bd image {
@@ -52,24 +53,24 @@
 }
 
 .common-func .bd .func-name {
-  font-size: 15px;
+  font-size: 30rpx;
   color: #1f1f1f;
 }
 
 .notice .bd .article{
-  margin: 5px 0; 
+  margin: 10rpx 0;
+  padding: 10rpx ; 
   display: flex;
   width: 100vw;
-  height: 17vh;
-  border: 2px solid #999;
+  border: 4rpx solid #999;
   border-left:0;
   border-right:0;
 }
 
 .notice .bd image {
-  padding: 5px;
+  padding: 5rpx;
   width: 25vw;
-  height: 90%;
+  height: 16vh;
 }
 
 .notice .bd .right {
@@ -77,30 +78,33 @@
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  padding: 5px;
+  padding: 10rpx;
   text-align: left;
-  font-size: 18px;
+  font-size: 35rpx;
   color: #333;
 }
 
 .notice .right .header {
-  font-weight: 700;
+  font-weight: bold;
 }
 
 .notice .right .content {
-  font-size: 14px;
+  margin: 10rpx 0;
+  font-size: 28rpx;
   color: #999;
 }
 
 .notice .right .pub-date {
-  font-size: 10px;
+  margin-top: 10rpx;
+  font-size: 24rpx;
   color:#999;
 }
 
 .footer {
-  margin: 30px 0;
+  margin: 50rpx 0;
   width: 100vw;
   text-align: center;
+  font-size: 40rpx;
   color:#999
 }
 

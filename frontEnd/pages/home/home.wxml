@@ -1,5 +1,3 @@
-<!--pages/home/home.wxml-->
-
 <!--轮播图-->
 <swiper class="homePage_slider" indicator-dots="true" display-multiple-items="1" indicator-active-color="#fff" indicator-color="#999" autoplay="true" interval="3000" duration="500" circular="true">
         <swiper-item wx:for="{{swiperList}}" wx:key="id">

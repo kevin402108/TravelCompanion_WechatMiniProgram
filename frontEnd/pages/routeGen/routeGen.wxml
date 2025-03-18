@@ -4,8 +4,8 @@
 <view class="container">
   <!-- 旅行目的地 -->
   <view class="form-item">
-    <text>旅行目的地(必填)</text>
-    <input type="text" class="input-box" model:value="{{destination}}" />
+    <text  class="label">旅行目的地(必填)</text>
+    <input type="text" class="input-box" model:value="{{destination}}" placeholder="请输入旅游目的地,最多50个字符" maxlength="50"/>
   </view>
 
   <!-- 旅行天数-->
@@ -21,7 +21,7 @@
 
   <!-- 预算 滑块选择-->
   <view class="form-item">
-    <text class="label">预算(元) 【必填】</text>
+    <text class="label">预算(单位：元，默认值：0)</text>
     <slider min="0" max="10000" step="100" model:value="{{budget}}" show-value bindchange="onSliderChange" class="slider-box" id="budget"></slider>
     <!-- 显示当前预算 -->
     <view class="value-show">
@@ -31,8 +31,8 @@
 
   <!-- 旅行偏好 -->
   <view class="form-item">
-    <text>旅行偏好(必填)</text>
-    <textarea model:value="{{preferences}}" class="input-box" placeholder="请输入旅行偏好"></textarea>
+    <text  class="label">旅行偏好(必填)</text>
+    <textarea model:value="{{preferences}}" class="input-box" placeholder="请输入旅行偏好,最多100个字符" maxlength="100"></textarea>
   </view>
 
   <!-- 提交和重置按钮 -->

@@ -44,9 +44,14 @@ function onSliderChange(e) {
     }
 }
 
+const isSepeicalProvince = (province)=> {
+    return province == '北京市' || province == '天津市' || province == '上海市' || province == '重庆市' || province == '香港特别行政区' || province == '澳门特别行政区'
+}
+
 export default {
     checkNickname,
     onnicknameChange,
     onGenderChange,
-    onSliderChange
+    onSliderChange,
+    isSepeicalProvince,
 }

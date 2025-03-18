@@ -8,8 +8,8 @@
     <view class="header">旅游路线：</view>
     <view class="bd" wx:if="{{route}}">
         <view class="card" wx:for="{{route}}" wx:key="id">
-            <view class="title"><text style="font-weight: bold;">景点名称: </text>{{item.sceneName}}</view>
-            <view class="describe">{{item.describe}}</view>
+            <view class="title"><text style="font-weight: bold;">景点名称: </text>{{item.name}}</view>
+            <view class="describe">{{item.description}}</view>
         </view>
     </view>
     <view class="bd empty-box" wx:elif="{{!route&&emptyBoxShow}}">暂无符合需求的旅游路线!</view>
