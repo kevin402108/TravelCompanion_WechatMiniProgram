@@ -2,14 +2,10 @@ import pytz
 from datetime import datetime
 from sqlalchemy import ( 
     JSON, Column, PrimaryKeyConstraint, String, Text, Enum, DateTime, Index,
-    ForeignKey, CheckConstraint, UniqueConstraint, JSO, N, func
+    ForeignKey, CheckConstraint, UniqueConstraint, JSO, N, func, text
 )
 from sqlalchemy.orm import relationship,declarative_base
 from sqlalchemy.dialects.mysql import INTEGER,BIGINT
-
-DEFAULT_TIMEZONE = pytz.timezone('Asia/Shanghai')
-DEFAULT_CURRENT_TIME = datetime.now(DEFAULT_TIMEZONE)
-DEFAULT_EXPIRED_TIME = datetime(2099,12,31,23,59,59,999999,DEFAULT_TIMEZONE)
 
 # 初始化声明式基类
 Base = declarative_base()
@@ -24,6 +20,7 @@ class Admin(Base):
     pwd = Column(String(255),nullable=False)
     gender = Column(Gender,nullable=False)
 
+    notice = relationship("Notice",back_populates='admin')
     
     def __repr__(self):
         return f"<Admin(id={self.id}, username={self.username}, pwd={self.pwd},gender={self.gender})>"
@@ -47,8 +44,6 @@ class Arrange(Base):
     
     def __repr__(self):
         return f"<Arrange(id={self.id}, plan_id={self.plan_id}, day={self.day}, title={self.title},detail={self.detail})>"
-    
-
 
 # 用户登录信息表
 class Login(Base):
@@ -59,8 +54,8 @@ class Login(Base):
     openid = Column(String(64),nullable=False,unique=True)
     session_key = Column(String(64),nullable=True,unique=True)
     token = Column(String(255),nullable=True,unique=True)
-    token_expiration = Column(DateTime,nullable=False,server_default=DEFAULT_EXPIRED_TIME)   
-    last_login_time = Column(DateTime,nullable=False,server_default=DEFAULT_CURRENT_TIME)
+    token_expiration = Column(DateTime(timezone=True),nullable=False,server_default=text("'2099-12-31 23:59:59'"))   
+    last_login_time = Column(DateTime(timezone=True),nullable=False,server_default=func.now())
     login_source = Column(String(50),nullable=True,server_default='wechat')
     
     user = relationship("User",back_populates="logins")
@@ -79,13 +74,13 @@ class Notice(Base):
     content = Column(Text,nullable=False)
     cover_img_url = Column(Text,nullable=True)
     type = Column(NoticeType,nullable=False,index=True)
-    create_time = Column(DateTime,nullable=False,server_default=DEFAULT_CURRENT_TIME)
-    update_time = Column(DateTime,nullable=False,server_default=DEFAULT_CURRENT_TIME,onupdate=DEFAULT_CURRENT_TIME)
-    expire_time = Column(DateTime,nullable=True,server_default=DEFAULT_EXPIRED_TIME)
+    create_time = Column(DateTime(timezone=True),nullable=False,server_default=func.now())
+    update_time = Column(DateTime(timezone=True),nullable=False,server_default=func.now(),onupdate=func.now())
+    expire_time = Column(DateTime(timezone=True),nullable=True,server_default=text("'2099-12-31 23:59:59'"))
     author_id = Column(INTEGER(unsigned=True),ForeignKey('admin.id',ondelete='CASCADE'),nullable=False,index=True,unique=True)
     status = Column(NoticeStatus,nullable=False,server_default='已发布')
     
-    author = relationship("Admin",name='notice')
+    author = relationship("Admin",back_populates='notice')
     notice_attachments = relationship('NoticeAttachments', back_populates='notice')
     
     def __repr__(self):
@@ -99,7 +94,7 @@ class NoticeAttachments(Base):
     file_name = Column(Text,nullable=False)
     file_url = Column(Text,nullable=False)
     description =  Column(Text)
-    upload_time = Column(DateTime,nullable=True,server_default=DEFAULT_CURRENT_TIME)
+    upload_time = Column(DateTime(timezone=True),nullable=True,server_default=func.now())
                 
     notice = relationship('Notice',back_populates='notice_attachments')
     
@@ -152,10 +147,11 @@ class Plan(Base):
     preference = Column(Preference,nullable=False)
     total_spending = Column(INTEGER(unsigned=True),nullable=False,index=True)
     arrange = Column(JSON,nullable=False)
-    create_time = Column(DateTime,nullable=False,server_default=DEFAULT_CURRENT_TIME)
-    status = Column(Enum('0','1',name='status'),nullable=False,server_default='0')
+    create_time = Column(DateTime(timezone=True),nullable=False,server_default=func.now())
+    status = Column(Enum('0','1',name='planAvailableStatus'),nullable=False,server_default='0')
     
     user = relationship('User',back_populates='plan')
+    arrange = relationship('Arrange',back_populates='plan')
     
     __table_args__ = (
        Index('idx_personality_hobbies_time_budget_preference', personality, hobbies, time, budget, preference)
@@ -175,12 +171,12 @@ class PostComment(Base):
     post_id = Column(INTEGER(unsigned=True),ForeignKey('posts.id',ondelete='CASCADE',onupdate='CASCADE'),nullable=False,index=True)
     content = Column(Text,nullable=False)
     parent_id = Column(BIGINT(unsigned=True),ForeignKey('post_comment.id',ondelete='CASCADE',onupdate='CASCADE'),nullable=True,index=True)
-    created_at = Column(DateTime,nullable=False,server_default=DEFAULT_CURRENT_TIME)
+    created_at = Column(DateTime(timezone=True),nullable=False,server_default=func.now())
     likes = Column(INTEGER(unsigned=True),nullable=True,server_default=0)
     status = Column(CommentStatus,nullable=True,server_default='已发布')
     
-    user = relationship('User',back_populates='plan')
-    post = relationship('Posts',back_populates='plan')
+    user = relationship('User',back_populates='post_comments')
+    post = relationship('Posts',back_populates='post_comments')
     
     # 隶属于父评论的子评论 （自引用关系​）
     parent = relationship('PostComment',remote_side=[id],back_populates='replies')
@@ -202,14 +198,14 @@ class Posts(Base):
     content = Column(Text,nullable=False)
     category = Column(Category,nullable=False)
     img_url = Column(Text,nullable=True)
-    created_at = Column(DateTime,nullable=True,server_default=DEFAULT_CURRENT_TIME)
-    updated_at = Column(DateTime,nullable=True,server_default=DEFAULT_CURRENT_TIME,onupdate=DEFAULT_CURRENT_TIME)
+    created_at = Column(DateTime(timezone=True),nullable=True,server_default=func.now())
+    updated_at = Column(DateTime(timezone=True),nullable=True,server_default=func.now(),onupdate=func.now())
     status = Column(PostStatus,nullable=False,server_default='已发布')
     likes = Column(INTEGER(unsigned=True),nullable=True,server_default=0)
     comments_count = Column(INTEGER(unsigned=True),nullable=True,server_default=0)
     
     user = relationship('User',back_populates='posts')
-    postComments = relationship('PostComment',back_populates='post')
+    post_comments = relationship('PostComment',back_populates='post')
     
     def __repr__(self):
         return f"<Post(id={self.id}, user_id={self.user_id}, title={self.title}, content={self.content}, category={self.category}, img_url={self.img_url}, created_at={self.created_at}, updated_at={self.updated_at}, status={self.status}, likes={self.likes}, comments_count={self.comments_count})>"
@@ -224,7 +220,7 @@ class Route(Base):
     budget = Column(INTEGER(unsigned=True),nullable=False,server_default=0)
     preference = Column(String(100),nullable=False)
     route_description = Column(String(200),nullable=True)
-    create_time = Column(DateTime,nullable=True,server_default=DEFAULT_CURRENT_TIME)
+    create_time = Column(DateTime(timezone=True),nullable=True,server_default=func.now())
     status = Column(Enum('0','1',name='routeAvailableStatus'),nullable=False,server_default='0',comment='可用状态，0：可用，1：被占用/不可用')    
     
     __table_args__ = (
@@ -233,7 +229,7 @@ class Route(Base):
     )
     
     user = relationship('User',back_populates='route')
-    route_mapping = relationship('RouteSotsMapping',back_populates='route')
+    route_spots_mapping = relationship('RouteSotsMapping',back_populates='route')
     
     def __repr__(self):
         return f"<Route(id={self.id}, user_id={self.user_id}, destination={self.destination}, travel_days={self.travel_days}, budget={self.budget}, preference={self.preference}, route_description={self.route_description}, route_spots={self.route_spots}, create_time={self.create_time}, status={self.status})>"
@@ -250,7 +246,7 @@ class RouteSotsMapping(Base):
     )
     
     route = relationship("Route",back_populates="route_spots_mapping")
-    spot = relationship("Spot",back_populates="route_spots_mapping")
+    spots = relationship("Spots",back_populates="route_spots_mapping")
     
     def __repr__(self):
         return f"<RouteSpotsMapping(route_id={self.route_id}, spot_id={self.spot_id})>"
@@ -269,7 +265,7 @@ class Spots(Base):
         Index('description',description,mysql_prefix='FULLTEXT')
     )
     
-    spot_mapping = relationship("RouteSpotsMapping",back_populates="spots")
+    route_spots_mapping = relationship("RouteSpotsMapping",back_populates="spots")
     
     def __repr__(self):
         return f"<Spot(id={self.id}, name={self.name}, location={self.location}, description={self.description})>"
@@ -287,9 +283,9 @@ class Teamup(Base):
     budget = Column(INTEGER(unsigned=True), nullable=False, default=0)
     preference = Column(Text, nullable=False)
     pic_url = Column(Text, nullable=False)
-    create_time = Column(DateTime, nullable=True, server_default=DEFAULT_CURRENT_TIME)
+    create_time = Column(DateTime(timezone=True), nullable=True, server_default=func.now())
     participant_id = Column(INTEGER(unsigned=True), ForeignKey('user.id', ondelete='CASCADE', onupdate='CASCADE'), nullable=True)
-    teamup_time = Column(DateTime, nullable=True, onupdate=DEFAULT_CURRENT_TIME)
+    teamup_time = Column(DateTime(timezone=True), nullable=True, onupdate=func.now())
     status = Column(TeamupStatus, nullable=False, server_default='正在组队中')
 
     __table_args__ = (
@@ -317,6 +313,13 @@ class User(Base):
         Index('idx_gender', gender),
         Index('idx_hobby', hobby, mysql_prefix='FULLTEXT'),
     )
+    plan = relationship('Plan', back_populates='user')
+    logins = relationship('Login', back_populates='user')
+    posts = relationship('Posts', back_populates='user')
+    route = relationship('Route', back_populates='user')
+    teamups_as_initator = relationship('Teamup', foreign_keys='Teamup.initator_id', back_populates='initator')
+    teamups_as_participant = relationship('Teamup', foreign_keys='Teamup.participant_id', back_populates='participant')
+    post_comments = relationship('PostComment',back_populates='user')
 
     def __repr__(self):
         return f"<User(id={self.id}, nickname={self.nickname}, avatar={self.avatar}, gender={self.gender}, hobby={self.hobby})>"
