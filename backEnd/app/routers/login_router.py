@@ -14,7 +14,7 @@ class LoginRequest(BaseModel):
 # 登录接口 POST请求
 @login_router.post('/auth/login/')
 def login(loginCode: LoginRequest):
-    url = f"https://api.weixin.qq.com/sns/jscode2session?appid=wxa35b788e7a7760be&secret=2747dff5884689877ecd3ebe4f923508&js_code={loginCode.code}&grant_type=authorization_code"
+    url = f"https://api.weixin.qq.com/sns/jscode2session?appid=wxa35b788e7a7760be&secret=8ca4524d10d633e14e34ba449b0e0ef0&js_code={loginCode.code}&grant_type=authorization_code"
     result = requests.get(url)
     data = result.json()
     openid = data["openid"]
