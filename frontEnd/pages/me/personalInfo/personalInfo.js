@@ -4,6 +4,7 @@ const _ = require('lodash')
 
 Page({
   data: {
+    id:'',
     token: '',
     genderArr: ['男', '女', '暂不选择'],
     genderIndex: 0,
@@ -146,55 +147,59 @@ Page({
   //打开时自动获取并填充用户信息（待完善）
   onLoad(options) {
     wx.showNavigationBarLoading()
-
-    // GET请求 
-    /*  this.data.token = app.globalData.token
-        wx.request({
-          url: '#',
-          data: {
-            token: app.globalData.token
-          },
-          timeout: 5000,
-          success: (res) => {
-            wx.hideNavigationBarLoading()
-            if (res.statusCode == 200) {
-              const { userInfo } = res.data.data
-              const { avatar, nickname, gender,  hobby } = userInfo
-              this.setData({
-                avatar: avatar || app.globalData.defaultAvatarUrl,
-                nickname,
-                gender,
-                hobby
-              })
-            } else {
-              wx.showToast({
-                title: '获取用户信息失败！',
-                icon: 'none',
-                duration: 2000
-              })
-              this.setData({
-                avatar: app.globalData.defaultAvatarUrl,
-              })
-            }
-          },
-          fail: (err) => {
-            wx.hideNavigationBarLoading()
-            console.log(err)
-            wx.showToast({
-              title: '获取用户信息失败！',
-              icon: 'none',
-              duration: 2000
-            })
-            this.setData({
-              avatar: app.globalData.defaultAvatarUrl,
-            })
-          },
-          complete: () => {
-            this.setData({
-              currentDate: new Date()
-            })
-          }
-        }) */
+    const tokenObj = wx.getStorageSync('tokenObj')
+    console.log(tokenObj)
+    if(!tokenObj) return
+    const {id,token} = tokenObj
+    this.globalData.token = token
+    // GET请求
+    wx.request({
+      url: `http://127.0.0.1:8001/user`,
+      data: {
+        id:id,
+        token: app.globalData.token
+      },
+      timeout: 5000,
+      success: (res) => {
+        wx.hideNavigationBarLoading()
+        if (res.statusCode == 200) {
+          const { userInfo } = res.data.data
+          const { avatar, nickname, gender,  hobby } = userInfo
+          this.setData({
+            avatar: avatar || app.globalData.defaultAvatarUrl,
+            nickname,
+            gender,
+            hobby
+          })
+        } else {
+          wx.showToast({
+            title: '获取用户信息失败！',
+            icon: 'none',
+            duration: 2000
+          })
+          this.setData({
+            avatar: app.globalData.defaultAvatarUrl,
+          })
+        }
+      },
+      fail: (err) => {
+        wx.hideNavigationBarLoading()
+        console.log(err)
+        wx.showToast({
+          title: '获取用户信息失败！',
+          icon: 'none',
+          duration: 2000
+        })
+        this.setData({
+          avatar: app.globalData.defaultAvatarUrl,
+        })
+      },
+      complete: () => {
+        this.setData({
+          currentDate: new Date()
+        })
+      }
+    })
 
     setTimeout(() => {
       wx.hideNavigationBarLoading()

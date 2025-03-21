@@ -1,2 +1,22 @@
 <!--pages/me/aboutUs/aboutUs.wxml-->
-<text>pages/me/aboutUs/aboutUs.wxml</text>
+<!--<text>pages/me/aboutUs/aboutUs.wxml</text> -->
+<!-- pages/about/about.wxml -->
+<view class="container">
+  <view class="header">
+    <text class="title">关于我们</text>
+  </view>
+  <view class="content">
+    <text class="description">
+      我们致力于为用户提供优质的服务和产品。我们的团队由一群充满激情和创造力的专业人士组成，始终以客户为中心，不断创新和改进。
+    </text>
+    <view class="contact-info">
+      <text class="label">联系我们:</text>
+      <text class="info">电话: 15702715597</text>
+      <text class="info">邮箱: 2736404344@qq.com</text>
+      <text class="info">地址: 哈尔滨市南岗区学府路52号</text>
+    </view>
+    <view class="footer">
+      <text>版本号：V1.0</text>
+    </view>
+  </view>
+</view>

@@ -1,4 +1,4 @@
-const DURATION = 10000
+const DURATION = 8640000 //token有效期 单位：ms
 
 //检查登录态、token有无、token是否过期
 const checkLogin = ()=>{
@@ -29,8 +29,8 @@ const login = ()=>{
           },
           success:(res)=>{
             console.log(res)
-            const {loginStatus,token} = res.data.data
-            saveLoginInfo(token,loginStatus)
+            const {loginStatus,token,id} = res.data.data
+            saveLoginInfo(token,loginStatus,id)
           }
         })
       }
@@ -38,9 +38,10 @@ const login = ()=>{
 }
 
   //将获取的token对象存入本地缓存
-const saveLoginInfo = (token,loginStatus)=>{
+const saveLoginInfo = (token,loginStatus,id)=>{
     const expiration_time = Date.now()+DURATION
     const tokenObj = {
+      id,
       token, //token
       expiration_time //过期时间
     }

@@ -1,9 +1,8 @@
-import pytz
-from datetime import datetime
 from sqlalchemy import ( 
-    JSON, Column, PrimaryKeyConstraint, String, Text, Enum, DateTime, Index,
-    ForeignKey, CheckConstraint, UniqueConstraint, JSO, N, func, text
+    Column, PrimaryKeyConstraint, String, Text, Enum, DateTime, Index,
+    ForeignKey, CheckConstraint, UniqueConstraint, JSON, text
 )
+from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship,declarative_base
 from sqlalchemy.dialects.mysql import INTEGER,BIGINT
 
@@ -39,7 +38,7 @@ class Arrange(Base):
     
     __table_args__ = (
         UniqueConstraint('plan_id','day',name='uqk_planid_day'),
-        CheckConstraint(day > 0,name='arrange_chk_1')
+        CheckConstraint(day > 0,name='arrange_chk_1'),
     )
     
     def __repr__(self):
@@ -54,7 +53,7 @@ class Login(Base):
     openid = Column(String(64),nullable=False,unique=True)
     session_key = Column(String(64),nullable=True,unique=True)
     token = Column(String(255),nullable=True,unique=True)
-    token_expiration = Column(DateTime(timezone=True),nullable=False,server_default=text("'2099-12-31 23:59:59'"))   
+    token_expiration = Column(DateTime(timezone=True),nullable=False,default=text("'2099-12-31 23:59:59'"))
     last_login_time = Column(DateTime(timezone=True),nullable=False,server_default=func.now())
     login_source = Column(String(50),nullable=True,server_default='wechat')
     
@@ -154,7 +153,7 @@ class Plan(Base):
     arrange = relationship('Arrange',back_populates='plan')
     
     __table_args__ = (
-       Index('idx_personality_hobbies_time_budget_preference', personality, hobbies, time, budget, preference)
+       Index('idx_personality_hobbies_time_budget_preference', personality, hobbies, time, budget, preference),
     )
     
     def __repr__(self):
@@ -172,7 +171,7 @@ class PostComment(Base):
     content = Column(Text,nullable=False)
     parent_id = Column(BIGINT(unsigned=True),ForeignKey('post_comment.id',ondelete='CASCADE',onupdate='CASCADE'),nullable=True,index=True)
     created_at = Column(DateTime(timezone=True),nullable=False,server_default=func.now())
-    likes = Column(INTEGER(unsigned=True),nullable=True,server_default=0)
+    likes = Column(INTEGER(unsigned=True),nullable=True,default=0)
     status = Column(CommentStatus,nullable=True,server_default='已发布')
     
     user = relationship('User',back_populates='post_comments')
@@ -201,8 +200,8 @@ class Posts(Base):
     created_at = Column(DateTime(timezone=True),nullable=True,server_default=func.now())
     updated_at = Column(DateTime(timezone=True),nullable=True,server_default=func.now(),onupdate=func.now())
     status = Column(PostStatus,nullable=False,server_default='已发布')
-    likes = Column(INTEGER(unsigned=True),nullable=True,server_default=0)
-    comments_count = Column(INTEGER(unsigned=True),nullable=True,server_default=0)
+    likes = Column(INTEGER(unsigned=True),nullable=True,default=0)
+    comments_count = Column(INTEGER(unsigned=True),nullable=True,default=0)
     
     user = relationship('User',back_populates='posts')
     post_comments = relationship('PostComment',back_populates='post')
@@ -217,7 +216,7 @@ class Route(Base):
     user_id = Column(INTEGER(unsigned=True),ForeignKey('user.id',ondelete='CASCADE',onupdate='CASCADE'),nullable=False,index=True)
     destination = Column(String(50),nullable=False)
     travel_days = Column(INTEGER(unsigned=True),nullable=False)
-    budget = Column(INTEGER(unsigned=True),nullable=False,server_default=0)
+    budget = Column(INTEGER(unsigned=True),nullable=False,default=0)
     preference = Column(String(100),nullable=False)
     route_description = Column(String(200),nullable=True)
     create_time = Column(DateTime(timezone=True),nullable=True,server_default=func.now())
@@ -225,7 +224,7 @@ class Route(Base):
     
     __table_args__ = (
         Index('idx_destination_travel_days_budget_preference', destination, travel_days, budget, preference),
-        CheckConstraint('travel_days > 0',name='route_chk_1')
+        CheckConstraint('travel_days > 0',name='route_chk_1'),
     )
     
     user = relationship('User',back_populates='route')

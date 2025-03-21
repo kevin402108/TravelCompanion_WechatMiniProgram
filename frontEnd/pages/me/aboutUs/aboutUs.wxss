@@ -1,1 +1,57 @@
 /* pages/me/aboutUs/aboutUs.wxss */
+/* pages/about/about.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.content {
+  width: 100%;
+  max-width: 600px;
+}
+
+.description {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.info {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.footer {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 8px;
+}

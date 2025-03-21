@@ -27,6 +27,7 @@ def login(loginCode: LoginRequest):
     encrypted_token = encrypt(token, key, iv)  # 将加密的token后转化base64字符串
     response = {
         "data": {
+            "id": 1, # 用户id
             "token": encrypted_token,
             "loginStatus": 1  # 登录态 1:已登录 0:未登录
         }
