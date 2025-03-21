@@ -1,5 +1,8 @@
 /* pages/me/aboutUs/aboutUs.wxss */
-/* pages/about/about.wxss */
+page {
+  
+}
+
 .container {
   display: flex;
   flex-direction: column;

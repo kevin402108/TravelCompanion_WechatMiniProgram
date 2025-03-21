@@ -1,8 +1,10 @@
+import loginUtils from "../../utils/loginUtils"
 const app = getApp();
 
 Page({
   data: {
     user: {
+      id:'',
       token:'',
       nickname: "微信用户",
       avatar: app.globalData.defaultAvatarUrl,
@@ -16,16 +18,24 @@ Page({
   },
 
   onLoad(options) {
-    this.data.token = app.globalData.token
-    const {token} = this.data
-    wx.showNavigationBarLoading();
+    let tokenObj = wx.getStorageSync('tokenObj')
+    //若无法从localStorage找到tokenObj或token失效，则进行登录
+    if(!tokenObj||tokenObj.expiration_time<Date.now()||!tokenObj.loginStatus||!tokenObj.token){
+      loginUtils.login()
+      tokenObj = wx.getStorageSync('tokenObj')
+    }
+
+    const {id,token} = tokenObj
+
+    wx.showNavigationBarLoading()
 
     //通过token获取用户头像和昵称 GET请求
-    /* const token = ''
+    
     wx.request({
-      url: "#",
+      url: `http://127.0.0.1:8001/user/profile`,
       data: {
-        token,
+        id,
+        token
       },
       timeout: 5000,
       success: (res) => {
@@ -53,7 +63,7 @@ Page({
           icon:'none'
         })
       },
-    }) */
+    }) 
 
     setTimeout(() => {
       wx.hideNavigationBarLoading();

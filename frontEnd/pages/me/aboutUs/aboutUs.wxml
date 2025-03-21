@@ -1,6 +1,4 @@
 <!--pages/me/aboutUs/aboutUs.wxml-->
-<!--<text>pages/me/aboutUs/aboutUs.wxml</text> -->
-<!-- pages/about/about.wxml -->
 <view class="container">
   <view class="header">
     <text class="title">关于我们</text>
@@ -11,8 +9,8 @@
     </text>
     <view class="contact-info">
       <text class="label">联系我们:</text>
-      <text class="info">电话: 15702715597</text>
-      <text class="info">邮箱: 2736404344@qq.com</text>
+      <text class="info">电话: 18904881022</text>
+      <text class="info">邮箱: 3077384244@qq.com</text>
       <text class="info">地址: 哈尔滨市南岗区学府路52号</text>
     </view>
     <view class="footer">
