@@ -1,30 +1,75 @@
 const DURATION = 8640000 //token有效期 单位：ms
 
-//检查登录态、token有无、token是否过期
+// tokenObj对象：expiration_time,id,token
+//检查是否注册、登录态、token有无、token是否过期
 const checkLogin = ()=>{
     //如果本地缓存有token,检查其是否有效，无效则刷新token
     const tokenObj = wx.getStorageSync('tokenObj')
     const loginStatus = wx.getStorageSync('loginStatus')
-    if(tokenObj&&loginStatus){
-      const curTime = Date.now()
-      const {expiration_time} = tokenObj
-      if(curTime >= expiration_time){
+    if(tokenObj){
+       const {token,id,expiration_time} = tokenObj
+       //如果token过期
+       if(expiration_time>=Date.now()) {
+        wx.showToast({
+          title: '登录过期，正在自动重新登录！',
+          icon:'none'
+        })
         wx.setStorageSync('loginStatus',0)
         login()
-      }
+       } else {
+          wx.request({
+            url: `http://127.0.0.1:8001/user/updateLoginTime`,
+            data: {
+              id
+            },
+            method:'PUT',
+            timeout: 5000,
+            success: (res) => {
+              console.log(res);
+              if (res.statuseCode == 200) {
+                wx.setStorageSync('loginStatus',1)
+              } else {
+                wx.setStorageSync('loginStatus',0)
+              }
+            }
+          })
+       }
+
     } else {
-      //如果本地没有token,发请求从后台获取token
-      login()
+      //如果无法从本地存储中获取tokenObj,默认为新用户，直接注册
+      register()
     }
 }
 
+const register = ()=> {
+  wx.login({
+    success:(res)=>{
+      wx.request({
+        url:'http://127.0.0.1:8001/auth/register',
+        method:'POST',
+        data:{
+          code:res.code
+        },
+        success:(res)=>{
+          console.log(res)
+          const {loginStatus,token,id} = res.data.data
+          saveLoginInfo(token,loginStatus,id)
+        }
+      })
+    }
+  })
+}
+
 const login = ()=>{
+    const tokenObj = wx.getStorageSync('tokenObj')
     wx.login({
       success:(res)=>{
         wx.request({
           url:'http://127.0.0.1:8001/auth/login',
-          method:'POST',
+          method:'PUT',
           data:{
+            // 如果本地存储有tokenObj，则使用tokenObj中的id，否则id为-1
+            id:tokenObj?tokenObj.id:-1,
             code:res.code
           },
           success:(res)=>{

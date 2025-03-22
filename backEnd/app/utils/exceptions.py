@@ -27,13 +27,36 @@ class DataMismatchError(HTTPException):
 class IntegrityConstraintError(HTTPException):
     def __init__(self, detail):
         exception_logger.error(f"完整性约束违反错误: {detail}")
-        super().__init__(status_code=500, detail=f"完整性约束违反错误: {detail}")
+        super().__init__(status_code=409, detail=f"完整性约束违反错误: {detail}")
 
 # 处理用户不存在异常
 class UserNotFoundError(HTTPException):
     def __init__(self):
         exception_logger.error("无法查询到该用户!")
         super().__init__(status_code=404, detail="无法查询到该用户!")
+
+#  处理微信API调用失败异常
+class WechatAPIRequestError(HTTPException):
+    def __init__(self, detail: str):
+        exception_logger.error(f"微信API调用失败: {detail}")
+        super().__init__(status_code=500, detail=f"微信API调用失败: {detail}")
+
+#  处理微信API密钥错误异常
+class WechatAPIKeyError(HTTPException):
+    def __init__(self, detail):
+        exception_logger.error(f"KeyError: {detail}")
+        super().__init__(status_code=500, detail=f"KeyError: {detail}")
+
+# 处理JSON解析失败异常
+class JSONDecodeError(HTTPException):
+    def __init__(self, detail):
+        exception_logger.error(f"JSON解析失败: {detail}")
+        super().__init__(status_code=500, detail=f"JSON解析失败: {detail}")
+
+class DataError(HTTPException):
+    def __init__(self, detail):
+        exception_logger.error(f"数据错误: {detail}")
+        super().__init__(status_code=400, detail=f"数据错误: {detail}")
 
 # 处理其他未知异常
 class UnknownError(HTTPException):

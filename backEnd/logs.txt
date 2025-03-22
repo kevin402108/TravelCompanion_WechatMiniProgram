@@ -1,0 +1,3 @@
+2025-03-22 13:39:11,477 - exception_logger - ERROR - Î´Öª´íÎó: Mapper 'Mapper[Notice(notice)]' has no property 'admin'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2025-03-23 00:47:00,295 - exception_logger - ERROR - Î´Öª´íÎó: Mapper 'Mapper[Notice(notice)]' has no property 'admin'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2025-03-23 01:05:14,538 - exception_logger - ERROR - Î´Öª´íÎó: Mapper 'Mapper[Notice(notice)]' has no property 'admin'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.

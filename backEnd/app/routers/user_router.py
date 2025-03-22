@@ -22,8 +22,6 @@ def get_user_info(user):
 @user_router.get('/user/profile')
 def get_user(id:int,token:str,db=Depends(get_database)):
     try:
-        #TODO: token 校验 待完善
-
         #从数据库中获取对应id的用户信息
         user = db.query(User).filter(User.id==id).first()
         if user:
