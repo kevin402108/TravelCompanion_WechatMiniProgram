@@ -62,6 +62,12 @@ Page({
           title:'获取用户信息失败！',
           icon:'none'
         })
+        this.setData({
+          user: {
+            nickname: "微信用户",
+            avatar: app.globalData.defaultAvatarUrl,
+          },
+        });
       },
     }) 
 

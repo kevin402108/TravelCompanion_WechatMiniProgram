@@ -14,6 +14,7 @@ DB_HOST = os.getenv("DB_HOST")
 DB_PORT = os.getenv("DB_PORT")
 DB_NAME = os.getenv("DB_NAME")
 
+
 # print(DB_USER, DB_PWD, DB_HOST, DB_PORT, DB_NAME)
 if not all([DB_USER, DB_PWD, DB_HOST, DB_PORT, DB_NAME]):
     raise ValueError("缺失部分或全部数据库环境变量，请检查后重试！")

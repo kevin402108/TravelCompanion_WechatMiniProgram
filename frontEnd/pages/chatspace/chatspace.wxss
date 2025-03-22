@@ -22,3 +22,22 @@
 .conatnier {
     flex:1;
 }
+
+/*发布帖子按钮的样式*/
+.submit-btn {
+  margin-top: 20px;
+  width: 90%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.submit-btn:active {
+  background-color: #005bbb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}

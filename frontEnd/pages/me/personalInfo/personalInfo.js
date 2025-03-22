@@ -151,7 +151,6 @@ Page({
     console.log(tokenObj)
     if(!tokenObj) return
     const {id,token} = tokenObj
-    this.globalData.token = token
     // GET请求
     wx.request({
       url: `http://127.0.0.1:8001/user`,

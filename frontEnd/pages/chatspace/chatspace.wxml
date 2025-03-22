@@ -16,6 +16,13 @@
     </block>
 
     <block wx:if="{{tabIndex === 2}}">
-        ~ 发布帖子吧！ ~
+    
+        <view class="chat-space">
+  
+  <!-- 输入框和提交按钮 -->
+  <textarea class="input-box" placeholder="请输入帖子内容" bindinput="onInput" value="{{inputContent}}"></textarea>
+  <button class="submit-btn" bindtap="submitPost">发布帖子</button>
+</view>
+
     </block>
 </view>
