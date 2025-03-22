@@ -51,9 +51,17 @@ const register = ()=> {
           code:res.code
         },
         success:(res)=>{
-          console.log(res)
-          const {loginStatus,token,id} = res.data.data
-          saveLoginInfo(token,loginStatus,id)
+          if (res.statuseCode >=200 && res.statuseCode <300){
+            console.log(res)
+            const {loginStatus,token,id} = res.data.data
+            saveLoginInfo(token,loginStatus,id)
+          } else {
+            wx.showToast({
+              title: '登录失败',
+              icon: 'none'
+            })
+          }
+          
         }
       })
     }
@@ -69,13 +77,20 @@ const login = ()=>{
           method:'PUT',
           data:{
             // 如果本地存储有tokenObj，则使用tokenObj中的id，否则id为-1
-            id:tokenObj?tokenObj.id:-1,
+            id:tokenObj.id,
             code:res.code
           },
           success:(res)=>{
-            console.log(res)
-            const {loginStatus,token,id} = res.data.data
-            saveLoginInfo(token,loginStatus,id)
+            if (res.statuseCode >=200 && res.statuseCode <300){
+              console.log(res)
+              const {loginStatus,token,id} = res.data.data
+              saveLoginInfo(token,loginStatus,id)
+            } else {
+              wx.showToast({
+                title: '登录失败',
+                icon: 'none'
+              })
+            }
           }
         })
       }

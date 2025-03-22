@@ -79,7 +79,7 @@ class Notice(Base):
     author_id = Column(INTEGER(unsigned=True),ForeignKey('admin.id',ondelete='CASCADE'),nullable=False,index=True,unique=True)
     status = Column(NoticeStatus,nullable=False,server_default='已发布')
     
-    author = relationship("Admin",back_populates='notice')
+    admin = relationship("Admin",back_populates='notice')
     notice_attachments = relationship('NoticeAttachments', back_populates='notice')
     
     def __repr__(self):

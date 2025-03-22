@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.encoders import jsonable_encoder
-from requests import Session
+from sqlalchemy.orm import Session
 
 from backEnd.config.db_config import DB_URL, DB_CONFIG
 from sqlalchemy import create_engine,text
@@ -24,6 +24,7 @@ sessionLocal = sessionmaker(
 
 # 基类，用于声明模型
 Base = declarative_base()
+Base.metadata.create_all(engine)
 
 # 创建数据库连接
 def get_database():
@@ -45,4 +46,8 @@ def test_connection():
         print("数据库连接成功！")
     except Exception as e:
         print(f"数据库连接失败：{e}")
+
+# 创建数据库表
+def create_tables():
+    Base.metadata.create_all(engine)
 
