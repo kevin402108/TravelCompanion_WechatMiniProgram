@@ -76,7 +76,6 @@ const login = ()=>{
           url:'http://127.0.0.1:8001/auth/login',
           method:'PUT',
           data:{
-            // 如果本地存储有tokenObj，则使用tokenObj中的id，否则id为-1
             id:tokenObj.id,
             code:res.code
           },

@@ -1,5 +1,8 @@
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 from  backEnd.app.utils.logger import setup_logger
 import backEnd.app.utils.exceptions as exceptions
+from sqlalchemy.orm import Session
 from sqlalchemy.exc import OperationalError, ProgrammingError, DataError, IntegrityError
 from fastapi import APIRouter, Depends
 from backEnd.app.database import get_database
@@ -50,4 +53,37 @@ def get_user(id:int,token:str,db=Depends(get_database)):
     except Exception as e:
         # 处理其他未知异常
         raise exceptions.UnknownError(str(e))
-    
+
+class UserInfo(BaseModel):
+    id: int
+    avatar: str
+    nickname: str
+    gender: str
+    hobby: str
+
+# 修改用户信息接口
+@user_router.put('/auth/updateUserInfo')
+async def update_user_info(
+    user_info: UserInfo,
+    db:Session=Depends(get_database)
+):
+    try:
+        user = db.query(User).filter(User.id==user_info.id).first()
+        if not user:
+            raise exceptions.UserNotFoundError()
+        
+        update_info = {
+            "avatar": user_info.avatar,
+            "nickname": user_info.nickname,
+            "gender": user_info.gender,
+            "hobby": user_info.hobby
+        }
+        db.query(User).filter(User.id==user_info.id).update(update_info)
+        db.commit()
+
+        return JSONResponse(status_code=200, content={"message": "保存成功"})
+    except Exception as e:
+        db.rollback()
+        return JSONResponse(status_code=500, content={"message": f"保存失败: {str(e)}"})
+    finally:
+        db.close()

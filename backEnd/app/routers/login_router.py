@@ -2,6 +2,7 @@ import datetime
 import json
 import os
 import time
+from sqlalchemy.orm import Session
 from sqlalchemy.sql import func
 import backEnd.app.utils.exceptions as exceptions
 from pymysql import DataError, IntegrityError, OperationalError, ProgrammingError
@@ -27,7 +28,7 @@ class LoginRequest(BaseModel):
     
 # 登录接口 POST请求
 @login_router.put('/auth/login/')
-def login(loginCode: LoginRequest,db=Depends(get_database)):
+def login(loginCode: LoginRequest,db:Session=Depends(get_database)):
     try:
         id = loginCode.id
         user =db.query(User).filter(User.id==id).first()
@@ -84,7 +85,7 @@ def login(loginCode: LoginRequest,db=Depends(get_database)):
 
 # 更新登录时间接口 PUT请求
 @login_router.put('/user/updateLoginTime')
-def updateLoginTime(id:int,db=Depends(get_database)):
+def updateLoginTime(id:int,db:Session=Depends(get_database)):
     try:
         user = db.query(User).filter(User.id==id).first()
         if user:
@@ -119,7 +120,7 @@ def updateLoginTime(id:int,db=Depends(get_database)):
     
 # 注册接口 POST请求
 @login_router.post("/auth/register")
-def register(registerCode:RegisterRequest,db=Depends(get_database)):
+def register(registerCode:RegisterRequest,db:Session=Depends(get_database)):
     try:
         url = f"https://api.weixin.qq.com/sns/jscode2session?appid=wxa35b788e7a7760be&secret=8ca4524d10d633e14e34ba449b0e0ef0&js_code={registerCode.code}&grant_type=authorization_code"
         result = requests.get(url)
