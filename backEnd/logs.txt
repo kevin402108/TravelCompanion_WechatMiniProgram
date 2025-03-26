@@ -9,3 +9,178 @@
 2025-03-23 01:47:32,807 - exception_logger - ERROR - 未知错误: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Admin(admin)]'. Original exception was: Mapper 'Mapper[Notice(notice)]' has no property 'admin'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
 2025-03-23 01:48:06,060 - exception_logger - ERROR - 未知错误: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Admin(admin)]'. Original exception was: Mapper 'Mapper[Notice(notice)]' has no property 'admin'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
 2025-03-23 01:48:18,455 - exception_logger - ERROR - 未知错误: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Admin(admin)]'. Original exception was: Mapper 'Mapper[Notice(notice)]' has no property 'admin'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2025-03-24 20:34:20,455 - exception_logger - ERROR - 未知错误: When initializing mapper Mapper[Spots(spots)], expression 'RouteSpotsMapping' failed to locate a name ('RouteSpotsMapping'). If this is a class name, consider adding this relationship() to the <class 'backEnd.app.models.Spots'> class after both dependent classes have been defined.
+2025-03-24 20:36:17,570 - exception_logger - ERROR - 未知错误: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[RouteSotsMapping(route_spots_mapping)]'. Original exception was: When initializing mapper Mapper[Spots(spots)], expression 'RouteSpotsMapping' failed to locate a name ('RouteSpotsMapping'). If this is a class name, consider adding this relationship() to the <class 'backEnd.app.models.Spots'> class after both dependent classes have been defined.
+2025-03-24 20:50:07,620 - exception_logger - ERROR - 未知错误: 
+2025-03-24 20:50:13,262 - exception_logger - ERROR - 未知错误: 
+2025-03-24 20:50:15,846 - exception_logger - ERROR - 未知错误: 
+2025-03-24 20:50:23,741 - exception_logger - ERROR - 未知错误: 
+2025-03-24 20:50:26,399 - exception_logger - ERROR - 未知错误: 
+2025-03-24 20:50:38,257 - exception_logger - ERROR - 未知错误: 
+2025-03-24 20:57:53,544 - exception_logger - ERROR - 未知错误: 
+2025-03-24 21:05:22,001 - exception_logger - ERROR - 未知错误: 
+2025-03-24 21:05:23,844 - exception_logger - ERROR - 未知错误: 
+2025-03-24 21:06:53,843 - exception_logger - ERROR - 未知错误: 
+2025-03-24 21:37:10,060 - exception_logger - ERROR - 未知错误: 
+2025-03-24 22:07:08,258 - exception_logger - ERROR - 未知错误: (pymysql.err.IntegrityError) (1048, "Column 'nickname' cannot be null")
+[SQL: INSERT INTO user (nickname, avatar, gender, hobby) VALUES (%(nickname)s, %(avatar)s, %(gender)s, %(hobby)s)]
+[parameters: {'nickname': None, 'avatar': 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0', 'gender': None, 'hobby': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-24 22:23:35,134 - exception_logger - ERROR - 未知错误: 
+2025-03-24 22:25:04,809 - exception_logger - ERROR - 未知错误: 
+2025-03-24 22:36:32,050 - exception_logger - ERROR - 未知错误: 
+2025-03-24 22:44:07,213 - exception_logger - ERROR - 未知错误: 
+2025-03-24 22:46:42,398 - exception_logger - ERROR - 未知错误: 
+2025-03-25 00:07:46,573 - exception_logger - ERROR - 未知错误: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'ojr2g7T_6rL88u-HEllD8Xs--860' for key 'login.openid'")
+[SQL: INSERT INTO login (user_id, openid, session_key, token, login_source) VALUES (%(user_id)s, %(openid)s, %(session_key)s, %(token)s, %(login_source)s)]
+[parameters: {'user_id': 2, 'openid': 'ojr2g7T_6rL88u-HEllD8Xs--860', 'session_key': 'U7TePMRaza61/Oc6AoXT0Q==', 'token': 'token-ojr2g7T_6rL88u-HEllD8Xs--860-1742832466', 'login_source': 'wechat'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-25 00:08:31,357 - exception_logger - ERROR - 未知错误: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'ojr2g7T_6rL88u-HEllD8Xs--860' for key 'login.openid'")
+[SQL: INSERT INTO login (user_id, openid, session_key, token, login_source) VALUES (%(user_id)s, %(openid)s, %(session_key)s, %(token)s, %(login_source)s)]
+[parameters: {'user_id': 3, 'openid': 'ojr2g7T_6rL88u-HEllD8Xs--860', 'session_key': 'U7TePMRaza61/Oc6AoXT0Q==', 'token': 'token-ojr2g7T_6rL88u-HEllD8Xs--860-1742832511', 'login_source': 'wechat'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-25 00:09:28,713 - exception_logger - ERROR - 未知错误: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'ojr2g7T_6rL88u-HEllD8Xs--860' for key 'login.openid'")
+[SQL: INSERT INTO login (user_id, openid, session_key, token, login_source) VALUES (%(user_id)s, %(openid)s, %(session_key)s, %(token)s, %(login_source)s)]
+[parameters: {'user_id': 4, 'openid': 'ojr2g7T_6rL88u-HEllD8Xs--860', 'session_key': 'U7TePMRaza61/Oc6AoXT0Q==', 'token': 'token-ojr2g7T_6rL88u-HEllD8Xs--860-1742832568', 'login_source': 'wechat'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-25 00:12:57,198 - exception_logger - ERROR - 未知错误: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'ojr2g7T_6rL88u-HEllD8Xs--860' for key 'login.openid'")
+[SQL: INSERT INTO login (user_id, openid, session_key, token, login_source) VALUES (%(user_id)s, %(openid)s, %(session_key)s, %(token)s, %(login_source)s)]
+[parameters: {'user_id': 2, 'openid': 'ojr2g7T_6rL88u-HEllD8Xs--860', 'session_key': 'U7TePMRaza61/Oc6AoXT0Q==', 'token': 'token-ojr2g7T_6rL88u-HEllD8Xs--860-1742832777', 'login_source': 'wechat'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-25 00:13:32,675 - exception_logger - ERROR - 未知错误: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'ojr2g7T_6rL88u-HEllD8Xs--860' for key 'login.openid'")
+[SQL: INSERT INTO login (user_id, openid, session_key, token, login_source) VALUES (%(user_id)s, %(openid)s, %(session_key)s, %(token)s, %(login_source)s)]
+[parameters: {'user_id': 3, 'openid': 'ojr2g7T_6rL88u-HEllD8Xs--860', 'session_key': 'U7TePMRaza61/Oc6AoXT0Q==', 'token': 'token-ojr2g7T_6rL88u-HEllD8Xs--860-1742832812', 'login_source': 'wechat'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-25 00:14:20,936 - exception_logger - ERROR - 未知错误: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'ojr2g7T_6rL88u-HEllD8Xs--860' for key 'login.openid'")
+[SQL: INSERT INTO login (user_id, openid, session_key, token, login_source) VALUES (%(user_id)s, %(openid)s, %(session_key)s, %(token)s, %(login_source)s)]
+[parameters: {'user_id': 2, 'openid': 'ojr2g7T_6rL88u-HEllD8Xs--860', 'session_key': 'U7TePMRaza61/Oc6AoXT0Q==', 'token': 'token-ojr2g7T_6rL88u-HEllD8Xs--860-1742832860', 'login_source': 'wechat'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-25 00:14:25,106 - exception_logger - ERROR - 未知错误: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'ojr2g7T_6rL88u-HEllD8Xs--860' for key 'login.openid'")
+[SQL: INSERT INTO login (user_id, openid, session_key, token, login_source) VALUES (%(user_id)s, %(openid)s, %(session_key)s, %(token)s, %(login_source)s)]
+[parameters: {'user_id': 3, 'openid': 'ojr2g7T_6rL88u-HEllD8Xs--860', 'session_key': 'U7TePMRaza61/Oc6AoXT0Q==', 'token': 'token-ojr2g7T_6rL88u-HEllD8Xs--860-1742832865', 'login_source': 'wechat'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-25 00:15:12,200 - exception_logger - ERROR - 未知错误: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'ojr2g7T_6rL88u-HEllD8Xs--860' for key 'login.openid'")
+[SQL: INSERT INTO login (user_id, openid, session_key, token, login_source) VALUES (%(user_id)s, %(openid)s, %(session_key)s, %(token)s, %(login_source)s)]
+[parameters: {'user_id': 2, 'openid': 'ojr2g7T_6rL88u-HEllD8Xs--860', 'session_key': 'U7TePMRaza61/Oc6AoXT0Q==', 'token': 'token-ojr2g7T_6rL88u-HEllD8Xs--860-1742832912', 'login_source': 'wechat'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-25 00:15:16,332 - exception_logger - ERROR - 未知错误: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'ojr2g7T_6rL88u-HEllD8Xs--860' for key 'login.openid'")
+[SQL: INSERT INTO login (user_id, openid, session_key, token, login_source) VALUES (%(user_id)s, %(openid)s, %(session_key)s, %(token)s, %(login_source)s)]
+[parameters: {'user_id': 3, 'openid': 'ojr2g7T_6rL88u-HEllD8Xs--860', 'session_key': 'U7TePMRaza61/Oc6AoXT0Q==', 'token': 'token-ojr2g7T_6rL88u-HEllD8Xs--860-1742832916', 'login_source': 'wechat'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-25 00:15:18,497 - exception_logger - ERROR - 未知错误: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'ojr2g7T_6rL88u-HEllD8Xs--860' for key 'login.openid'")
+[SQL: INSERT INTO login (user_id, openid, session_key, token, login_source) VALUES (%(user_id)s, %(openid)s, %(session_key)s, %(token)s, %(login_source)s)]
+[parameters: {'user_id': 4, 'openid': 'ojr2g7T_6rL88u-HEllD8Xs--860', 'session_key': 'U7TePMRaza61/Oc6AoXT0Q==', 'token': 'token-ojr2g7T_6rL88u-HEllD8Xs--860-1742832918', 'login_source': 'wechat'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-25 00:15:21,151 - exception_logger - ERROR - 未知错误: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'ojr2g7T_6rL88u-HEllD8Xs--860' for key 'login.openid'")
+[SQL: INSERT INTO login (user_id, openid, session_key, token, login_source) VALUES (%(user_id)s, %(openid)s, %(session_key)s, %(token)s, %(login_source)s)]
+[parameters: {'user_id': 5, 'openid': 'ojr2g7T_6rL88u-HEllD8Xs--860', 'session_key': 'U7TePMRaza61/Oc6AoXT0Q==', 'token': 'token-ojr2g7T_6rL88u-HEllD8Xs--860-1742832921', 'login_source': 'wechat'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-25 00:15:24,195 - exception_logger - ERROR - 未知错误: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'ojr2g7T_6rL88u-HEllD8Xs--860' for key 'login.openid'")
+[SQL: INSERT INTO login (user_id, openid, session_key, token, login_source) VALUES (%(user_id)s, %(openid)s, %(session_key)s, %(token)s, %(login_source)s)]
+[parameters: {'user_id': 6, 'openid': 'ojr2g7T_6rL88u-HEllD8Xs--860', 'session_key': 'U7TePMRaza61/Oc6AoXT0Q==', 'token': 'token-ojr2g7T_6rL88u-HEllD8Xs--860-1742832924', 'login_source': 'wechat'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-25 00:16:40,029 - exception_logger - ERROR - 未知错误: Unconsumed column names: token_expiration
+2025-03-25 00:17:05,179 - exception_logger - ERROR - 未知错误: Unconsumed column names: token_expiration
+2025-03-25 00:17:58,128 - exception_logger - ERROR - 未知错误: Unconsumed column names: token_expiration
+2025-03-25 00:18:56,837 - exception_logger - ERROR - 未知错误: Unconsumed column names: token_expiration
+2025-03-25 00:20:34,012 - exception_logger - ERROR - 未知错误: Unconsumed column names: token_expiration
+2025-03-25 00:20:43,118 - exception_logger - ERROR - 未知错误: Unconsumed column names: token_expiration
+2025-03-25 00:20:45,321 - exception_logger - ERROR - 未知错误: Unconsumed column names: token_expiration
+2025-03-25 00:21:31,151 - exception_logger - ERROR - 未知错误: Unconsumed column names: token_expiration
+2025-03-25 00:47:12,911 - exception_logger - ERROR - 无法查询到该用户!
+2025-03-25 00:47:27,412 - exception_logger - ERROR - 未知错误: 404: 无法查询到该用户!
+2025-03-25 00:48:03,486 - exception_logger - ERROR - 未知错误: 
+2025-03-25 00:55:47,272 - exception_logger - ERROR - 未知错误: (pymysql.err.OperationalError) (1292, "Truncated incorrect DOUBLE value: '<built-in function id>'")
+[SQL: UPDATE login SET last_login_time=now() WHERE login.user_id = %(user_id_1)s]
+[parameters: {'user_id_1': <built-in function id>}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-25 00:57:34,971 - exception_logger - ERROR - 未知错误: (pymysql.err.OperationalError) (1292, "Truncated incorrect DOUBLE value: '<built-in function id>'")
+[SQL: UPDATE login SET last_login_time=now() WHERE login.user_id = %(user_id_1)s]
+[parameters: {'user_id_1': <built-in function id>}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-25 00:59:40,393 - exception_logger - ERROR - 未知错误: (pymysql.err.OperationalError) (1292, "Truncated incorrect DOUBLE value: '<built-in function id>'")
+[SQL: UPDATE login SET last_login_time=now() WHERE login.user_id = %(user_id_1)s]
+[parameters: {'user_id_1': <built-in function id>}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-25 01:04:56,786 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:07:00,930 - exception_logger - ERROR - 未知错误: Unconsumed column names: token_expiration
+2025-03-25 01:08:11,096 - exception_logger - ERROR - 未知错误: Unconsumed column names: token_expiration
+2025-03-25 01:10:00,337 - exception_logger - ERROR - 未知错误: 
+2025-03-25 01:10:45,139 - exception_logger - ERROR - 未知错误: 
+2025-03-25 01:11:35,268 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:13:42,790 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:17:22,294 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:17:27,083 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:18:41,608 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:18:46,997 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:20:07,289 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:20:10,191 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:24:24,868 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:24:29,758 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:24:33,283 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:24:43,908 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:24:45,546 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:24:48,827 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:25:08,657 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:25:12,347 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:25:16,271 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:25:18,649 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:25:27,092 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:25:29,507 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:25:30,696 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:28:22,576 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:28:23,524 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:28:23,680 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:28:33,244 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:28:34,599 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:28:41,309 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:30:30,257 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:30:30,953 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:30:33,101 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:31:26,702 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:31:27,884 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:32:52,639 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:32:57,604 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:33:00,993 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:33:26,273 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:33:38,756 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:36:29,611 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:36:35,686 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:36:37,144 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:36:53,600 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:36:58,560 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:37:14,028 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:37:29,489 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 01:37:42,883 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-25 01:37:52,680 - user_login - INFO - 更新用户登录时间成功
+2025-03-25 09:29:42,664 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-26 12:38:10,511 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-26 12:38:14,429 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-26 12:38:20,847 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:39:17,659 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-26 12:39:36,352 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:39:39,225 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-26 12:39:43,881 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-26 12:39:48,293 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:39:56,418 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:40:05,697 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:40:09,603 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:40:35,133 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:41:04,186 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:41:17,075 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:41:40,305 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:41:42,234 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-26 12:42:41,744 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-26 12:42:46,076 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:42:50,383 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:43:01,916 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:43:03,785 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:43:13,226 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:43:37,056 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:43:44,510 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-26 12:43:54,615 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:43:56,469 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-26 12:45:21,850 - user_login - INFO - 更新用户登录时间成功
+2025-03-26 12:45:24,592 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-26 12:45:26,525 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-26 12:45:30,719 - user_login - INFO - 更新用户登录时间成功

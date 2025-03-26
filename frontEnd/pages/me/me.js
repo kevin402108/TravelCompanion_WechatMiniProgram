@@ -34,15 +34,14 @@ Page({
     wx.request({
       url: `http://127.0.0.1:8001/user/profile`,
       data: {
-        id,
-        token
+        id
       },
       timeout: 5000,
       success: (res) => {
         console.log(res);
         wx.hideNavigationBarLoading();
 
-        if (res.statuseCode == 200) {
+        if (res.statusCode == 200) {
           const { avatar, nickname } = res.data.data.userInfo;
           this.setData({
             avatar:avatar||app.globalData.defaultAvatarUrl,

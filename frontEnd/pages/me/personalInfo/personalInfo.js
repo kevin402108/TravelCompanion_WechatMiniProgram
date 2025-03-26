@@ -36,7 +36,7 @@ Page({
     const tokenObj = wx.getStorageSync('tokenObj')
     const { id } = tokenObj
 
-    const image_url = [avatarUrl] 
+    const image_url = avatarUrl
     wx.uploadFile({
       url: 'http://127.0.0.1:8001/upload/image',
       filePath: image_url,
@@ -53,7 +53,7 @@ Page({
             const { image_urls } = data.data
             if (image_urls && image_urls.length > 0) {
               this.setData({
-                avatar: image_urls[0]
+                avatar: image_urls
               })
             } else {
               console.log('返回数据格式异常！')
@@ -137,13 +137,13 @@ Page({
       return
     }
 
-    checkLogin()
+    loginUtils.checkLogin()
     const tokenObj = wx.getStorageSync('tokenObj')
     const { id } = tokenObj
 
     //PUT请求
     wx.request({
-      url: '/auth/updateUserInfo',
+      url: 'http://127.0.0.1:8001/auth/updateUserInfo',
       method: 'PUT',
       data: {
         id,
@@ -201,12 +201,13 @@ Page({
 
     // GET请求
     wx.request({
-      url: `http://127.0.0.1:8001/user`,
+      url: `http://127.0.0.1:8001/user/profile`,
       data: {
-        id: id,
+        id
       },
       timeout: 5000,
       success: (res) => {
+        console.log(res)
         wx.hideNavigationBarLoading()
         if (res.statusCode == 200) {
           const { userInfo } = res.data.data

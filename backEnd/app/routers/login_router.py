@@ -7,8 +7,8 @@ from sqlalchemy.sql import func
 import backEnd.app.utils.exceptions as exceptions
 from pymysql import DataError, IntegrityError, OperationalError, ProgrammingError
 import requests
-from fastapi import APIRouter, Depends
-from pydantic import BaseModel
+from fastapi import APIRouter, Body, Depends
+from pydantic import BaseModel, Field
 
 from backEnd.app.database import get_database
 from backEnd.app.models import Login, User
@@ -53,7 +53,6 @@ def login(loginCode: LoginRequest,db:Session=Depends(get_database)):
             "openid": openid,
             "session_key": session_key,
             "token": encrypted_token,
-            "token_expiration": datetime.datetime.now() + datetime.timedelta(days=7),
             "last_login_time": datetime.datetime.now(),
             "login_source": "wechat"
         })
@@ -83,13 +82,21 @@ def login(loginCode: LoginRequest,db:Session=Depends(get_database)):
         # 未知错误，返回500状态码
         raise exceptions.UnknownError(str(e))
 
+class UpdateUserId(BaseModel):
+    id:int = Field(...,gt=0)
+
+
 # 更新登录时间接口 PUT请求
 @login_router.put('/user/updateLoginTime')
-def updateLoginTime(id:int,db:Session=Depends(get_database)):
+def updateLoginTime(
+    userInfo:UpdateUserId,
+    db:Session=Depends(get_database)
+):
     try:
-        user = db.query(User).filter(User.id==id).first()
+        user = db.query(User).filter(User.id==userInfo.id).first()
         if user:
-            db.query(Login).filter(Login.user_id==id).update({"last_login_time":func.now()})
+            db.query(Login).filter(Login.user_id==userInfo.id).update({"last_login_time":func.now()})
+            db.commit()
             logger.info("更新用户登录时间成功")
             response = {
                 "data":{
@@ -136,11 +143,21 @@ def register(registerCode:RegisterRequest,db:Session=Depends(get_database)):
         iv = os.urandom(16)
         encrypted_token = encrypt(token, key, iv)  # 将加密的token后转化base64字符串
 
-        new_user = User(nickname='',avatar='',gender='',hobby='')
+        new_user = User(gender=None,hobby=None)
         db.add(new_user)
-        db.flush()
-        id = new_user.id
+        db.flush()        
+        db.commit()
         
+        id = new_user.id
+        login_record = Login(
+            user_id = new_user.id,
+            openid = openid,
+            session_key = session_key,
+            token = token
+        )
+        
+        db.add(login_record)
+        db.flush()        
         db.commit()
 
         response = {

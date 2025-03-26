@@ -79,7 +79,7 @@ Page({
       success: (res) => {
         console.log(res);
         wx.hideNavigationBarLoading();
-        if (res.statuseCode == 200) {
+        if (res.statusCode == 200) {
           const { gender } = res.data.data.userInfo;
           this.setData({
             gender

@@ -333,7 +333,7 @@ Page({
         console.log(res);
         wx.hideNavigationBarLoading();
   
-        if (res.statuseCode == 200) {
+        if (res.statusCode == 200) {
           const { nickname } = res.data.data.userInfo;
           this.setData({
             nickname,

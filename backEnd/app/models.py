@@ -53,9 +53,8 @@ class Login(Base):
     openid = Column(String(64),nullable=False,unique=True)
     session_key = Column(String(64),nullable=True,unique=True)
     token = Column(String(255),nullable=True,unique=True)
-    token_expiration = Column(DateTime(timezone=True),nullable=False,default=text("'2099-12-31 23:59:59'"))
     last_login_time = Column(DateTime(timezone=True),nullable=False,server_default=func.now())
-    login_source = Column(String(50),nullable=True,server_default='wechat')
+    login_source = Column(String(50),nullable=True,  default='wechat')
     
     user = relationship("User",back_populates="logins")
     
@@ -228,12 +227,12 @@ class Route(Base):
     )
     
     user = relationship('User',back_populates='route')
-    route_spots_mapping = relationship('RouteSotsMapping',back_populates='route')
+    route_spots_mapping = relationship('RouteSpotsMapping',back_populates='route')
     
     def __repr__(self):
         return f"<Route(id={self.id}, user_id={self.user_id}, destination={self.destination}, travel_days={self.travel_days}, budget={self.budget}, preference={self.preference}, route_description={self.route_description}, route_spots={self.route_spots}, create_time={self.create_time}, status={self.status})>"
     
-class RouteSotsMapping(Base):
+class RouteSpotsMapping(Base):
     __tablename__ = 'route_spots_mapping'
     
     route_id = Column(INTEGER(unsigned=True),ForeignKey('route.id',ondelete='CASCADE',onupdate='CASCADE'))
@@ -303,9 +302,9 @@ class User(Base):
     __tablename__ = 'user'
 
     id = Column(INTEGER(unsigned=True), primary_key=True, autoincrement=True)
-    nickname = Column(String(15), nullable=False, default='微信用户')
-    avatar = Column(Text, nullable=False)
-    gender = Column(Gender, nullable=True)
+    nickname = Column(String(15), nullable=False,default='微信用户')
+    avatar = Column(Text, nullable=False,default='https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0')
+    gender = Column(Gender, nullable=True,default=None)
     hobby = Column(String(100), nullable=True)
 
     __table_args__ = (
