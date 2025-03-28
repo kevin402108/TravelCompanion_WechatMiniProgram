@@ -8,7 +8,12 @@
 
 <view class="contanier">
     <block wx:if="{{tabIndex === 0}}">
-        ~ 一起讨论旅游行程吧！~
+      <view class="container1">
+        <view class="input-box1">
+          <input class="input" placeholder="请输入内容" />
+          <button class="sendbtn">发送</button>
+        </view>
+      </view>
     </block>
 
     <block wx:if="{{tabIndex === 1}}">
@@ -19,10 +24,10 @@
     
         <view class="chat-space">
   
-  <!-- 输入框和提交按钮 -->
-  <textarea class="input-box" placeholder="请输入帖子内容" bindinput="onInput" value="{{inputContent}}"></textarea>
-  <button class="submit-btn" bindtap="submitPost">发布帖子</button>
-</view>
+          <!-- 输入框和提交按钮 -->
+          <textarea class="input-box" placeholder="请输入帖子内容" bindinput="onInput" value="{{inputContent}}"></textarea>
+          <button class="submit-btn" bindtap="submitPost">发布帖子</button>
+        </view>
 
     </block>
 </view>
