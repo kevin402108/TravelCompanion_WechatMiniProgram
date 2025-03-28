@@ -21,7 +21,6 @@ Page({
   onchooseAvatar(evt) {
     console.log(evt)
     const { avatarUrl } = evt.detail
-    console.log(avatarUrl)
 
     if (!avatarUrl) {
       wx.showToast({
@@ -37,10 +36,11 @@ Page({
     const { id } = tokenObj
 
     const image_url = avatarUrl
+    console.log(image_url)
     wx.uploadFile({
       url: 'http://127.0.0.1:8001/upload/image',
       filePath: image_url,
-      name: 'image-files',
+      name: 'image_files',
       formData: {
         id: id
       },

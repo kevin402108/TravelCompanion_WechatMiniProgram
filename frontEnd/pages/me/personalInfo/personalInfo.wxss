@@ -96,10 +96,6 @@ page {
     height:150rpx;
 }
 
-.hobby-box .left {
-  flex:0.25;
-}
-
 .hobby-box .right {
     display: flex;
     flex-direction: column;

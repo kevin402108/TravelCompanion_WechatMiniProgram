@@ -31,7 +31,7 @@
         <view class="hobby-box item">
             <view class="left">兴趣爱好：</view>
             <view class="right">
-                <textarea name="hobby" class="hobby" model:value="{{hobby}}" placeholder="请输入您的兴趣爱好 (最多100个字符)" maxlength="100"></textarea>
+                <textarea name="hobby" class="hobby" model:value="{{hobby}}" placeholder="请输入您的兴趣爱好(最多100个字)" maxlength="100"></textarea>
             </view>
         </view>
     </view>

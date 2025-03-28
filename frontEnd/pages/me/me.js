@@ -73,10 +73,7 @@ Page({
     })
   },
 
-  onLoad(options) {
-    //进入页面时自动尝试获取用户头像和昵称
-    this.getUserInfo()
-  },
+  onLoad(options) {},
 
   /*生命周期函数--监听页面初次渲染完成*/
   onReady() { },

@@ -11,13 +11,11 @@ from sqlalchemy.orm import Session
 upload_router = APIRouter()
 logger = setup_logger('upload_logger')
 
-UPLOAD_DIR = Path()
-
 # 上传图片接口
 @upload_router.post("/upload/image")
 async def upload_image(
     id: str = Form(...),
-    image_files:list[UploadFile] = File(...),
+    image_files: UploadFile = File(...),
     db:Session = Depends(get_database)
 ):
     if not id or not id.strip():
@@ -38,20 +36,18 @@ async def upload_image(
         if not user:
             logger.error("用户不存在")
             return exceptions.UserNotFoundError()
-        image_urls = []
-        for file in image_files:
-            file_name = file.filename
+        else:
+            file_name = image_files.filename
             file_url = f"http://127.0.0.1:8001/user/avatar?pic_name={file_name}"
-            image_urls.append(file_url) 
 
-        # 返回图片上传成功响应
-        response_data = {
-            "data":{
-                "message": "图片上传成功",
-                "image_urls": image_urls
+            # 返回图片上传成功响应
+            response_data = {
+                "data":{
+                    "message": "图片上传成功",
+                    "image_urls": file_url
+                }
             }
-        }
-        return JSONResponse(status_code=200, content=response_data) 
+            return JSONResponse(status_code=200, content=response_data) 
     
     except Exception as e:
         logger.error(f"上传图片时发生错误：{e}")

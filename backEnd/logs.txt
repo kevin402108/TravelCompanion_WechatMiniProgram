@@ -232,3 +232,560 @@
 2025-03-28 15:11:41,125 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
 2025-03-28 15:11:54,379 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
 2025-03-28 15:12:54,444 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 15:13:04,592 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 15:14:25,930 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 15:15:49,720 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 15:16:29,741 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 15:16:48,228 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 15:16:49,807 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 15:16:51,910 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 15:17:28,083 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 15:17:29,723 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 15:17:43,160 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 15:17:43,344 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 15:17:47,467 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:42:39,644 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:42:42,523 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:43:13,017 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:43:13,108 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:43:15,575 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:43:15,689 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:43:17,614 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:43:17,709 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:43:20,817 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:43:20,904 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:43:22,378 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:43:22,458 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:43:34,823 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:43:34,957 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:43:42,259 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:44:05,856 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:44:15,015 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:44:31,521 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:45:33,489 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:45:37,085 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:46:27,205 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:46:29,093 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:46:39,842 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:46:56,911 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:47:12,152 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:47:13,094 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:52:11,547 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:52:25,633 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:54:17,372 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:54:32,316 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:55:55,291 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:58:38,750 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:58:43,151 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 17:58:46,019 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 17:58:58,780 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:24:06,541 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:24:08,521 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:24:26,850 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:24:43,662 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:24:48,629 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:24:50,160 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:25:08,714 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:30:42,016 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:31:28,481 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:31:33,139 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:31:40,179 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:31:42,821 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:33:33,278 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:33:34,991 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:33:36,734 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:33:38,380 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:33:42,176 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:33:52,389 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:34:07,136 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:34:30,043 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:35:43,106 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:36:53,053 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:36:56,516 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:37:06,987 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:37:07,320 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:37:09,270 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:37:11,994 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:37:14,220 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:37:16,471 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:37:18,280 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:37:19,968 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:38:04,607 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:38:06,268 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:38:08,374 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:38:15,447 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:38:18,388 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:38:41,698 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:38:43,724 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:38:45,410 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:38:49,960 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:39:22,954 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:39:24,328 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:39:26,806 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:39:28,221 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:39:30,031 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:39:31,674 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:39:33,204 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:39:37,483 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:40:25,990 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:40:31,433 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:40:37,090 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:40:39,727 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:40:48,460 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:40:50,348 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:40:52,968 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:41:30,249 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:41:34,604 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:41:38,130 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:41:41,998 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:42:01,295 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:45:58,856 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:46:00,140 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:46:00,221 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:46:16,553 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:46:16,622 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:46:18,491 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:46:18,606 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:46:20,356 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:46:20,422 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:46:22,991 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:46:23,059 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:46:25,219 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:46:25,311 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:46:27,245 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:46:27,320 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:46:28,832 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:46:28,943 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:46:31,079 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:46:31,171 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:46:34,753 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:46:34,871 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:46:41,652 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:46:43,317 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:46:48,362 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:47:12,029 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:48:07,748 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:48:07,855 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:48:13,038 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:48:13,125 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:48:15,723 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:48:15,799 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:48:20,611 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:48:20,706 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:48:26,299 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:48:27,787 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:48:27,980 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:48:31,112 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:48:31,213 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:48:38,201 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:48:38,293 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:48:42,323 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:48:42,438 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:48:44,345 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:48:44,570 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:48:48,919 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:48:53,137 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:48:55,668 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:48:59,840 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:49:11,348 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:49:35,126 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:49:35,294 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:49:50,584 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:49:50,678 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:49:53,816 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:49:53,918 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:49:57,371 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:49:57,478 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:49:59,114 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:49:59,256 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:50:01,210 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:50:01,282 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:50:04,850 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:50:04,978 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:50:06,383 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:50:06,521 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:50:08,340 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:50:08,540 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:50:21,616 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:50:23,705 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:50:32,855 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:50:34,318 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:50:41,417 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:51:23,343 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:52:58,700 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:53:18,009 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:53:27,933 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:53:47,652 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:54:20,092 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:54:43,144 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:54:52,242 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:54:54,226 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:54:54,235 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:55:01,282 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:55:02,720 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:55:02,732 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:55:05,868 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:55:09,476 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 18:55:09,561 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:55:24,028 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:55:24,041 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:55:25,036 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:55:25,043 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:55:26,200 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:55:26,206 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:56:53,614 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:56:53,625 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:56:55,005 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:56:55,012 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:56:59,121 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:56:59,130 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:01,583 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:01,590 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:06,594 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:06,606 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:09,035 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:09,042 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:10,219 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:10,226 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:12,647 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:12,656 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:14,441 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:14,448 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:17,561 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:17,570 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:18,803 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:18,811 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:22,021 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:22,029 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:23,457 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:23,464 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:27,457 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:27,465 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:28,710 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:57:28,717 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:00,556 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:00,564 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:02,580 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:02,588 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:16,250 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:16,258 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:20,476 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:20,483 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:22,048 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:22,056 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:26,834 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:26,843 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:29,735 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:29,743 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:32,640 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:32,648 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:38,371 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:38,382 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:46,638 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:46,658 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:51,469 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:51,477 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:58,314 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 18:58:58,325 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:00:46,138 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:00:46,147 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:00:50,794 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:00:50,801 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:00:59,158 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:00:59,165 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:04,346 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:04,356 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:14,285 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:14,294 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:26,786 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:26,793 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:27,624 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:27,632 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:32,404 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:32,412 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:36,800 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:36,808 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:38,271 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:38,278 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:41,458 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:41,465 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:47,729 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:47,744 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:48,789 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:01:48,797 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:02:02,049 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:02:02,058 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:02:28,299 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:02:28,307 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:04,989 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:05,005 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:07,200 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:07,213 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:21,087 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:21,093 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:22,964 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:22,989 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:30,864 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:30,872 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:33,317 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:33,324 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:45,257 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:45,275 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:46,688 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:46,698 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:49,203 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:49,211 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:51,151 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:51,158 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:53,055 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:53,063 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:54,683 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:04:54,701 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:00,910 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:00,919 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:08,960 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:08,968 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:10,926 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:10,935 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:15,664 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:15,672 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:19,244 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:19,251 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:22,657 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:22,664 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:28,057 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:28,065 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:30,161 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:30,168 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:45,923 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:45,937 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:50,173 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:50,180 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:52,713 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:52,722 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:54,135 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:05:54,142 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:00,159 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:00,167 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:05,031 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:05,039 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:10,346 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:10,354 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:13,861 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:13,867 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:21,338 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:21,346 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:26,743 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:26,753 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:32,324 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:32,332 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:35,784 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:35,804 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:39,590 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:39,598 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:43,574 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:43,587 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:52,623 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:06:52,638 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:00,357 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:00,367 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:07,787 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:07,795 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:11,644 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:11,651 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:19,422 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:19,430 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:24,395 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:24,406 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:27,533 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:27,546 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:31,107 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:31,114 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:38,846 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:38,856 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:42,994 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:43,000 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:48,239 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:48,248 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:51,131 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:51,139 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:54,059 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:07:54,067 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:05,927 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:05,938 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:07,329 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:07,341 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:10,740 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:10,749 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:11,846 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:11,854 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:17,007 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:17,015 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:34,369 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:34,379 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:34,617 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:34,623 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:36,126 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:36,133 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:42,124 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:42,132 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:46,599 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:08:46,608 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:12:24,644 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:12:24,669 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:12:53,234 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:12:53,244 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:12:57,046 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:12:57,053 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:13:41,311 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:13:41,319 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:13:55,563 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:13:55,570 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:13:56,626 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:13:56,635 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:14:06,342 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:14:06,364 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:14:43,657 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:14:43,666 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:14:50,336 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:14:55,408 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 19:14:55,475 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:15:04,130 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:16:24,708 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:16:28,137 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:17:39,606 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:19:46,471 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:31:29,440 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 19:31:29,599 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:31:32,648 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 19:43:24,609 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:10:06,873 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 20:18:43,877 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:18:43,888 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:18:46,045 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:19:01,037 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 20:19:27,891 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:19:27,900 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:19:29,683 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:32:05,363 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:32:05,372 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:32:09,266 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:32:14,356 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 20:34:52,951 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:34:52,959 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:34:53,008 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:34:57,516 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:34:57,524 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:34:57,559 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:02,625 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:02,636 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:02,644 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:04,021 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:04,028 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:04,067 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:06,704 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:06,711 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:06,752 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:08,634 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:08,644 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:08,658 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:11,176 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:11,185 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:11,202 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:15,791 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:15,800 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:15,841 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:32,332 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:32,351 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:32,369 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:33,127 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:33,135 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:33,152 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:44,372 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:35:44,419 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:36:09,785 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:36:09,795 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:37:20,142 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:37:20,857 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:37:25,338 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:37:36,474 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:37:39,857 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:37:45,234 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:40:22,483 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:41:42,451 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:41:50,646 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:42:57,739 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:43:42,603 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:43:47,699 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:43:52,323 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:43:58,145 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:44:06,462 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:44:11,275 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:44:16,166 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:44:26,125 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:44:27,994 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:44:32,023 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:44:43,842 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:45:16,175 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:45:29,131 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:45:30,167 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:45:36,690 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:45:39,747 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:45:46,754 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:45:51,157 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:45:53,024 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:45:58,640 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:46:00,150 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:46:04,340 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:46:42,369 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:46:43,232 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:47:12,899 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:47:14,424 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:47:18,685 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:47:25,304 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:47:32,001 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:47:34,861 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:47:37,337 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:48:14,862 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:48:15,766 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:48:22,813 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:48:30,946 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:48:34,756 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:48:38,034 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:49:24,294 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:49:25,881 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:49:32,708 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:49:34,458 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:49:40,036 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:49:42,777 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:49:43,790 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:49:59,450 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:50:16,514 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:50:49,382 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:51:24,708 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:51:36,837 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 20:51:41,546 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:52:09,866 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:52:11,366 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:52:17,047 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:52:19,583 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:52:43,485 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:52:44,375 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:52:47,186 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:54:18,618 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:54:18,619 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:54:18,619 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:54:28,087 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:55:59,793 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:56:05,260 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:56:07,907 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:56:09,950 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:56:17,723 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:56:23,053 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:56:31,985 - user_login - INFO - 更新用户登录时间成功
+2025-03-28 20:56:35,067 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 20:56:37,596 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 21:00:16,219 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 21:00:20,368 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-28 21:00:24,546 - upload_logger - ERROR - 上传图片时发生错误：'UploadFile' object is not iterable
+2025-03-28 21:04:11,624 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
