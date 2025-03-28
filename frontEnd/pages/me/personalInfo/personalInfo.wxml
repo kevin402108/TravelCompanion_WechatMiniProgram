@@ -41,6 +41,7 @@
             <view class="title">温 馨 提 示</view>
             <view class="bd">
                 <view class="content"><text style="color:#999">1</text>. 昵称不超过<text> 15 </text>个字符，且只能包含 <text>大小写字母、0-9、下划线和中文字符</text>。</view>
+                <view class="content"><text style="color:#999">2</text>. 若已修改个人信息，请点击<text>“保存”按钮</text> 以确保能成功修改您的个人信息！</view>
             </view>
         </view>
     </view>

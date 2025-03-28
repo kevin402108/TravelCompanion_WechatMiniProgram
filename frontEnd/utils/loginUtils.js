@@ -30,7 +30,7 @@ const checkLogin = () => {
         success: (res) => {
           console.log(res);
           if (res.statusCode === 200) {
-            console.log("登录成功")
+            console.log("用户最后登录时间更新成功")
           } else {
             wx.showToast({
               title:'无法同步最后登录时间',

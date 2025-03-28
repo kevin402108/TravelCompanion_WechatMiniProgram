@@ -127,7 +127,6 @@ Page({
   saveInfo() {
 
     const { avatar, nickname, gender, hobby } = this.data
-
     if (nickname && !userUtils.checkNickname(nickname)) {
       wx.showToast({
         title: '昵称不符合要求！',
@@ -157,6 +156,8 @@ Page({
         if (res.statusCode == 200) {
           wx.showToast({
             title: '保存成功!',
+            icon:'success',
+            duration:2500
           })
           wx.navigateBack({
             url: '/pages/me/me'
@@ -195,7 +196,7 @@ Page({
   onLoad(options) {
     wx.showNavigationBarLoading()
     const tokenObj = wx.getStorageSync('tokenObj')
-    console.log(tokenObj)
+    // console.log(tokenObj)
     if (!tokenObj) return
     const {id} = tokenObj
 
@@ -241,22 +242,7 @@ Page({
           avatar: app.globalData.defaultAvatarUrl,
         })
       },
-      complete: () => {
-        this.setData({
-          currentDate: new Date()
-        })
-      }
     })
-
-    setTimeout(() => {
-      wx.hideNavigationBarLoading()
-      this.setData({
-        preference: '',
-        genderIndex: '',
-        gender: '',
-        avatar: app.globalData.defaultAvatarUrl,
-      })
-    }, 3000)
   },
 
   /**

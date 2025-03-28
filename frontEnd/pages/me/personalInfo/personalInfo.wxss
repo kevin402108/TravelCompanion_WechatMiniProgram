@@ -93,17 +93,24 @@ page {
 
 .hobby-box {
     margin: 10rpx 0;
-    height:100rpx;
+    height:150rpx;
+}
+
+.hobby-box .left {
+  flex:0.25;
 }
 
 .hobby-box .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
     height: 100%;
 }
 
 .hobby-box textarea {
     padding:10rpx;
-    width:95%;
-    height:90%;
+    width:90%;
     border:1px solid #999;
     border-radius: 10rpx;
     overflow: scroll;

@@ -71,7 +71,6 @@ async def update_user_info(
     db:Session=Depends(get_database)
 ):
     try:
-        breakpoint()
         user = db.query(User).filter(User.id==user_info.id).first()
         if not user:
             raise exceptions.UserNotFoundError()
