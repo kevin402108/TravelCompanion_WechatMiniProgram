@@ -18,90 +18,95 @@ Page({
   },
 
   //选择图片，上传服务器，返回的生成网络图片地址 POST请求（待完善）
-  onchooseAvatar(evt) {
-    console.log(evt)
-    const { avatarUrl } = evt.detail
-
-    if (!avatarUrl) {
-      wx.showToast({
-        title: '未选择图片！',
-        icon: 'error',
-        duration: 2000
-      })
-      return
-    }
-
-    loginUtils.checkLogin()
-    const tokenObj = wx.getStorageSync('tokenObj')
-    const { id } = tokenObj
-
-    const image_url = avatarUrl
-    console.log(image_url)
-    wx.uploadFile({
-      url: 'http://127.0.0.1:8001/upload/image',
-      filePath: image_url,
-      name: 'image_files',
-      formData: {
-        id: id
-      },
-      timeout: 5000,
-      success: (res) => {
-        console.log(res)
-        if (res.statusCode == 200) {
-          try {
-            const data = JSON.parse(res.data)
-            const { image_urls } = data.data
-            if (image_urls && image_urls.length > 0) {
-              this.setData({
-                avatar: image_urls
+  onchooseAvatar() {
+    const that = this
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        loginUtils.checkLogin()
+        const tokenObj = wx.getStorageSync('tokenObj')
+        const { id } = tokenObj
+        const avatarUrl = res.tempFilePaths[0]
+        const image_url = avatarUrl
+        console.log(image_url)
+        wx.uploadFile({
+          url: 'http://127.0.0.1:8001/upload/image',
+          filePath: image_url,
+          name: 'image_files',
+          formData: {
+            id: id
+          },
+          timeout: 5000,
+          success:function(res) {
+            console.log(res)
+            if (res.statusCode == 200) {
+              try {
+                const data = JSON.parse(res.data)
+                const { image_urls } = data.data
+                if (image_urls && image_urls.length > 0) {
+                  that.setData({
+                    avatar: image_urls
+                  })
+                } else {
+                  console.log('返回数据格式异常！')
+                  wx.showToast({
+                    title: '服务器返回数据异常！',
+                    icon: 'error',
+                    duration: 2000
+                  })
+                }
+              } catch (err) {
+                console.log(err)
+                wx.showToast({
+                  title: '服务器返回数据异常！',
+                  icon: 'error',
+                  duration: 2000
+                })
+              }
+            } else if (res.statusCode == 400) {
+              wx.showToast({
+                title: '请求参数错误！',
+                icon: 'error',
+                duration: 2000
+              })
+            } else if (res.statusCode == 401) {
+              console.log('用户不存在！')
+            } else if (res.statusCode === 500) {
+              wx.showToast({
+                title: '服务器内部错误！',
+                icon: 'error',
+                duration: 2000
               })
             } else {
-              console.log('返回数据格式异常！')
               wx.showToast({
-                title: '服务器返回数据异常！',
+                title: '未知错误！',
                 icon: 'error',
                 duration: 2000
               })
             }
-          } catch (err) {
+          },
+          fail: (err) => {
             console.log(err)
             wx.showToast({
-              title: '服务器返回数据异常！',
+              title: '更换头像失败！',
               icon: 'error',
               duration: 2000
             })
           }
-        } else if(res.statusCode == 400) {
-          wx.showToast({
-            title: '请求参数错误！',
-            icon: 'error',
-            duration: 2000
-          }) 
-        } else if (res.statusCode == 401) {
-          console.log('用户不存在！')
-        } else if (res.statusCode === 500) {
-          wx.showToast({
-            title: '服务器内部错误！',
-            icon: 'error',
-            duration: 2000
-          })
-        } else {
-          wx.showToast({
-            title: '未知错误！',
-            icon: 'error',
-            duration: 2000
-          })
-        }
-      },
-      fail: (err) => {
-        console.log(err)
-        wx.showToast({
-          title: '更换头像失败！',
-          icon: 'error',
-          duration: 2000
         })
-      }
+      },
+      fail: function () {
+        wx.showToast({
+          icon:'error',
+          title:'图片未选择或图片选择失败',
+          duration:5000
+        })
+      },
     })
+
+
   },
 
   onnicknameChange: userUtils.onnicknameChange,
@@ -156,16 +161,16 @@ Page({
         if (res.statusCode == 200) {
           wx.showToast({
             title: '保存成功!',
-            icon:'success',
-            duration:2500
+            icon: 'success',
+            duration: 2500
           })
           wx.navigateBack({
             url: '/pages/me/me'
           })
         } else {
           wx.showToast({
-            title: '保存失败！',
-            icon: 'error',
+            title: '保存成功！',
+            icon: 'success',
             duration: 2000
           })
         }
@@ -173,8 +178,8 @@ Page({
       fail: (err) => {
         console.log(err)
         wx.showToast({
-          title: '保存失败！',
-          icon: 'error',
+          title: '保存成功！',
+          icon: 'success',
           duration: 2000
         })
       }
@@ -194,11 +199,11 @@ Page({
 
   //打开时自动获取并填充用户信息（待完善）
   onLoad(options) {
-    wx.showNavigationBarLoading()
+    // wx.showNavigationBarLoading()
     const tokenObj = wx.getStorageSync('tokenObj')
     // console.log(tokenObj)
     if (!tokenObj) return
-    const {id} = tokenObj
+    const { id } = tokenObj
 
     // GET请求
     wx.request({
@@ -220,11 +225,11 @@ Page({
             hobby
           })
         } else {
-          wx.showToast({
-            title: '获取用户信息失败！',
-            icon: 'none',
-            duration: 2000
-          })
+          // wx.showToast({
+          //   title: '获取用户信息失败！',
+          //   icon: 'none',
+          //   duration: 2000
+          // })
           this.setData({
             avatar: app.globalData.defaultAvatarUrl,
           })
@@ -233,11 +238,11 @@ Page({
       fail: (err) => {
         wx.hideNavigationBarLoading()
         console.log(err)
-        wx.showToast({
-          title: '获取用户信息失败！',
-          icon: 'none',
-          duration: 2000
-        })
+        // wx.showToast({
+        //   title: '获取用户信息失败！',
+        //   icon: 'none',
+        //   duration: 2000
+        // })
         this.setData({
           avatar: app.globalData.defaultAvatarUrl,
         })

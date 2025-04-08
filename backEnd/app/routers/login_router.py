@@ -14,6 +14,7 @@ from backEnd.app.database import get_database
 from backEnd.app.models import Login, User
 from backEnd.app.utils.crypt import encrypt
 from backEnd.app.utils.logger import setup_logger
+from backEnd.app.utils.user import checkUserExist
 
 #登录模块路由
 logger = setup_logger('user_login')
@@ -31,8 +32,8 @@ class LoginRequest(BaseModel):
 def login(loginCode: LoginRequest,db:Session=Depends(get_database)):
     try:
         id = loginCode.id
-        user =db.query(User).filter(User.id==id).first()
-        if not user:
+        queryResult = checkUserExist(id)
+        if not queryResult[0]:
             raise exceptions.UserNotFoundError()
 
         url = f"https://api.weixin.qq.com/sns/jscode2session?appid=wxa35b788e7a7760be&secret=8ca4524d10d633e14e34ba449b0e0ef0&js_code={loginCode.code}&grant_type=authorization_code"
@@ -93,8 +94,8 @@ def updateLoginTime(
     db:Session=Depends(get_database)
 ):
     try:
-        user = db.query(User).filter(User.id==userInfo.id).first()
-        if user:
+        queryResult = checkUserExist(userInfo.id)
+        if queryResult[0]:
             db.query(Login).filter(Login.user_id==userInfo.id).update({"last_login_time":func.now()})
             db.commit()
             logger.info("更新用户登录时间成功")
@@ -127,7 +128,10 @@ def updateLoginTime(
     
 # 注册接口 POST请求
 @login_router.post("/auth/register")
-def register(registerCode:RegisterRequest,db:Session=Depends(get_database)):
+def register(
+    registerCode:RegisterRequest,
+    db:Session=Depends(get_database)
+):
     try:
         url = f"https://api.weixin.qq.com/sns/jscode2session?appid=wxa35b788e7a7760be&secret=8ca4524d10d633e14e34ba449b0e0ef0&js_code={registerCode.code}&grant_type=authorization_code"
         result = requests.get(url)

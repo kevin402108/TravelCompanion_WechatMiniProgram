@@ -789,3 +789,167 @@
 2025-03-28 21:00:20,368 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
 2025-03-28 21:00:24,546 - upload_logger - ERROR - 上传图片时发生错误：'UploadFile' object is not iterable
 2025-03-28 21:04:11,624 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-29 14:29:18,348 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-03-29 14:41:08,083 - user_login - INFO - 更新用户登录时间成功
+2025-03-29 14:42:18,809 - user_login - INFO - 更新用户登录时间成功
+2025-03-29 14:59:40,401 - user_login - INFO - 更新用户登录时间成功
+2025-03-29 15:01:44,955 - user_login - INFO - 更新用户登录时间成功
+2025-03-29 15:03:05,723 - user_login - INFO - 更新用户登录时间成功
+2025-03-29 15:04:30,945 - user_login - INFO - 更新用户登录时间成功
+2025-03-29 15:26:14,361 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 16:15:21,317 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:15:24,343 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:15:54,437 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 16:15:56,873 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:16:00,379 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:16:17,770 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 16:16:17,859 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:16:20,104 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:17:29,114 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 16:18:16,953 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:18:21,412 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:26:04,976 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 16:26:05,938 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:26:11,388 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:28:13,921 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:28:19,923 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:28:24,694 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:28:32,986 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:28:37,549 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:28:39,530 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:28:46,312 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:28:52,494 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:29:21,158 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:29:21,958 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:29:44,199 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:29:45,109 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:29:54,629 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:30:00,185 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:30:01,127 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:30:03,998 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:30:12,285 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:31:46,636 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:31:49,952 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:31:58,370 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:32:03,156 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:32:06,272 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:32:12,021 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:33:59,983 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:34:02,142 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:34:10,846 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:34:15,509 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:34:17,671 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:34:20,677 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:34:22,023 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:34:23,164 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:34:26,549 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:34:28,427 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:34:48,837 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:34:52,297 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:34:53,556 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:35:07,461 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:35:13,501 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:36:13,309 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:36:22,710 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:36:23,870 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:36:29,999 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:36:55,387 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:36:56,602 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:36:57,762 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:37:04,180 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:37:12,722 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:38:06,972 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 16:38:08,050 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:38:10,060 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:43:52,314 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:43:55,235 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:43:56,377 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:43:57,960 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:45:31,331 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:45:42,996 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:45:49,182 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 16:45:49,902 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:45:52,640 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:47:23,218 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:47:30,297 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:50:06,759 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 16:50:08,762 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:56:58,242 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:58:52,979 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:58:54,068 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:59:09,120 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:59:15,750 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 16:59:55,057 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 17:00:01,778 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 17:01:11,632 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 17:03:00,576 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 17:03:04,698 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 17:03:14,803 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 17:03:20,180 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 17:04:21,550 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 17:04:22,400 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 17:04:29,900 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 17:04:36,136 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 17:04:38,634 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 17:04:41,544 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 17:04:43,717 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 17:04:46,227 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 17:05:03,354 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 18:21:46,084 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 18:21:46,089 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 18:21:48,699 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 18:22:19,545 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 18:25:01,450 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 18:25:04,981 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 18:51:49,523 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 18:51:51,286 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 18:53:30,733 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 18:53:39,808 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 18:53:45,418 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 18:53:53,072 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 18:54:00,387 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 18:55:43,773 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 19:19:50,631 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 19:21:10,472 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 19:32:19,473 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 19:32:21,743 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 19:32:29,644 - upload_logger - ERROR - 上传图片时发生错误：400: 仅支持jpg/jpeg/png格式的图片
+2025-04-05 20:39:38,343 - upload_logger - ERROR - 上传图片时发生错误：400: 仅支持jpg/jpeg/png格式的图片
+2025-04-05 21:11:42,166 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 21:13:50,019 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 21:13:52,748 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 21:13:58,057 - upload_logger - ERROR - 上传图片时发生错误：400: 文件类型不合适
+2025-04-05 21:18:42,258 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 21:18:46,176 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 21:18:52,082 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 21:19:01,176 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 21:19:18,230 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:22:48,815 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:22:49,707 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:23:31,317 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:23:45,102 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:24:02,619 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 23:24:40,348 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:25:17,787 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:26:03,687 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:26:47,229 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 23:27:53,106 - user_login - INFO - 更新用户登录时间成功
+2025-04-05 23:31:04,444 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:32:06,761 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:34:52,439 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:34:55,697 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:35:09,298 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:35:13,977 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:35:17,402 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-05 23:35:29,480 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-06 07:28:35,919 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-06 07:28:38,427 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-06 07:28:43,697 - upload_logger - ERROR - 上传图片时发生错误：400: 文件类型不合适
+2025-04-06 07:29:26,371 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-06 07:41:09,245 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-06 08:12:51,297 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-06 15:31:22,806 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-08 16:01:07,607 - user_info_logger - INFO - 获取用户信息成功 , 用户ID: 1
+2025-04-08 16:01:26,188 - user_login - INFO - 更新用户登录时间成功
+2025-04-08 16:10:07,942 - user_login - INFO - 更新用户登录时间成功
+2025-04-08 16:11:26,639 - user_login - INFO - 更新用户登录时间成功

@@ -10,8 +10,8 @@
     <block wx:if="{{tabIndex === 0}}">
       <view class="container1">
         <view class="input-box1">
-          <input class="input" placeholder="请输入内容" />
-          <button class="sendbtn">发送</button>
+          <input class="input" model:value="{{msgContent}}"placeholder="请输入内容" />
+          <button class="sendbtn" bindtap="onMsgSend">发送</button>
         </view>
       </view>
     </block>
@@ -23,9 +23,8 @@
     <block wx:if="{{tabIndex === 2}}">
     
         <view class="chat-space">
-  
           <!-- 输入框和提交按钮 -->
-          <textarea class="input-box" placeholder="请输入帖子内容" bindinput="onInput" value="{{inputContent}}"></textarea>
+          <textarea class="input-box" placeholder="请输入帖子内容" model:value="{{postContent}}"></textarea>
           <button class="submit-btn" bindtap="submitPost">发布帖子</button>
         </view>
 

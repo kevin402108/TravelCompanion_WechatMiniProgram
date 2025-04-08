@@ -7,6 +7,7 @@ from sqlalchemy.exc import OperationalError, ProgrammingError, DataError, Integr
 from fastapi import APIRouter, Depends
 from backEnd.app.database import get_database
 from backEnd.app.models import User
+from backEnd.app.utils.user import checkUserExist
 
 # 设置路由
 user_router = APIRouter()
@@ -27,10 +28,10 @@ def get_user_info(user):
 def get_user(id:int,db=Depends(get_database)):
     try:
         #从数据库中获取对应id的用户信息
-        user = db.query(User).filter(User.id==id).first()
-        if user:
+        queryResult = checkUserExist(id)
+        if queryResult[0]:
             # 用户信息
-            userInfo = get_user_info(user)
+            userInfo = get_user_info(queryResult[1])
             response = {
                 "data":{
                     "userInfo":userInfo
@@ -71,8 +72,8 @@ async def update_user_info(
     db:Session=Depends(get_database)
 ):
     try:
-        user = db.query(User).filter(User.id==user_info.id).first()
-        if not user:
+        queryResult = checkUserExist(user_info.id)
+        if not queryResult[0]:
             raise exceptions.UserNotFoundError()
         
         update_info = {

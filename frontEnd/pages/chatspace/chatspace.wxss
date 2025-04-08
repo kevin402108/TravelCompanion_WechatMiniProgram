@@ -47,6 +47,14 @@
   font-size: 32rpx;
 }
 
+.input-box {
+  margin: 15rpx auto;
+  padding: 10rpx;
+  width:92.5%;
+  border:2rpx solid #999;
+  border-radius: 10rpx;
+}
+
 /*讨论旅游行程发送按钮样式*/
 .sendbtn {
     right: 23rpx;

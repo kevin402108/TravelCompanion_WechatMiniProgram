@@ -18,10 +18,10 @@ Page({
     })
 
     // POST请求 将数据发送到后端，并从后端获取生成的旅游路线( 后端接口? )
-    /*  const {token,destination,travelDays,budget,preferences} = this.data
+    /*  const {destination,travelDays,budget,preferences} = this.data
      wx.request({
-       url:'#', 
-       data: {token,destination,travelDays,budget,preferences},
+       url:'http://127.0.0.1:8001/route_auto_generate', 
+       data: {destination,travelDays,budget,preferences},
        method:'POST',
        success:(res)=>{
          console.log(res)

@@ -51,18 +51,18 @@ Page({
           })
         } else {
           wx.hideNavigationBarLoading();
-          wx.showToast({
-            title: "获取用户信息失败！",
-            icon: 'none'
-          })
+          // wx.showToast({
+          //   title: "获取用户信息失败！",
+          //   icon: 'none'
+          // })
         }
       },
       fail: (err) => {
         wx.hideNavigationBarLoading();
-        wx.showToast({
-          title: "获取用户信息失败！",
-          icon: 'none'
-        })
+        // wx.showToast({
+        //   title: "获取用户信息失败！",
+        //   icon: 'none'
+        // })
         this.setData({
           user: {
             nickname: "微信用户",
