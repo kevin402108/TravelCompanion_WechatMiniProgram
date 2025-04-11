@@ -7,7 +7,6 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import OperationalError, ProgrammingError, DataError, IntegrityError
 from fastapi import APIRouter, Depends
 from backEnd.app.database import get_database
-from backEnd.app.utils.user import checkUserExist
 
 routeGen_router = APIRouter()
 
@@ -25,8 +24,8 @@ async def routeAutoGenerate(
     RouteRequire:RouteGenModel,
     db:Session = Depends(get_database)
 ):
-    queryResult = checkUserExist(RouteRequire.id)
-    if not queryResult[0]:
+    user = db.query(User).filter(User.id == id).first()
+    if not user:
         raise exceptions.UserNotFoundError()
     
     new_Route = Route(

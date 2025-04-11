@@ -16,7 +16,6 @@ from backEnd.app.utils import exceptions
 from backEnd.app.utils.logger import setup_logger
 from sqlalchemy.orm import Session
 
-from backEnd.app.utils.user import checkUserExist
 
 upload_router = APIRouter()
 logger = setup_logger('upload_logger')
@@ -70,8 +69,8 @@ async def upload_image(
         logger.error("用户id必须为整数")
         return JSONResponse(status_code=400, content={"message": "用户id必须为整数"})
     
-    queryResult = checkUserExist(id)
-    if not queryResult[0]:
+    user = db.query(User).filter(User.id == id).first()
+    if not user:
         logger.error("用户不存在")
         return exceptions.UserNotFoundError()
     

@@ -14,7 +14,6 @@ from backEnd.app.database import get_database
 from backEnd.app.models import Login, User
 from backEnd.app.utils.crypt import encrypt
 from backEnd.app.utils.logger import setup_logger
-from backEnd.app.utils.user import checkUserExist
 
 #登录模块路由
 logger = setup_logger('user_login')
@@ -29,11 +28,14 @@ class LoginRequest(BaseModel):
     
 # 登录接口 POST请求
 @login_router.put('/auth/login/')
-def login(loginCode: LoginRequest,db:Session=Depends(get_database)):
+def login(
+    loginCode: LoginRequest,
+    db:Session=Depends(get_database)
+):
     try:
         id = loginCode.id
-        queryResult = checkUserExist(id)
-        if not queryResult[0]:
+        user = db.query(User).filter(User.id == id).first()
+        if not user:
             raise exceptions.UserNotFoundError()
 
         url = f"https://api.weixin.qq.com/sns/jscode2session?appid=wxa35b788e7a7760be&secret=8ca4524d10d633e14e34ba449b0e0ef0&js_code={loginCode.code}&grant_type=authorization_code"
@@ -94,8 +96,8 @@ def updateLoginTime(
     db:Session=Depends(get_database)
 ):
     try:
-        queryResult = checkUserExist(userInfo.id)
-        if queryResult[0]:
+        user = db.query(User).filter(User.id == id).first()
+        if user:
             db.query(Login).filter(Login.user_id==userInfo.id).update({"last_login_time":func.now()})
             db.commit()
             logger.info("更新用户登录时间成功")
