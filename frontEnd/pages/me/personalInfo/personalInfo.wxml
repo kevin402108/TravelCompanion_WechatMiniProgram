@@ -6,7 +6,7 @@
         <view class="avatar-box item">
             <view class="left">头像：</view>
             <view class="right">
-                <button class="avatar" open-type="chooseAvatar" bindchooseavatar="onchooseAvatar">
+                <button class="avatar"  bindtap="onchooseAvatar">
                     <image class="avatar-img" src="{{avatar}}" mode="aspectFill"></image>
                 </button>
                 <text class="tip">(请点击选择头像)</text>
@@ -15,7 +15,7 @@
         <view class="nickname-box item">
             <view class="left">昵称：</view>
             <view class="right">
-                <input type="nickname" class="nickname" model:value="{{nickname}}" placeholder="请输入昵称 (最多包含15个字符)" maxlength="15" bindinput="onnicknameChange"></input>
+                <input class="nickname" model:value="{{nickname}}" placeholder="请输入昵称 (最多包含15个字符)" maxlength="15"></input>
             </view>
         </view>
         <view class="msg {{isNicknameValid?'correct':'error'}}" wx:if="{{nickname.length > 0}}">{{msg}}</view>
@@ -31,7 +31,7 @@
         <view class="hobby-box item">
             <view class="left">兴趣爱好：</view>
             <view class="right">
-                <textarea name="hobby" class="hobby" model:value="{{hobby}}" placeholder="请输入您的兴趣爱好 (最多100个字符)" maxlength="100"></textarea>
+                <textarea name="hobby" class="hobby" model:value="{{hobby}}" placeholder="请输入您的兴趣爱好(最多100个字)" maxlength="100"></textarea>
             </view>
         </view>
     </view>
@@ -41,6 +41,7 @@
             <view class="title">温 馨 提 示</view>
             <view class="bd">
                 <view class="content"><text style="color:#999">1</text>. 昵称不超过<text> 15 </text>个字符，且只能包含 <text>大小写字母、0-9、下划线和中文字符</text>。</view>
+                <view class="content"><text style="color:#999">2</text>. 若已修改个人信息，请点击<text>“保存”按钮</text> 以确保能成功修改您的个人信息！</view>
             </view>
         </view>
     </view>

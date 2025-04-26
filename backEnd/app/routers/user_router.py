@@ -24,10 +24,13 @@ def get_user_info(user):
     
 
 @user_router.get('/user/profile')
-def get_user(id:int,db=Depends(get_database)):
+def get_user(
+    id:int,
+    db=Depends(get_database)
+):
     try:
         #从数据库中获取对应id的用户信息
-        user = db.query(User).filter(User.id==id).first()
+        user = db.query(User).filter(User.id == id).first()
         if user:
             # 用户信息
             userInfo = get_user_info(user)
@@ -71,8 +74,7 @@ async def update_user_info(
     db:Session=Depends(get_database)
 ):
     try:
-        breakpoint()
-        user = db.query(User).filter(User.id==user_info.id).first()
+        user = db.query(User).filter(User.id == id).first()
         if not user:
             raise exceptions.UserNotFoundError()
         

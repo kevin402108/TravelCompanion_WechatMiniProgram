@@ -17,7 +17,6 @@ Page({
 
   // 提交表单
   submitForm: function () {
-    console.log(this.data);
     const { destination, travelDays, preferences } = this.data;
 
     if (!destination) {
@@ -50,7 +49,6 @@ Page({
     const queryStr = Object.keys(this.data)
       .map((key) => `${key}=${encodeURIComponent(this.data[key])}`)
       .join("&");
-    console.log(queryStr);
     wx.redirectTo({
       url: "/pages/routeGen/routeGenResult/routeGenResult?" + queryStr,
     })

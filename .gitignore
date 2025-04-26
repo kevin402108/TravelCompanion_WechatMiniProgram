@@ -18,6 +18,11 @@ cloudbaserc.json
 plugin/
 plugin-private/
 plugin.json
+fide.project.config.json
+app.miniapp.json
+project.miniapp.json
+i18n/
+miniapp/
 
 # 测试文件及相关输出
 coverage/

@@ -21,14 +21,14 @@ Page({
           id:0,
           name:'旅游路线',
           className:'route-gen',
-          imgUrl:'../../images/homePage/旅游_路线.png',
+          imgUrl:'https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%97%85%E6%B8%B8_%E8%B7%AF%E7%BA%BF.png',
           navUrl:'/pages/routeGen/routeGen',
         },
         {
           id:1,
           name:'旅游方案',
           className:'trip-plan',
-          imgUrl:'../../images/homePage/旅行.png',
+          imgUrl:'https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%97%85%E8%A1%8C.png',
           navUrl:'/pages/planGen/planGen',
         },
         {
@@ -45,14 +45,14 @@ Page({
           id:1,
           title:'欢迎访问旅伴奇遇工坊!',
           content:'寻找旅伴,尽在旅伴奇遇工坊',
-          picSrc:'../../images/homePage/游记.png',
+          picSrc:'https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%B8%B8%E8%AE%B0.png',
           pubDate:'2025-1-20 17:45'
         },
         {
           id:2,
           title:'寻找旅伴指南',
           content:`在本站，您可找到适合自己的旅游路线和旅行方案！您可通过发布组队或参与其他旅友发起的组队，找到合适自己的旅伴！`,
-          picSrc:'../../images/homePage/旅行.png',
+          picSrc:'https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%97%85%E8%A1%8C.png',
           pubDate:'2025-1-21 17:50'
         },
       ],

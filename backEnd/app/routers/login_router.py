@@ -28,10 +28,13 @@ class LoginRequest(BaseModel):
     
 # 登录接口 POST请求
 @login_router.put('/auth/login/')
-def login(loginCode: LoginRequest,db:Session=Depends(get_database)):
+def login(
+    loginCode: LoginRequest,
+    db:Session=Depends(get_database)
+):
     try:
         id = loginCode.id
-        user =db.query(User).filter(User.id==id).first()
+        user = db.query(User).filter(User.id == id).first()
         if not user:
             raise exceptions.UserNotFoundError()
 
@@ -93,7 +96,7 @@ def updateLoginTime(
     db:Session=Depends(get_database)
 ):
     try:
-        user = db.query(User).filter(User.id==userInfo.id).first()
+        user = db.query(User).filter(User.id == userInfo.id).first()
         if user:
             db.query(Login).filter(Login.user_id==userInfo.id).update({"last_login_time":func.now()})
             db.commit()
@@ -127,7 +130,10 @@ def updateLoginTime(
     
 # 注册接口 POST请求
 @login_router.post("/auth/register")
-def register(registerCode:RegisterRequest,db:Session=Depends(get_database)):
+def register(
+    registerCode:RegisterRequest,
+    db:Session=Depends(get_database)
+):
     try:
         url = f"https://api.weixin.qq.com/sns/jscode2session?appid=wxa35b788e7a7760be&secret=8ca4524d10d633e14e34ba449b0e0ef0&js_code={registerCode.code}&grant_type=authorization_code"
         result = requests.get(url)

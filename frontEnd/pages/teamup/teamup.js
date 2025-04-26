@@ -1,3 +1,4 @@
+import loginUtils from "../../utils/loginUtils";
 import userUtils from "../../utils/userUtils";
 
 const app = getApp();
@@ -76,7 +77,7 @@ Page({
         partnerList: [
           {
             id: 1,
-            picUrl: "../../images/homePage/旅行.png",
+            picUrl: "https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%97%85%E8%A1%8C.png",
             initator: "kevinchan042108", //组队发起者
             createTime: "2025-1-20 17:45:30", //组队发起时间
             travelDays: 8, //计划旅行天数
@@ -85,7 +86,7 @@ Page({
           },
           {
             id: 2,
-            picUrl: "../../images/homePage/旅游_路线.png",
+            picUrl: "https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%97%85%E6%B8%B8_%E8%B7%AF%E7%BA%BF.png",
             initator: "kevinchan",
             createTime: "2025-1-20 17:45:30",
             travelDays: 8,
@@ -156,7 +157,7 @@ Page({
       });
       setTimeout(() => {
         wx.switchTab({
-          url: "/pages/chatspace/chatspace",
+          url: "/pages/home/home",
         });
       }, 2000);
     }, 3000);
@@ -260,7 +261,7 @@ Page({
       setTimeout(
         () =>
           wx.switchTab({
-            url: "/pages/chatspace/chatspace",
+            url: "/pages/home/home",
           }),
         2000
       );
@@ -322,19 +323,20 @@ Page({
   onSliderChange: userUtils.onSliderChange,
 
   onLoad(options) {
+    loginUtils.checkLogin()
+    const tokenObj = wx.getStorageSync('tokenObj')
     //通过token获取用户昵称 GET请求
-    /* const token = ''
     wx.request({
-      url: "#",
+      url: 'http://127.0.0.1:8001/user/profile',
       data: {
-        token,
+        id:tokenObj.id
       },
       success: (res) => {
         console.log(res);
         wx.hideNavigationBarLoading();
   
         if (res.statusCode == 200) {
-          const { nickname } = res.data.data.userInfo;
+          const { nickname,gender } = res.data.data.userInfo;
           this.setData({
             nickname,
             gender
@@ -354,21 +356,12 @@ Page({
           icon:'none'
         })
       },
-    }) */
+    })
     Object.keys(options).forEach((key) =>
       this.setData({
         [key]: decodeURIComponent(options[key]),
       })
     );
-    const nickname = "wxyh";
-    this.setData({
-      msg: "",
-      nickname,
-      token: app.globalData.token,
-      avatar: app.globalData.defaultAvatarUrl,
-      hideForm: true,
-      emptyResultText: "正在匹配中...",
-    });
     this.findPartner();
   },
 });

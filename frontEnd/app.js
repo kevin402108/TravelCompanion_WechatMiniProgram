@@ -8,6 +8,7 @@ App({
 
   onLaunch: function () {
     //检查用户登录情况
-    loginUtils.checkLogin()
+    loginUtils.checkLogin(1)
+    
   },
 });
