@@ -96,7 +96,7 @@ def updateLoginTime(
     db:Session=Depends(get_database)
 ):
     try:
-        user = db.query(User).filter(User.id == id).first()
+        user = db.query(User).filter(User.id == userInfo.id).first()
         if user:
             db.query(Login).filter(Login.user_id==userInfo.id).update({"last_login_time":func.now()})
             db.commit()

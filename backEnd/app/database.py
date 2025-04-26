@@ -1,5 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
-from fastapi.encoders import jsonable_encoder
+from fastapi import APIRouter
 from sqlalchemy.orm import Session
 
 from backEnd.config.db_config import DB_URL, DB_CONFIG
@@ -11,7 +10,6 @@ router = APIRouter()
 
 # 创建同步数据库引擎
 engine = create_engine(DB_URL, **DB_CONFIG)
-print(engine)
 
 # 创建同步会话类
 sessionLocal = sessionmaker(

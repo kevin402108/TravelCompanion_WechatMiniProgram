@@ -6,8 +6,7 @@ LOG_FILE = "logs.txt"
 # 当前文件所在的目录
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 # 后端项目根目录
-BACKEND_ROOT_DIR = os.path.dirname(os.path.dirname(CURRENT_DIR))
-# print(BACKEND_ROOT_DIR)
+PROJECT_ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(CURRENT_DIR)))
 
 def setup_logger(name,fileName=LOG_FILE,level=logging.INFO):
     """
@@ -18,7 +17,7 @@ def setup_logger(name,fileName=LOG_FILE,level=logging.INFO):
     :return: 配置好的日志记录器
     """
 
-    file_abs_path = os.path.join(BACKEND_ROOT_DIR,fileName)
+    file_abs_path = os.path.join(PROJECT_ROOT_DIR,"logs",fileName)
 
     # 确保存放日志文件的目录存在
     log_dir = os.path.dirname(file_abs_path)

@@ -33,7 +33,7 @@ def get_user(
         user = db.query(User).filter(User.id == id).first()
         if user:
             # 用户信息
-            userInfo = get_user_info(id)
+            userInfo = get_user_info(user)
             response = {
                 "data":{
                     "userInfo":userInfo

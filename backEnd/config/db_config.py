@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 # 当前项目所处环境
 ENVIRONMENT = os.getenv("ENVIRONMENT", "production")
 if ENVIRONMENT == "development":
-    print("当前处于开发环境")
+    # print("当前处于开发环境")
     env_path = os.path.join(os.path.dirname(__file__), ".env")
     load_dotenv(env_path)
 

@@ -18,7 +18,6 @@ cloudbaserc.json
 plugin/
 plugin-private/
 plugin.json
-backEnd/logs.txt
 fide.project.config.json
 app.miniapp.json
 project.miniapp.json

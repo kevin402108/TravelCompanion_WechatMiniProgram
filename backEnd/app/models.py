@@ -215,9 +215,10 @@ class Route(Base):
     user_id = Column(INTEGER(unsigned=True),ForeignKey('user.id',ondelete='CASCADE',onupdate='CASCADE'),nullable=False,index=True)
     destination = Column(String(50),nullable=False)
     travel_days = Column(INTEGER(unsigned=True),nullable=False)
-    budget = Column(INTEGER(unsigned=True),nullable=False,default=0)
+    budget = Column(INTEGER(unsigned=True),nullable=True,default=0)
     preference = Column(String(100),nullable=False)
     route_description = Column(String(200),nullable=True)
+    route_spots = Column(JSON,nullable=False)
     create_time = Column(DateTime(timezone=True),nullable=True,server_default=func.now())
     status = Column(Enum('0','1',name='routeAvailableStatus'),nullable=False,server_default='0',comment='可用状态，0：可用，1：被占用/不可用')    
     
