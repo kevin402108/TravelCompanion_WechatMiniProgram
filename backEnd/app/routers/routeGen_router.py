@@ -145,7 +145,7 @@ def insertRouteSpotMapping(db: Session, spotIDList: list[str], route_id: int):
                 newSpots = [spotIDs for spotIDs in converted_SpotIDList if spotIDs not in existingSpots]
                 
                 if not newSpots:
-                    logger.info(f"route_id={route_id} 所有景点均已关联，无需插入")
+                    logger.warning(f"route_id={route_id} 所有景点均已关联，无需插入")
                     return
                 
                 stmt = insert(RouteSpotsMapping).values(

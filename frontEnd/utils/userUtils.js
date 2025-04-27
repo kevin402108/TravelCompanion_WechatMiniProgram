@@ -1,4 +1,4 @@
-const _ = require('lodash')
+import _ from 'lodash'
 
 // 检测用户昵称
 const checkNickname = (nickname) => {
