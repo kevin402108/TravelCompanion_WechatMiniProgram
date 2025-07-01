@@ -1,4 +1,5 @@
-// pages/planGen/planGenResult/planGenResult.js
+import loginUtils from "../../../utils/loginUtils"
+
 const app = getApp();
 Page({
   data: {
@@ -19,29 +20,30 @@ Page({
       title: "正在生成中...",
     });
 
-    // POST请求 将数据发送到后端，并从后端获取生成的个性化旅游方案( 后端接口? )
-    /* const {token,personality,hobbies,budeget,preferences,time} = this.data
-    wx.request{
-      url:'#',
+    loginUtils.checkLogin()
+    const tokenObj = wx.getStorageSync('tokenObj')
+    // POST请求 将数据发送到后端，并从后端获取生成的个性化旅游方案
+    const {personality,hobbies,budget,preferences,time} = this.data
+    wx.request({
+      url:'http://127.0.0.1:8001/personal_plan_generate',
       data: {
-        token,
+        user_id:tokenObj.id,
         personality,
         hobbies,
         budget,
-        preferences,
-        travelDays:time
+        time,
+        preferences
       },
       method:'POST',
-      timeout:20000,
       success:(res)=>{
         wx.hideLoading()
         console.log(res)
         if(res.statusCode == 200){
-          const {plan} = res.data.data
-          if(plan){
+          // const {plan} = res.data.data
+          /* if(plan){
             this.setData({
               tip:'已为您生成以下旅游方案',
-              plan:res.data.data.plan
+              // plan:res.data.data.plan
             })
           } else {
             wx.showToast({
@@ -53,7 +55,7 @@ Page({
                 tipShow:false,
                 emptyBoxShow:true
             }) 
-          }
+          } */
         }
       },
       fail:(err)=>{
@@ -68,7 +70,7 @@ Page({
           emptyBoxShow:true
         }) 
       }
-    }) */
+    }) 
 
     setTimeout(() => {
       wx.hideLoading();
@@ -131,6 +133,7 @@ Page({
       tipShow: true,
       emptyBoxShow: false,
     });
+    console.log(this.data)
     this.getTravelPlan();
   },
 

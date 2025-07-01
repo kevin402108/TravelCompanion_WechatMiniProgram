@@ -99,17 +99,11 @@ class NoticeAttachments(Base):
     def __repr__(self):
         return f"NoticeAttachments(id={self.id},notice_id={self.notice_id},file_name={self.file_name},file_url={self.file_url},description={self.description},upload_time={self.upload_time})"
 
-Personality = Enum(
-    '探索未知、寻找独特的旅行体验',
-    '选择热门景点、享受热闹氛围',
-    '依赖朋友/家人的建议、避免过多选择',
-    name='personality'
-)
 
 Time = Enum(
-    '短途旅行（1-3天）',
-    '中长途旅行（4-7天）',
-    '长途旅行（超过7天）',  
+    '1-3天',
+    '4-7天',
+    '超过7天',  
     name = 'time'
 )
 
@@ -138,13 +132,13 @@ class Plan(Base):
     
     id=Column(INTEGER(unsigned=True),autoincrement=True,primary_key=True)
     user_id = Column(INTEGER(unsigned=True),ForeignKey('user.id',ondelete='CASCADE',onupdate='CASCADE'),nullable=False,index=True)
-    personality = Column(Personality,nullable=False)
+    personality = Column(String(255),nullable=False)
     hobbies = Column(String(50),nullable=False)
     time = Column(Time,nullable=False) #旅游天数
     budget = Column(Budget,nullable=False)
     preference = Column(Preference,nullable=False)
     total_spending = Column(INTEGER(unsigned=True),nullable=False,index=True)
-    arrange = Column(JSON,nullable=False)
+    arrange_data = Column('arrange',JSON,nullable=False)
     create_time = Column(DateTime(timezone=True),nullable=False,server_default=func.now())
     status = Column(Enum('0','1',name='planAvailableStatus'),nullable=False,server_default='0')
     
@@ -156,7 +150,7 @@ class Plan(Base):
     )
     
     def __repr__(self):
-        return  f"<Plan(id={self.id}, user_id={self.user_id}, personality={self.personality}, hobbies={self.hobbies}, time={self.time}, budget={self.budget}, preference={self.preference},  total_spending={self.total_spending}, arrange={self.arrange},create_time={self.create_time}, status={self.status})>"
+        return  f"<Plan(id={self.id}, user_id={self.user_id}, personality={self.personality}, hobbies={self.hobbies}, time={self.time}, budget={self.budget}, preference={self.preference},  total_spending={self.total_spending}, arrange={self.arrange_data},create_time={self.create_time}, status={self.status})>"
 
 CommentStatus = Enum('已发布','已归档',name='comment_status')
 

@@ -94,7 +94,6 @@ Page({
       budget:this.data.budget
     }
     const queryStr = Object.keys(queryObj).map(key => `${key}=${encodeURIComponent(queryObj[key])}`).join('&')
-    console.log(queryStr);
     
     wx.redirectTo({
       url: `/pages/planGen/planGenResult/planGenResult?${queryStr}`

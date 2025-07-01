@@ -99,9 +99,7 @@ async def routeAutoGenerate(
             ]
         }
     }
-
     return response
-
 
 def insertRouteSpotMapping(db: Session, spotIDList: list[str], route_id: int):
     """
@@ -119,9 +117,8 @@ def insertRouteSpotMapping(db: Session, spotIDList: list[str], route_id: int):
     while try_times < MAX_DEADLOCK_RETRIES:
         try:
             with db.begin_nested():
-                # if time.time() - start_time > TOTAL_TIMEOUT:
-                #     raise TimeoutError("操作超时！")
-
+                if time.time() - start_time > TOTAL_TIMEOUT:
+                    raise TimeoutError("操作超时！")
                 existing = (
                     db.query(Spots.id)
                     .filter(Spots.id.in_(converted_SpotIDList))
@@ -145,7 +142,7 @@ def insertRouteSpotMapping(db: Session, spotIDList: list[str], route_id: int):
                 newSpots = [spotIDs for spotIDs in converted_SpotIDList if spotIDs not in existingSpots]
                 
                 if not newSpots:
-                    logger.info(f"route_id={route_id} 所有景点均已关联，无需插入")
+                    logger.warning(f"route_id={route_id} 所有景点均已关联，无需插入")
                     return
                 
                 stmt = insert(RouteSpotsMapping).values(
