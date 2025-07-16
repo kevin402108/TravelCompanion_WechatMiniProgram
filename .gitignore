@@ -1,53 +1,24 @@
-# 微信开发者
-logs/
-db/
-project.config.json
+## 微信小程序相关 ##
 project.private.config.json
-node_modules/
-dist/
-build/
 miniprogram_npm/
-typings/
-*.d.ts
-.env
-.env.local
-.env.development
-.env.production
 cloudfunctions/
-cloudbaserc.json
+miniapp/
 plugin/
 plugin-private/
+cloudbaserc.json
 plugin.json
 fide.project.config.json
 app.miniapp.json
 project.miniapp.json
-i18n/
-miniapp/
 
-# 测试文件及相关输出
-coverage/
-test/
-*.test.js
-*.spec.js
-
-# Git 忽略相关配置
-.git/
-
-
-### Python ###
-# Byte-compiled / optimized / DLL files
+## Python 相关 ##
+# 编译缓存
 __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-build/
+# 构建产物
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -63,154 +34,76 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-# PyInstaller
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
+# 测试报告
 htmlcov/
 .tox/
 .nox/
-.coverage
 .coverage.*
-.cache
 nosetests.xml
-coverage.xml
 *.cover
 *.py,cover
 .hypothesis/
 .pytest_cache/
-cover/
 
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-.pybuilder/
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-Pipfile.lock
-
-# poetry
-poetry.lock
-
-# pdm
-.pdm.toml
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
+# 环境配置
 .venv
-env/
-venv/
 ENV/
 env.bak/
 venv.bak/
+.python-version
+Pipfile.lock
+poetry.lock
+.pdm.toml
+__pypackages__/
 
-# Spyder project settings
+# 其他
+*.so
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+*.mo
+*.pot
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+instance/
+.webassets-cache
+.scrapy
+docs/_build/
+.pybuilder/
+target/
+.ipynb_checkpoints
+ipython_config.py
+celerybeat-schedule
+celerybeat.pid
+*.sage.py
 .spyderproject
 .spyproject
-
-# Rope project settings
 .ropeproject
-
-# mkdocs documentation
 /site
-
-# mypy
 .mypy_cache/
 .dmypy.json
 dmypy.json
-
-# Pyre type checker
 .pyre/
-
-# pytype static type analyzer
 .pytype/
-
-# Cython debug symbols
 cython_debug/
-
-# PyCharm
-.idea/
-
-# Poetry local configuration file
 poetry.toml
-
-# ruff
 .ruff_cache/
 
-# LSP config files
-pyrightconfig.json
-
-### Java ###
-# Compiled class file
+## Java 相关 ##
 *.class
-
-# Log file
-*.log
-
-# BlueJ files
 *.ctxt
-
-# Mobile Tools for Java (J2ME)
 .mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
 *.nar
 *.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs
 hs_err_pid*
 replay_pid*
 
-# Visual Studio 配置
+## IDE 配置 ##
+# Visual Studio
 .vs/
 .vs2019/
 .vs2017/
@@ -224,48 +117,53 @@ replay_pid*
 *.sdf
 *.dbmdl
 
-# Visual Studio Code 配置
-.vscode/
-
-# Local History for Visual Studio Code
+# VS Code
 .history/
-
-# Built Visual Studio Code Extensions
 *.vsix
-
-# Ignore all local history of files
-.history
 .ionide
 
-# JetBrains IDE 配置
-.idea/
+# JetBrains
 out/
-
-# JetBrains 系列 IDE 的特定文件
 *.ipr
 *.iws
 *.iml
 
-# 临时文件
-*.tmp
-*.swp
-*.swo
-*.bak
-*.old
-*.log
-*.pid
-*~
-npm-debug.log
-yarn-error.log
-*.coverage
-
-# 系统生成文件
-Thumbs.db
-ehthumbs.db
-Desktop.ini
+## 通用忽略项 ##
+# 系统文件
 .DS_Store
 .AppleDouble
 .LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# 临时文件
+*.swp
+*.swo
+*~
+
+# 日志文件
+*.log
+npm-debug.log
+yarn-error.log
+
+# 构建输出
+build/
+dist/
+coverage/
+.cache
+cover/
+
+# 环境文件
+.env
+.env.local
+.env.development
+.env.production
+
+# 缓存文件
+*.tmp
+*.pid
+*.coverage
 
 # 打包文件
 *.tar.gz
@@ -275,10 +173,10 @@ Desktop.ini
 *.rar
 *.tar
 
-# Docker 文件
+# Docker
 .docker/
 
-# 编译和构建生成的文件
+# 编译输出
 *.obj
 *.o
 *.exe
@@ -289,7 +187,16 @@ Desktop.ini
 *.a
 *.so
 
-# 版本控制相关文件
-*.git/
-*.svn/
+# 依赖管理
+node_modules/
 
+# 映射文件
+*.map
+
+# 备份文件
+*.bak
+*.old
+
+# IDE配置目录
+.vscode/
+.idea/

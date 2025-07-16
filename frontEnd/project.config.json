@@ -1,0 +1,39 @@
+{
+  "appid": "wxa35b788e7a7760be",
+  "projectname": "旅伴奇遇工坊",
+  "compileType": "miniprogram",
+  "libVersion": "3.8.9",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "coverView": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "enhance": true,
+    "showShadowRootInWxmlPanel": true,
+    "packNpmRelationList": [],
+    "compileHotReLoad": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "bigPackageSizeSupport": true,
+    "ignoreUploadUnusedFiles": true,
+    "condition": true,
+    "minifyWXSS": false
+  },
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  },
+  "projectArchitecture": "multiPlatform",
+  "simulatorPluginLibVersion": {
+    "wxext14566970e7e9f62": "3.6.5-29"
+  }
+}
