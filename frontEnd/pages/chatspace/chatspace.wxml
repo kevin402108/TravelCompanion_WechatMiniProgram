@@ -10,7 +10,7 @@
     <block wx:if="{{tabIndex === 0}}">
       <view class="container1">
         <view class="input-box1">
-          <input class="input" model:value="{{msgContent}}"placeholder="请输入内容" />
+          <input class="input" model:value="{{msgContent}}" placeholder="请输入内容" />
           <button class="sendbtn" bindtap="onMsgSend">发送</button>
         </view>
       </view>
@@ -19,7 +19,7 @@
     <block wx:if="{{tabIndex === 1}}">
         ~ 看看其他旅友的帖子吧！ ~
     </block>
-
+    
     <block wx:if="{{tabIndex === 2}}">
     
         <view class="chat-space">
@@ -27,6 +27,5 @@
           <textarea class="input-box" placeholder="请输入帖子内容" model:value="{{postContent}}"></textarea>
           <button class="submit-btn" bindtap="submitPost">发布帖子</button>
         </view>
-
     </block>
 </view>
