@@ -47,7 +47,7 @@ async def personalPlanGenerate(
     # 为用户搜索符合用户需求的个性化方案
     personality = ""
     hobbies=""
-    time = "1-3天"
+    duration = "1-3天"
     budget = '1000-3000元'
     preference = '登山徒步'
     total_spending = 1500
@@ -76,7 +76,7 @@ async def personalPlanGenerate(
                 user_id = PlanRequest.user_id,
                 personality = personality,
                 hobbies = hobbies,
-                time = time,
+                duration = duration,
                 budget = budget,
                 preference = preference,
                 total_spending = total_spending,

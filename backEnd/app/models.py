@@ -100,7 +100,7 @@ class NoticeAttachments(Base):
         return f"NoticeAttachments(id={self.id},notice_id={self.notice_id},file_name={self.file_name},file_url={self.file_url},description={self.description},upload_time={self.upload_time})"
 
 
-Time = Enum(
+Duration = Enum(
     '1-3天',
     '4-7天',
     '超过7天',  
@@ -134,7 +134,7 @@ class Plan(Base):
     user_id = Column(INTEGER(unsigned=True),ForeignKey('user.id',ondelete='CASCADE',onupdate='CASCADE'),nullable=False,index=True)
     personality = Column(String(255),nullable=False)
     hobbies = Column(String(50),nullable=False)
-    time = Column(Time,nullable=False) #旅游天数
+    duration = Column(Duration,nullable=False) #旅游天数
     budget = Column(Budget,nullable=False)
     preference = Column(Preference,nullable=False)
     total_spending = Column(INTEGER(unsigned=True),nullable=False,index=True)
@@ -146,11 +146,11 @@ class Plan(Base):
     arrange = relationship('Arrange',back_populates='plan')
     
     __table_args__ = (
-       Index('idx_personality_hobbies_time_budget_preference', personality, hobbies, time, budget, preference),
+       Index('idx_personality_hobbies_time_budget_preference', personality, hobbies, duration, budget, preference),
     )
     
     def __repr__(self):
-        return  f"<Plan(id={self.id}, user_id={self.user_id}, personality={self.personality}, hobbies={self.hobbies}, time={self.time}, budget={self.budget}, preference={self.preference},  total_spending={self.total_spending}, arrange={self.arrange_data},create_time={self.create_time}, status={self.status})>"
+        return  f"<Plan(id={self.id}, user_id={self.user_id}, personality={self.personality}, hobbies={self.hobbies}, time={self.duration}, budget={self.budget}, preference={self.preference},  total_spending={self.total_spending}, arrange={self.arrange_data},create_time={self.create_time}, status={self.status})>"
 
 CommentStatus = Enum('已发布','已归档',name='comment_status')
 
