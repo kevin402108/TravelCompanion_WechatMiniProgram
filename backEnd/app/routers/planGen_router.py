@@ -21,7 +21,7 @@ class PlanRequestModel(BaseModel):
     personality:str
     hobbies:str
     budget:str
-    time:str
+    duration:str
     preferences:str
     
 @planGen_router.post(

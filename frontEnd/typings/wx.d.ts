@@ -413,7 +413,7 @@ declare var wx: {
     
     request(obj: {
         /**
-         * 开发者服务器接口地址
+         * 小程序服务器接口地址
          */
         url: string;
         /**
@@ -433,7 +433,7 @@ declare var wx: {
          */
         dataType?: string;
         /**
-         * 收到开发者服务成功返回的回调函数，res = {data: '开发者服务器返回的内容'}
+         * 收到小程序服务成功返回的回调函数，res = {data: '小程序服务器返回的内容'}
          */
         success?: Function;
         /**
@@ -447,11 +447,11 @@ declare var wx: {
     }): void;
                     
     /**
-     * 将本地资源上传到开发者服务器。如页面通过 wx.chooseImage 等接口获取到一个本地资源的临时文件路径后，可通过此接口将本地资源上传到指定服务器。客户端发起一个 HTTPS POST 请求，其中 content-type 为 multipart/form-data 。
+     * 将本地资源上传到小程序服务器。如页面通过 wx.chooseImage 等接口获取到一个本地资源的临时文件路径后，可通过此接口将本地资源上传到指定服务器。客户端发起一个 HTTPS POST 请求，其中 content-type 为 multipart/form-data 。
      */
     uploadFile(obj: {
         /**
-         * 开发者服务器 url
+         * 小程序服务器 url
          */
         url: string;
         /**
@@ -459,7 +459,7 @@ declare var wx: {
          */
         filePath: string;
         /**
-         * 文件对应的 key , 开发者在服务器端通过这个 key 可以获取到文件二进制内容
+         * 文件对应的 key , 小程序在服务器端通过这个 key 可以获取到文件二进制内容
          */
         name: string;
         /**
@@ -515,7 +515,7 @@ declare var wx: {
      */
     connectSocket(obj: {
         /**
-         * 开发者服务器接口地址，必须是 wss 协议，且域名必须是后台配置的合法域名
+         * 小程序服务器接口地址，必须是 wss 协议，且域名必须是后台配置的合法域名
          */
         url: string;
         /**
@@ -2409,7 +2409,7 @@ declare var wx: {
     }): void;
                     
     /**
-     * 通过上述接口获得的用户登录态拥有一定的时效性。用户越久未使用小程序，用户登录态越有可能失效。反之如果用户一直在使用小程序，则用户登录态一直保持有效。具体时效逻辑由微信维护，对开发者透明。开发者只需要调用wx.checkSession接口检测当前用户登录态是否有效。登录态过期后开发者可以再调用wx.login获取新的用户登录态。
+     * 通过上述接口获得的用户登录态拥有一定的时效性。用户越久未使用小程序，用户登录态越有可能失效。反之如果用户一直在使用小程序，则用户登录态一直保持有效。具体时效逻辑由微信维护，对小程序透明。小程序只需要调用wx.checkSession接口检测当前用户登录态是否有效。登录态过期后小程序可以再调用wx.login获取新的用户登录态。
      */
     checkSession(obj: {
         /**

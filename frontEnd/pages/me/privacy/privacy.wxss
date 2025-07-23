@@ -1,0 +1,87 @@
+.container {
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  padding: 20rpx;
+  color: #333;
+  font-size: 28rpx;
+}
+
+.header {
+  padding: 40rpx 0 30rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  background: linear-gradient(to right, #f7e1c0, #fae6c9);
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+
+.title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #5e4f47;
+  margin-bottom: 15rpx;
+}
+
+.update-date {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.body {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 35rpx 30rpx 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.04);
+}
+
+.intro {
+  color: #444;
+  margin-bottom: 40rpx;
+}
+
+.section .sec-title {
+  position: relative;
+  margin-bottom: 25rpx;
+  padding-left: 20rpx;
+  font-size: 30rpx;
+  color: #5e4f47;
+  font-weight: bold;
+}
+
+.section .sec-title::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 10rpx;
+  height: 30rpx;
+  width: 8rpx;
+  background-color: #e8c9a8;
+  border-radius: 4rpx;
+}
+
+.item {
+  margin-bottom: 15rpx;
+  font-size: 30rpx;
+  line-height: 1.5;
+}
+
+.idx {
+  margin-right: 10rpx;
+  padding-top: 4rpx;
+  color: #5e4f47;
+  font-weight: bold;
+  
+}
+.contact {
+  margin: 10rpx;
+  line-height: 1.5;
+  font-weight: bold;
+  color: #5e4f47;
+}
+
+.contact view {
+  padding-left: 10rpx;
+}
+
+.imp-info {
+  font-weight: bold;
+}

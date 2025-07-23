@@ -29,7 +29,7 @@
             <view class="left">个人资料</view>
             <view class="right">>></view>
         </navigator>
-        <navigator class="item" url="/pages/me/privacyPolicy/privacyPolicy">
+        <navigator class="item" url="/pages/me/privacy/privacy">
             <view class="left">隐私协议</view>
             <view class="right">>></view>
         </navigator>

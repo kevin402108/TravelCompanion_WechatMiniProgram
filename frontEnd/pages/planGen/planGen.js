@@ -42,7 +42,7 @@ Page({
           "中长途旅行（4-7天）",
           "长途旅行（超过7天）",
         ],
-        category: "time", //时间
+        category: "duration", //计划旅行天数
       },
       {
         id: 5,
@@ -61,7 +61,7 @@ Page({
     personality: "",
     preference: "",
     hobbies: "",
-    time: "",
+    duration: "",
     budget: "",
   },
 
@@ -76,8 +76,8 @@ Page({
 
   submitSurvey() {
     //检查是否有未填写的问题
-    const { personality, preference, hobbies, time, budget } = this.data;
-    if (!personality || !preference || !hobbies || !time || !budget) {
+    const { personality, preference, hobbies, duration, budget } = this.data;
+    if (!personality || !preference || !hobbies || !duration || !budget) {
       wx.showToast({
         title: "您还有未完成的问题！",
         icon: "none",
@@ -90,7 +90,7 @@ Page({
       personality:this.data.personality,
       prefernece:this.data.preference,
       hobbies:this.data.hobbies.join('、'),
-      time:this.data.time,
+      duration:this.data.duration,
       budget:this.data.budget
     }
     const queryStr = Object.keys(queryObj).map(key => `${key}=${encodeURIComponent(queryObj[key])}`).join('&')

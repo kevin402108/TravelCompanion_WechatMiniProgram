@@ -1,4 +1,4 @@
-// pages/me/privayPolicy/privacyPolicy.js
+// pages/me/privacy/privacy.js
 Page({
 
   /**

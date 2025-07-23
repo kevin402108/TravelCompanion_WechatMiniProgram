@@ -9,7 +9,7 @@ Page({
     hobbies: "",
     budget: "",
     preferences: "",
-    time: "",
+    duration: "",
     plan: "",
     tipShow: true, //是否显示顶部的tip区域和分割线
     emptyBoxShow: false, //是否展示生成失败的样式
@@ -23,7 +23,7 @@ Page({
     loginUtils.checkLogin()
     const tokenObj = wx.getStorageSync('tokenObj')
     // POST请求 将数据发送到后端，并从后端获取生成的个性化旅游方案
-    const {personality,hobbies,budget,preferences,time} = this.data
+    const {personality,hobbies,budget,preferences,duration} = this.data
     wx.request({
       url:'http://127.0.0.1:8001/personal_plan_generate',
       data: {
@@ -31,7 +31,7 @@ Page({
         personality,
         hobbies,
         budget,
-        time,
+        duration,
         preferences
       },
       method:'POST',
@@ -125,7 +125,7 @@ Page({
       personality: decodeURIComponent(options.personality || ""),
       preferences: decodeURIComponent(options.preferences || ""),
       hobbies: decodeURIComponent(options.hobbies || ""),
-      time: decodeURIComponent(options.time || ""),
+      duration: decodeURIComponent(options.duration || ""),
       budget: decodeURIComponent(options.budget || ""),
       plan: "",
       tip: "正在为您生成个性化的旅游方案！",

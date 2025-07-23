@@ -10,9 +10,9 @@
     "pages/planGen/planGenResult/planGenResult",
     "pages/teamup/teamupForm/teamupForm",
     "pages/me/personalInfo/personalInfo",
-    "pages/me/privacyPolicy/privacyPolicy",
     "pages/me/aboutUs/aboutUs",
-    "pages/me/myStatistic/myStatistic"
+    "pages/me/myStatistic/myStatistic",
+    "pages/me/privacy/privacy"
   ],
   "window": {
     "backgroundTextStyle": "light",
