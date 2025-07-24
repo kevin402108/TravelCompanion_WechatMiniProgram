@@ -219,7 +219,7 @@ Page({
           const { userInfo } = res.data.data
           const { avatar, nickname, gender, hobby } = userInfo
           this.setData({
-            avatar: avatar || app.globalData.defaultAvatarUrl,
+            avatar: avatar || app.globalData.DEFAULT_AVATAR_URL,
             nickname,
             gender,
             hobby
@@ -231,7 +231,7 @@ Page({
           //   duration: 2000
           // })
           this.setData({
-            avatar: app.globalData.defaultAvatarUrl,
+            avatar: app.globalData.DEFAULT_AVATAR_URL,
           })
         }
       },
@@ -244,7 +244,7 @@ Page({
         //   duration: 2000
         // })
         this.setData({
-          avatar: app.globalData.defaultAvatarUrl,
+          avatar: app.globalData.DEFAULT_AVATAR_URL,
         })
       },
     })

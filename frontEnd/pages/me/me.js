@@ -7,7 +7,7 @@ Page({
       id: '',
       token: '',
       nickname: "微信用户",
-      avatar: app.globalData.defaultAvatarUrl,
+      avatar: app.globalData.DEFAULT_AVATAR_URL,
     },
   },
 
@@ -45,7 +45,7 @@ Page({
           const { avatar, nickname } = res.data.data.userInfo
           this.setData({
             user: {
-              avatar: avatar || app.globalData.defaultAvatarUrl,
+              avatar: avatar || app.globalData.DEFAULT_AVATAR_URL,
               nickname
             }
           })
@@ -66,7 +66,7 @@ Page({
         this.setData({
           user: {
             nickname: "微信用户",
-            avatar: app.globalData.defaultAvatarUrl
+            avatar: app.globalData.DEFAULT_AVATAR_URL
           },
         });
       },

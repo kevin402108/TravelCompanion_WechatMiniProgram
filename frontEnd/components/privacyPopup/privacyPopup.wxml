@@ -1,2 +1,14 @@
-<!--components/privacyPopup/privacyPopup.wxml-->
-<text>components/privacyPopup/privacyPopup.wxml</text>
+<view class="privacy-mask" wx:if="{{showPrivacy}}" catchtouchmove="preventScroll">
+  <view class="privacy-modal">
+    <view class="modal-header">用户隐私保护提示</view>
+    <view class="modal-content">
+      感谢您使用{{miniProgramName}}！在使用服务之前，请仔细阅读
+      <text class="privacy-link" bindtap="openPrivacyContract">《{{privacyContractName}}》</text>。
+      如您同意该指引，请点击"同意"开始使用本小程序。
+    </view>
+    <view class="modal-buttons">
+      <button class="btn-reject" bindtap="handleReject">拒绝</button>
+      <button class="btn-agree" id="agree-btn" open-type="{{isSuitableSDKVersion ? 'agreePrivacyAuthorization' : ''}}" bindtap="{{isSuitableSDKVersion ? '' : 'handleAgree'}}" bindagreeprivacyauthorization="{{isSuitableSDKVersion ? 'handleAgree' : ''}}">同意</button>
+    </view>
+  </view>
+</view>

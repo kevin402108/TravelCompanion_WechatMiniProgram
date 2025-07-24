@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types":["wechat-miniprogram"],
     "target": "es6",
     "checkJs": true,
     "lib": [ "es6", "dom" ], 

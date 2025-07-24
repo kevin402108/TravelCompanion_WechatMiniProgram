@@ -50,5 +50,6 @@
         "selectedIconPath": "/images/navbar/my_active.png"
       }
     ]
-  }
+  },
+  "__usePrivacyCheck__":true
 }

@@ -25,7 +25,7 @@
     "bigPackageSizeSupport": true,
     "ignoreUploadUnusedFiles": true,
     "condition": true,
-    "minifyWXSS": false
+    "minifyWXSS": true
   },
   "condition": {},
   "editorSetting": {
