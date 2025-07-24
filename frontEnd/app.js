@@ -1,4 +1,6 @@
 import loginUtils from './utils/loginUtils'
+import versionUtils from './utils/versionUtils'
+import CallCheckUtils from './utils/callCheckUtils'
 
 App({
   globalData: {
@@ -11,6 +13,11 @@ App({
   },
 
   onLaunch: function () {
+    //获取用户微信客户端基础库版本
+    const LocalSDKVer = versionUtils.getLocalSDKVersion()
+    this.globalData.LocalSDKVersion = LocalSDKVer
+
+    
     //检查用户登录情况
     loginUtils.checkLogin(1)
   }
