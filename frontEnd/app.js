@@ -1,3 +1,4 @@
+import './utils/lodash-fix'
 import loginUtils from './utils/loginUtils'
 import versionUtils from './utils/versionUtils'
 import CallCheckUtils from './utils/callCheckUtils'

@@ -7,7 +7,7 @@ from sqlalchemy.sql import func
 import backEnd.app.utils.exceptions as exceptions
 from pymysql import DataError, IntegrityError, OperationalError, ProgrammingError
 import requests
-from fastapi import APIRouter, Body, Depends
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel, Field
 
 from backEnd.app.database import get_database
@@ -70,7 +70,7 @@ def login(
 
         return response
     except requests.exceptions.RequestException as e:
-        # 微信API请求失败，返回503状态码
+        # 微信API请求失败，返回500状态码
         raise exceptions.WechatAPIRequestError(str(e))
     except json.JSONDecodeError as e:
         # JSON解析失败，返回500状态码
@@ -120,6 +120,7 @@ def updateLoginTime(
         raise exceptions.DataMismatchError(str(e))
     except IntegrityError as e:
         # 处理完整性约束异常
+        db.rollback()
         raise exceptions.IntegrityConstraintError(str(e))
     except Exception as e:
         # 若数据库操作失败，回滚事务
@@ -148,12 +149,9 @@ def register(
         key = os.urandom(32)
         iv = os.urandom(16)
         encrypted_token = encrypt(token, key, iv)  # 将加密的token后转化base64字符串
-
         new_user = User(gender=None,hobby=None)
         db.add(new_user)
-        db.flush()        
-        db.commit()
-        
+        db.flush()           
         id = new_user.id
         login_record = Login(
             user_id = new_user.id,
@@ -161,7 +159,6 @@ def register(
             session_key = session_key,
             token = token
         )
-        
         db.add(login_record)
         db.flush()        
         db.commit()
@@ -186,9 +183,11 @@ def register(
         raise exceptions.WechatAPIKeyError(str(e))
     except IntegrityError as e:
         # 数据库约束错误，返回409状态码
+        db.rollback()
         raise exceptions.IntegrityConstraintError(str(e))
     except DataError as e:
         # 数据库数据类型错误，返回400状态码
+        db.rollback()
         raise exceptions.DataError(str(e))
     except Exception as e:
         # 若数据库操作失败，回滚事务

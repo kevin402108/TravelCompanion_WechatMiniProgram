@@ -6,9 +6,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship,declarative_base
 from sqlalchemy.dialects.mysql import INTEGER,BIGINT
 
-# 初始化声明式基类
 Base = declarative_base()
-
 Gender = Enum('男','女',name='admin_gender')
 # 后台管理员表
 class Admin(Base):
@@ -64,6 +62,7 @@ class Login(Base):
 NoticeType = Enum('系统公告','活动公告',name='notice_type')
 NoticeStatus = Enum('已发布','已归档',name='notice_status')
 
+# 公告表
 class Notice(Base):
     __tablename__ = 'notice'
     
@@ -83,7 +82,8 @@ class Notice(Base):
     
     def __repr__(self):
         return f"<Notice(id={self.id}, title={self.title}, content={self.content},type={self.type},create_time={self.create_time},update_time={self.update_time},expire_time={self.expire_time},author_id={self.author_id},status={self.status})>"
-    
+
+# 公告附件表
 class NoticeAttachments(Base):
     __tablename__= 'notice_attachments'
     
@@ -126,7 +126,7 @@ Preference = Enum(
     name = 'preference'
 )
 
-#旅游方案表
+# 个性化旅游方案表
 class Plan(Base):
     __tablename__='plan'
     
@@ -134,10 +134,10 @@ class Plan(Base):
     user_id = Column(INTEGER(unsigned=True),ForeignKey('user.id',ondelete='CASCADE',onupdate='CASCADE'),nullable=False,index=True)
     personality = Column(String(255),nullable=False)
     hobbies = Column(String(50),nullable=False)
-    duration = Column(Duration,nullable=False) #旅游天数
-    budget = Column(Budget,nullable=False)
+    duration = Column(Duration,nullable=False) # 计划旅游天数
+    budget = Column(Budget,nullable=False) # 预算范围
     preference = Column(Preference,nullable=False)
-    total_spending = Column(INTEGER(unsigned=True),nullable=False,index=True)
+    total_spending = Column(INTEGER(unsigned=True),nullable=False,index=True) # 方案预计花费
     arrange_data = Column('arrange',JSON,nullable=False)
     create_time = Column(DateTime(timezone=True),nullable=False,server_default=func.now())
     status = Column(Enum('0','1',name='planAvailableStatus'),nullable=False,server_default='0')
@@ -154,7 +154,7 @@ class Plan(Base):
 
 CommentStatus = Enum('已发布','已归档',name='comment_status')
 
-# 评论表
+# 帖子评论表（评论无法再次编辑,支持楼中楼评论,一经发布只能查看或删除）
 class PostComment(Base):
     __tablename__ = 'post_comment'
     
@@ -169,8 +169,6 @@ class PostComment(Base):
     
     user = relationship('User',back_populates='post_comments')
     post = relationship('Posts',back_populates='post_comments')
-    
-    # 隶属于父评论的子评论 （自引用关系​）
     parent = relationship('PostComment',remote_side=[id],back_populates='replies')
     replies = relationship('PostComment',back_populates='parent')
     
@@ -181,6 +179,7 @@ class PostComment(Base):
 Category = Enum('经验分享','攻略分享','其他',name='post_category')  
 PostStatus = Enum('已发布','已编辑','已归档',name='post_status')
 
+# 帖子表（帖子发布后可多次编辑帖子，用户可谓帖子点赞或评论该帖子）
 class Posts(Base):
     __tablename__ = 'posts'
     
@@ -201,7 +200,8 @@ class Posts(Base):
     
     def __repr__(self):
         return f"<Post(id={self.id}, user_id={self.user_id}, title={self.title}, content={self.content}, category={self.category}, img_url={self.img_url}, created_at={self.created_at}, updated_at={self.updated_at}, status={self.status}, likes={self.likes}, comments_count={self.comments_count})>"
-    
+
+# 生成旅游路线表
 class Route(Base):
     __tablename__ = 'route'
     
@@ -226,7 +226,8 @@ class Route(Base):
     
     def __repr__(self):
         return f"<Route(id={self.id}, user_id={self.user_id}, destination={self.destination}, travel_days={self.travel_days}, budget={self.budget}, preference={self.preference}, route_description={self.route_description}, route_spots={self.route_spots}, create_time={self.create_time}, status={self.status})>"
-    
+
+# 旅游路线景点关联表
 class RouteSpotsMapping(Base):
     __tablename__ = 'route_spots_mapping'
     
@@ -244,7 +245,7 @@ class RouteSpotsMapping(Base):
     def __repr__(self):
         return f"<RouteSpotsMapping(route_id={self.route_id}, spot_id={self.spot_id})>"
    
-
+# 景点表
 class Spots(Base):
     __tablename__ = 'spots'
     
@@ -265,6 +266,7 @@ class Spots(Base):
     
 TeamupStatus = Enum('正在组队中', '已组队成功', name='status_enum')
 
+# 组队表
 class Teamup(Base):
     __tablename__ = 'teamup'
 
@@ -292,7 +294,8 @@ class Teamup(Base):
 
     def __repr__(self):
         return f"<Teamup(id={self.id}, initator_id={self.initator_id}, nickname={self.nickname}, gender={self.gender}, travel_days={self.travel_days}, budget={self.budget}, preference={self.preference}, pic_url={self.pic_url}, create_time={self.create_time}, participant_id={self.participant_id}, teamup_time={self.teamup_time}, status={self.status})>"
-    
+
+# 用户个人信息表
 class User(Base):
     __tablename__ = 'user'
 

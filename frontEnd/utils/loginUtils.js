@@ -10,7 +10,7 @@ const checkLogin = (isAppOnLaunch = 0) => {
   if (tokenObj) {
     const { id, expiration_time } = tokenObj
     //如果token过期
-    if ( Date.now() >= expiration_time) {
+    if (Date.now() >= expiration_time) {
       wx.showToast({
         title: '登录过期，正在自动重新登录！',
         icon: 'none'
@@ -18,7 +18,7 @@ const checkLogin = (isAppOnLaunch = 0) => {
       wx.setStorageSync('loginStatus', 0)
       login()
     } else {
-      if(isAppOnLaunch === 1){
+      if (isAppOnLaunch === 1) {
         wx.request({
           url: `http://127.0.0.1:8001/user/updateLoginTime`,
           data: {
@@ -35,17 +35,15 @@ const checkLogin = (isAppOnLaunch = 0) => {
               console.log("用户最后登录时间更新成功")
             } else {
               wx.showToast({
-                title:'无法同步最后登录时间',
-                icon:'none',
-                duration:2000
+                title: '无法同步最后登录时间',
+                icon: 'none',
+                duration: 2000
               })
             }
           }
         })
       }
-      }
-      
-
+    }
   } else {
     //如果无法从本地存储中获取tokenObj,默认为新用户，直接注册
     register()
