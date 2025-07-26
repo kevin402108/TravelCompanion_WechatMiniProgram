@@ -110,11 +110,11 @@ const saveLoginInfo = (token, loginStatus, id) => {
   const expiration_time = Date.now() + DURATION
   const tokenObj = {
     id,
-    token, //token
-    expiration_time //过期时间
+    token, 
+    expiration_time
   }
   wx.setStorageSync('tokenObj', tokenObj)
-  wx.setStorageSync('loginStatus', loginStatus) //登录态
+  wx.setStorageSync('loginStatus', loginStatus) 
 }
 
 export default {
