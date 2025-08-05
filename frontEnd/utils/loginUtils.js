@@ -6,7 +6,7 @@ const DURATION = 8640000 //token有效期 单位：ms
 const checkLogin = (isAppOnLaunch = 0) => {
   //如果本地缓存有token,检查其是否有效，无效则刷新token
   const tokenObj = wx.getStorageSync('tokenObj')
-  const loginStatus = wx.getStorageSync('loginStatus')
+
   if (tokenObj) {
     const { id, expiration_time } = tokenObj
     //如果token过期
@@ -32,7 +32,11 @@ const checkLogin = (isAppOnLaunch = 0) => {
           success: (res) => {
             console.log(res);
             if (res.statusCode === 200) {
-              console.log("用户最后登录时间更新成功")
+              wx.showToast({
+                title: '登录成功!',
+                icon: 'none',
+                duration: 2000
+              })
             } else {
               wx.showToast({
                 title: '无法同步最后登录时间',
@@ -62,15 +66,19 @@ const register = () => {
         success: (res) => {
           console.log(res)
           if (res.statusCode >= 200 && res.statusCode < 300) {
-            const { loginStatus, token, id } = res.data.data
-            saveLoginInfo(token, loginStatus, id)
+            const { token, id } = res.data.data
+            saveLoginInfo(token, id)
+            wx.showToast({
+              title: '登录成功!',
+              icon: 'none',
+              duration: 2000
+            })
           } else {
             wx.showToast({
               title: '登录失败',
               icon: 'none'
             })
           }
-
         }
       })
     }
@@ -91,8 +99,13 @@ const login = () => {
         success: (res) => {
           if (res.statusCode >= 200 && res.statusCode < 300) {
             console.log(res)
-            const { loginStatus, token, id } = res.data.data
-            saveLoginInfo(token, loginStatus, id)
+            const { token, id } = res.data.data
+            saveLoginInfo(token, id)
+            wx.showToast({
+              title: '登录成功',
+              icon: 'none',
+              duration: 2000
+            })
           } else {
             wx.showToast({
               title: '登录失败',
@@ -106,15 +119,14 @@ const login = () => {
 }
 
 //将获取的token对象存入本地缓存
-const saveLoginInfo = (token, loginStatus, id) => {
+const saveLoginInfo = (token, id) => {
   const expiration_time = Date.now() + DURATION
   const tokenObj = {
     id,
-    token, 
+    token,
     expiration_time
   }
   wx.setStorageSync('tokenObj', tokenObj)
-  wx.setStorageSync('loginStatus', loginStatus) 
 }
 
 export default {
