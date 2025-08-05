@@ -1,0 +1,48 @@
+[project]
+name = "travel-companion-system-backend"
+version = "0.1.0"
+description = "Wechat Miniprogram Project \"Travel Companion System\"，for more detail see https://github.com/kevin402108/TravelCampanionSystem_WechatMiniProgram (WARNING:PRIVATE repository now!!!)"
+authors = [
+    {name = "kevin402108",email = "3077384244@qq.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "aiofiles (==24.1.0)",
+    "backend (==0.2.4.1)",
+    "cryptography (==45.0.5)",
+    "fastapi (==0.116.1)",
+    "pydantic (==2.11.7)",
+    "pymysql (==1.1.1)",
+    "python-dotenv (==1.1.1)",
+    "requests (==2.32.4)",
+    "sqlalchemy (==2.0.42)",
+    "pandas (>=2.3.1,<3.0.0)",
+    "numpy (>=2.3.2,<3.0.0)",
+    "asyncio (>=4.0.0,<5.0.0)",
+    "passlib (>=1.7.4,<2.0.0)",
+    "uvicorn (==0.23.2)",
+]
+
+packages = [
+    {include="app"},
+    {include="config"}
+]
+
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.8"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+pytest-cov = "^6.2.1"
+black = "^25.1.0"
+isort = "^6.0.1"
+mypy = "^1.17.1"
+flake8 = "^7.3.0"
+ipython = "^9.4.0"
+debugpy = "^1.8.15"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
