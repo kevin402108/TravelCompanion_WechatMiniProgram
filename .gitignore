@@ -16,8 +16,10 @@ project.miniapp.json
 __pycache__/
 *.py[cod]
 *$py.class
+.mypy_cache/
 
 # 构建产物
+static/build/
 develop-eggs/
 downloads/
 eggs/
@@ -46,8 +48,9 @@ nosetests.xml
 .pytest_cache/
 
 # 环境配置
-.venv
-ENV/
+venv/
+.venv/
+.venv.bak/
 env.bak/
 venv.bak/
 .python-version
