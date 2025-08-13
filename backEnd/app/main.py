@@ -13,12 +13,3 @@ app.include_router(user_router)
 app.include_router(upload_router)
 app.include_router(routeGen_router)
 app.include_router(planGen_router)
-
-# 启动时测试数据库连接
-# try:
-#     test_connection()
-# except Exception as e:
-#     print(f"数据库连接失败:{e}")
-
-# for route in app.routes:
-#     print(route.path)
