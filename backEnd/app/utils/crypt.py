@@ -4,7 +4,6 @@ from cryptography.hazmat.primitives.ciphers import Cipher,algorithms,modes
 from cryptography.hazmat.primitives import padding
 from cryptography.hazmat.backends import default_backend
 
-
 def encrypt(data:str,key:bytes,iv: bytes)-> bytes:
     # 将字符串转换为字节
     data_bytes = data.encode('utf-8')
