@@ -9,11 +9,11 @@ Page({
         },
         {
           id:1,
-          url:"https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/slider-2.webp"
+          url:"https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/team_travel.webp"
         },
         {
           id:2,
-          url:"https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/slider-3.webp"
+          url:"https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/scenery.webp"
         },
       ],
       commonFunc:[
