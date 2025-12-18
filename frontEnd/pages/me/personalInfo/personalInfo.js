@@ -169,43 +169,36 @@ Page({
           })
         } else {
           wx.showToast({
-            title: '保存成功！',
-            icon: 'success',
-            duration: 2000
+            title: '保存失败！',
+            icon: 'error',
           })
         }
       },
       fail: (err) => {
         console.log(err)
         wx.showToast({
-          title: '保存成功！',
-          icon: 'success',
-          duration: 2000
+          title: '网络错误，请检查网络连接后重试！',
+          icon: 'error',
         })
       }
     })
-
-    // wx.showToast({
-    //   title: '保存成功',
-    //   icon: 'success',
-    //   duration: 2000
-    // })
-    // setTimeout(() => {
-    //   wx.navigateBack({
-    //     url: '/pages/me/me'
-    //   })
-    // }, 2000)
   },
 
   //打开时自动获取并填充用户信息（待完善）
   onLoad(options) {
-    // wx.showNavigationBarLoading()
+    wx.showNavigationBarLoading()
+    loginUtils.checkLogin()
     const tokenObj = wx.getStorageSync('tokenObj')
     // console.log(tokenObj)
-    if (!tokenObj) return
     const { id } = tokenObj
-
-    // GET请求
+    if( !id ) {
+      wx.hideNavigationBarLoading()
+      wx.showToast({
+        title: '无法获取到用户ID！',
+        icon: 'none',
+      })
+      return
+    }
     wx.request({
       url: `http://127.0.0.1:8001/user/profile`,
       data: {
@@ -225,11 +218,10 @@ Page({
             hobby
           })
         } else {
-          // wx.showToast({
-          //   title: '获取用户信息失败！',
-          //   icon: 'none',
-          //   duration: 2000
-          // })
+          wx.showToast({
+            title: '获取用户信息失败！',
+            icon: 'none',
+          })
           this.setData({
             avatar: app.globalData.DEFAULT_AVATAR_URL,
           })
@@ -238,11 +230,11 @@ Page({
       fail: (err) => {
         wx.hideNavigationBarLoading()
         console.log(err)
-        // wx.showToast({
-        //   title: '获取用户信息失败！',
-        //   icon: 'none',
-        //   duration: 2000
-        // })
+        wx.showToast({
+          title: '请检查网络连接后重试！',
+          icon: 'none',
+          duration: 2000
+        })
         this.setData({
           avatar: app.globalData.DEFAULT_AVATAR_URL,
         })

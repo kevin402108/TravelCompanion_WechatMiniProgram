@@ -21,10 +21,9 @@ Page({
   getUserInfo() {
     //从本地缓存中尝试获取获取登录状态loginStatus和用户token信息
     let tokenObj = wx.getStorageSync('tokenObj')
-    const loginStatus = wx.getStorageSync('loginStatus')
 
     //若无法从localStorage找到tokenObj/token失效/loginStatus,则进行登录
-    if (!tokenObj || tokenObj.expiration_time <= Date.now() || !loginStatus || !tokenObj.token) {
+    if (!tokenObj || tokenObj.expiration_time <= Date.now() || !tokenObj.token) {
       // console.log("登录过期或未登录！")
       loginUtils.login()
       tokenObj = wx.getStorageSync('tokenObj')
@@ -51,18 +50,18 @@ Page({
           })
         } else {
           wx.hideNavigationBarLoading();
-          // wx.showToast({
-          //   title: "获取用户信息失败！",
-          //   icon: 'none'
-          // })
+          wx.showToast({
+            title: "获取用户信息失败！",
+            icon: 'none'
+          })
         }
       },
       fail: (err) => {
         wx.hideNavigationBarLoading();
-        // wx.showToast({
-        //   title: "获取用户信息失败！",
-        //   icon: 'none'
-        // })
+        wx.showToast({
+          title: "网络错误，请检查网络连接后重试！",
+          icon: 'none'
+        })
         this.setData({
           user: {
             nickname: "微信用户",
