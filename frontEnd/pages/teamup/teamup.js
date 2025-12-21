@@ -364,4 +364,11 @@ Page({
     );
     this.findPartner();
   },
+  onReady() {},
+  onShow() {},
+  onHide() {},
+  onUnload() {},
+  onPullDownRefresh() {},
+  onReachBottom() {},
+  onShareAppMessage() {}
 });

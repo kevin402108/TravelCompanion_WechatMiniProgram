@@ -46,71 +46,24 @@ Page({
           title:'欢迎访问旅伴奇遇工坊!',
           content:'寻找旅伴,尽在旅伴奇遇工坊',
           picSrc:'https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%B8%B8%E8%AE%B0.png',
-          pubDate:'2025-1-20 17:45'
+          pubDate:'2025-12-10 17:45'
         },
         {
           id:2,
           title:'寻找旅伴指南',
           content:`在本站，您可找到适合自己的旅游路线和旅行方案！您可通过发布组队或参与其他旅友发起的组队，找到合适自己的旅伴！`,
           picSrc:'https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%97%85%E8%A1%8C.png',
-          pubDate:'2025-1-21 17:50'
+          pubDate:'2025-12-10 17:50'
         },
       ],
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
+  onLoad(options) {},
+  onReady() {},
+  onShow() {},
+  onHide() {},
+  onUnload() {},
+  onPullDownRefresh() {},
+  onReachBottom() {},
+  onShareAppMessage() {}
 })
