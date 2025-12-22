@@ -10,6 +10,7 @@ plugin.json
 fide.project.config.json
 app.miniapp.json
 project.miniapp.json
+database/
 
 ## Python 相关 ##
 # 编译缓存

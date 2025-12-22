@@ -1,13 +1,15 @@
+import random
+import string
 from sqlalchemy import ( 
     Column, PrimaryKeyConstraint, String, Text, Enum, DateTime, Index,
-    ForeignKey, CheckConstraint, UniqueConstraint, JSON, text
+    ForeignKey, CheckConstraint, UniqueConstraint, JSON, text,event
 )
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship,declarative_base
 from sqlalchemy.dialects.mysql import INTEGER,BIGINT
 
 Base = declarative_base()
-Gender = Enum('男','女',name='admin_gender')
+
 # 后台管理员表
 class Admin(Base):
     __tablename__ = 'admin'
@@ -15,7 +17,7 @@ class Admin(Base):
     id = Column(INTEGER(unsigned=True),primary_key=True,autoincrement=True)
     username = Column(String(15),unique=True,nullable=False)
     pwd = Column(String(255),nullable=False)
-    gender = Column(Gender,nullable=False)
+    gender = Column(Enum('男','女'),nullable=True,default=None)
 
     notice = relationship("Notice",back_populates='admin')
     
@@ -47,18 +49,17 @@ class Login(Base):
     __tablename__ = 'login'
     
     id = Column(INTEGER(unsigned=True),primary_key=True,autoincrement=True)
-    user_id =  Column(INTEGER(unsigned=True),ForeignKey('user.id',ondelete='CASCADE',onupdate='CASCADE'),nullable=False,index=True,unique=True)
+    user_id =  Column(INTEGER(unsigned=True),ForeignKey('user.id',ondelete='CASCADE',onupdate='CASCADE'),nullable=False,unique=True)
     openid = Column(String(64),nullable=False,unique=True)
-    session_key = Column(String(64),nullable=True,unique=True)
-    token = Column(String(255),nullable=True,unique=True)
+    session_key = Column(String(64),nullable=False,unique=True)
+    token = Column(String(255),nullable=False,unique=True)
     last_login_time = Column(DateTime(timezone=True),nullable=False,server_default=func.now())
-    login_source = Column(String(50),nullable=True,  default='wechat')
+    login_source = Column(String(50),nullable=True, server_default='wechat')
     
-    user = relationship("User",back_populates="logins")
-    
+    user = relationship("User",back_populates="login")
     def __repr__(self):
-        return f"<Login(id={self.id}, user_id={self.user_id}, openid={self.openid}, session_key={self.session_key},token={self.token},token_expiration={self.token_expiration},last_login_time={self.last_login_time},login_source={self.login_source}>"
-    
+        return f"<Login(id={self.id}, user_id={self.user_id}, openid={self.openid}, session_key={self.session_key},token={self.token},last_login_time={self.last_login_time},login_source={self.login_source})>"
+
 NoticeType = Enum('系统公告','活动公告',name='notice_type')
 NoticeStatus = Enum('已发布','已归档',name='notice_status')
 
@@ -264,61 +265,78 @@ class Spots(Base):
     def __repr__(self):
         return f"<Spot(id={self.id}, name={self.name}, location={self.location}, description={self.description})>"
     
-TeamupStatus = Enum('正在组队中', '已组队成功', name='status_enum')
+TeamupStatus = Enum('正在组队中', '已组队成功', name='teamup_status')
 
 # 组队表
 class Teamup(Base):
     __tablename__ = 'teamup'
 
     id = Column(INTEGER(unsigned=True), primary_key=True, autoincrement=True)
-    initator_id = Column(INTEGER(unsigned=True), ForeignKey('user.id', ondelete='CASCADE', onupdate='CASCADE'), nullable=False)
-    nickname = Column(String(15), nullable=False, default='微信用户')
-    gender = Column(Gender, nullable=False)
+    initiator_id = Column(INTEGER(unsigned=True), ForeignKey('user.id', ondelete='CASCADE', onupdate='CASCADE'), nullable=False)
+    nickname = Column(String(15), nullable=False, default='')
+    gender = Column(Enum('男','女'), nullable=False)
     travel_days = Column(INTEGER(unsigned=True), nullable=False)
     budget = Column(INTEGER(unsigned=True), nullable=False, default=0)
     preference = Column(Text, nullable=False)
-    pic_url = Column(Text, nullable=False)
+    pic_url = Column(Text, nullable=True)
     create_time = Column(DateTime(timezone=True), nullable=True, server_default=func.now())
     participant_id = Column(INTEGER(unsigned=True), ForeignKey('user.id', ondelete='CASCADE', onupdate='CASCADE'), nullable=True)
     teamup_time = Column(DateTime(timezone=True), nullable=True, onupdate=func.now())
     status = Column(TeamupStatus, nullable=False, server_default='正在组队中')
 
     __table_args__ = (
-        Index('initator_id', initator_id),
+        Index('initiator_id', initiator_id),
         Index('participant_id', participant_id),
         Index('preference', preference, mysql_prefix='FULLTEXT'),
     )
 
-    initator = relationship("User", foreign_keys=[initator_id], back_populates="teamups_as_initator")
+    initiator = relationship("User", foreign_keys=[initiator_id], back_populates="teamups_as_initiator")
     participant = relationship("User", foreign_keys=[participant_id], back_populates="teamups_as_participant")
 
     def __repr__(self):
-        return f"<Teamup(id={self.id}, initator_id={self.initator_id}, nickname={self.nickname}, gender={self.gender}, travel_days={self.travel_days}, budget={self.budget}, preference={self.preference}, pic_url={self.pic_url}, create_time={self.create_time}, participant_id={self.participant_id}, teamup_time={self.teamup_time}, status={self.status})>"
+        return f"<Teamup(id={self.id}, initiator_id={self.initiator_id}, nickname={self.nickname}, gender={self.gender}, travel_days={self.travel_days}, budget={self.budget}, preference={self.preference}, pic_url={self.pic_url}, create_time={self.create_time}, participant_id={self.participant_id}, teamup_time={self.teamup_time}, status={self.status})>"
 
 # 用户个人信息表
 class User(Base):
     __tablename__ = 'user'
 
     id = Column(INTEGER(unsigned=True), primary_key=True, autoincrement=True)
-    nickname = Column(String(15), nullable=False,default='微信用户')
+    nickname = Column(String(15), nullable=False,default= lambda: User.__generate_default_nickname())
     avatar = Column(Text, nullable=False,default='https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0')
-    gender = Column(Gender, nullable=True,default=None)
-    hobby = Column(String(100), nullable=True)
+    gender = Column(Enum('男','女'), nullable=True,default=None)
+    hobby = Column(String(50), nullable=True)
 
     __table_args__ = (
         Index('idx_gender', gender),
         Index('idx_hobby', hobby, mysql_prefix='FULLTEXT'),
     )
     plan = relationship('Plan', back_populates='user')
-    logins = relationship('Login', back_populates='user')
+    login = relationship('Login', back_populates='user')
     posts = relationship('Posts', back_populates='user')
     route = relationship('Route', back_populates='user')
-    teamups_as_initator = relationship('Teamup', foreign_keys='Teamup.initator_id', back_populates='initator')
+    teamups_as_initiator = relationship('Teamup', foreign_keys='Teamup.initiator_id', back_populates='initiator')
     teamups_as_participant = relationship('Teamup', foreign_keys='Teamup.participant_id', back_populates='participant')
     post_comments = relationship('PostComment',back_populates='user')
 
     def __repr__(self):
         return f"<User(id={self.id}, nickname={self.nickname}, avatar={self.avatar}, gender={self.gender}, hobby={self.hobby})>"
+    
+    @staticmethod
+    def __generate_default_nickname():
+        """
+        生成小程序用户的默认用户名
+        格式：旅友_ + 8位随机字符（a-z、A-Z、0-9）
+        """
+        PREFIX = "旅友" 
+        SUFFIX_LENGTH = 8 
+        CHARSET = string.ascii_letters + string.digits 
+        suffix = ''.join(random.choice(CHARSET) for _ in range(SUFFIX_LENGTH))
+        return f"{PREFIX}_{suffix}"
+    
+        
+        
+
+        
 
     
     

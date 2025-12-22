@@ -128,10 +128,10 @@ Page({
     })
   },
 
-  //点击保存按钮时 修改服务器对应用户数据（待完善）
+  //点击保存按钮时 修改服务器对应用户数据（待完善！！！）
   saveInfo() {
-
     const { avatar, nickname, gender, hobby } = this.data
+ 
     if (nickname && !userUtils.checkNickname(nickname)) {
       wx.showToast({
         title: '昵称不符合要求！',
@@ -145,37 +145,56 @@ Page({
     const tokenObj = wx.getStorageSync('tokenObj')
     const { id } = tokenObj
 
+    const requestData = {
+      id:id,
+      avatar: avatar || '',
+      nickname: nickname || '',
+      gender: gender || '',
+      hobby: hobby || ''
+    }
+    console.log('请求数据：', requestData)
+    
     //PUT请求
     wx.request({
       url: 'http://127.0.0.1:8001/auth/updateUserInfo',
       method: 'PUT',
-      data: {
-        id,
-        avatar,
-        nickname,
-        gender,
-        hobby
+      headers: {
+        'Content-Type': 'application/json'
       },
+      data: requestData,
       success: (res) => {
-        console.log(res)
+        console.log('保存响应:', res)
         if (res.statusCode == 200) {
           wx.showToast({
             title: '保存成功!',
             icon: 'success',
-            duration: 2500
           })
           wx.navigateBack({
             url: '/pages/me/me'
           })
-        } else {
+        } else if (res.statusCode == 422) {
+          // 处理422验证错误
+          console.error('验证错误详情:', res.data)
+          const errorMsg = '数据格式错误，请检查填写内容'
+          if (res.data && res.data.detail) {
+          // 解析Pydantic验证错误
+            const errorMsg = res.data.detail.map(err => `${err.loc[1]}: ${err.msg}`).join('; ')
+          }
           wx.showToast({
-            title: '保存失败！',
+            title: errorMsg,
+            icon: 'none',
+            duration: 3000
+          })
+        } else {
+          const errorMsg = '保存失败！'
+          wx.showToast({
+            title: errorMsg,
             icon: 'error',
           })
         }
       },
       fail: (err) => {
-        console.log(err)
+        console.log('网络错误:', err)
         wx.showToast({
           title: '网络错误，请检查网络连接后重试！',
           icon: 'error',
@@ -184,12 +203,11 @@ Page({
     })
   },
 
-  //打开时自动获取并填充用户信息（待完善）
+  //打开时自动获取并填充用户信息
   onLoad(options) {
     wx.showNavigationBarLoading()
     loginUtils.checkLogin()
     const tokenObj = wx.getStorageSync('tokenObj')
-    // console.log(tokenObj)
     const { id } = tokenObj
     if( !id ) {
       wx.hideNavigationBarLoading()
