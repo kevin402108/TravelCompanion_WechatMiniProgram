@@ -11,7 +11,7 @@ from cryptography.hazmat.primitives import padding
 REDIS_CONFIG = {
     'host': 'localhost',
     'port': 6379,
-    'db': 1,
+    'db': 0,
     'password': None,
     'decode_responses': False
 }
@@ -208,13 +208,13 @@ def get_encryption_info():
             "error": str(e)
         }
 
-# if __name__ == '__main__':
-#     openid = "ojr2g7T_6rL88u-HEllD8Xs--860"
-#     encrypted_data = encrypt(openid)
-#     print(encrypted_data)
-#     decrypted_data = decrypt(encrypted_data)
-#     print(decrypted_data)
-#     print(get_encryption_info())
+if __name__ == '__main__':
+    openid = "ojr2g7T_6rL88u-HEllD8Xs--860"
+    encrypted_data = encrypt(openid)
+    print(encrypted_data)
+    decrypted_data = decrypt(encrypted_data)
+    print(decrypted_data)
+    print(get_encryption_info())
 
 
 

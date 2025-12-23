@@ -50,8 +50,8 @@ class Login(Base):
     
     id = Column(INTEGER(unsigned=True),primary_key=True,autoincrement=True)
     user_id =  Column(INTEGER(unsigned=True),ForeignKey('user.id',ondelete='CASCADE',onupdate='CASCADE'),nullable=False,unique=True)
-    openid = Column(String(64),nullable=False,unique=True)
-    session_key = Column(String(64),nullable=False,unique=True)
+    openid = Column(String(150),nullable=False,unique=True)
+    session_key = Column(String(150),nullable=False,unique=True)
     token = Column(String(255),nullable=False,unique=True)
     last_login_time = Column(DateTime(timezone=True),nullable=False,server_default=func.now())
     login_source = Column(String(50),nullable=True, server_default='wechat')
