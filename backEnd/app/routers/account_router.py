@@ -1,269 +1,283 @@
-import datetime
-import json
+import hashlib
 import os
+import uuid
+import jwt
 import time
+import pytz
 import requests
+import redis.exceptions
+from datetime import datetime, timedelta
 from sqlalchemy.orm import Session
-from sqlalchemy.sql import func
-from pymysql import DataError, IntegrityError, OperationalError, ProgrammingError
-from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel, Field
+from fastapi import APIRouter, Depends, HTTPException,Request
+from pydantic import BaseModel
 from backEnd.app.database import get_database
-from backEnd.app.models import Login, User
-from backEnd.app.utils.crypt import encrypt
+from backEnd.app.models import User
+from backEnd.app.utils.encryption import encrypt , decrypt , get_jwt_secret_key , get_key
 from backEnd.app.utils.logger import setup_logger
 
-user_account_logger = setup_logger('user_account_logger') # 用户帐户操作相关行为日志
-account_router = APIRouter() # 用户帐户操作路由
+# 日志记录器
+user_account_logger = setup_logger('user_account_logger', fileName='user_account_behavior.log')
 
-# 注册请求数据模型
+# 路由
+account_router = APIRouter()
+
+# 一般配置
+TZ = pytz.timezone('Asia/Shanghai')
+WX_APPID = "wxa35b788e7a7760be"
+WX_APP_SEC = get_key("WX_APP_SEC")
+
+# JWT配置
+try:
+    JWT_SECRET_KEY = get_jwt_secret_key()
+    ALGORITHM = os.getenv('ALGORITHM', 'HS256')
+    ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES', 30))
+    user_account_logger.info("成功从Redis和.env文件中获取JWT配置")
+except redis.exceptions.RedisError as re:
+    user_account_logger.critical(f"无法从获取 SECRET_KEY: {str(re)}")
+    raise RuntimeError(f"无法初始化JWT配置:{str(re)}")
+except ValueError as ve:
+    user_account_logger.critical(f"配置参数解析错误: {str(ve)}")
+    raise RuntimeError("无法初始化JWT配置:请检查配置参数。")
+except Exception as e:
+    user_account_logger.critical(f"初始化 JWT 配置时发生未知错误: {str(e)}")
+    raise RuntimeError("无法初始化JWT配置:请检查系统配置。")
+
+# 请求数据模型
 class RegisterRequest(BaseModel):
     code: str
 
-# 登录请求数据模型
 class LoginRequest(BaseModel):
-    id: int
     code: str
 
-# 用户登录API PUT请求
-@account_router.put('/auth/login/')
-def login(
-        loginRequest: LoginRequest,
-        db: Session = Depends(get_database)
-):
-    # 判断用户ID是否存在且有效
-    if not loginRequest.id:
-        user_account_logger.error("更新登录时间请求中用户ID为空")
-        raise HTTPException(status_code=400, detail="用户ID不能为空!")
-    if loginRequest.id <=0:
-        user_account_logger.error("更新登录时间请求中用户ID无效")
-        raise HTTPException(status_code=400, detail="用户ID无效!")
-    user_id = loginRequest.id # 符合要求的用户ID
-    
+def get_wechat_user_info(code:str) -> dict:
+    """ 调用微信API获取用户信息 """
+    if not isinstance(code, str) or not code.strip():
+        user_account_logger.error("[get_wechat_user_info] code参数不为非空字符串")
+        raise HTTPException(status_code=400, detail="微信登录凭证 (code) 无效：code必须是非空字符串!")
+
+    if not WX_APPID or not WX_APP_SEC:
+        user_account_logger.error("[get_wechat_user_info] 微信小程序获取配置错误")
+        raise HTTPException(status_code=500, detail="微信小程序获取配置错误")
+
+    user_account_logger.info("调用微信API获取openid、session_key")
+    url = f"https://api.weixin.qq.com/sns/jscode2session?appid={WX_APPID}&secret={WX_APP_SEC}&js_code={code}&grant_type=authorization_code"
     try:
-        user_account_logger.info(f"用户登录请求: 用户ID={user_id}")
-        user = db.query(User).filter(User.id == user_id).first()
-        if not user:
-            user_account_logger.error(f"用户不存在: 用户ID={user_id}")
-            raise HTTPException(status_code=404, detail=f"无法查询到用户:用户ID={user_id}")
-        
-        if not loginRequest.code:
-            user_account_logger.error("登录请求中登录code为空")
-            raise HTTPException(status_code=400, detail="登录请求中code不能为空")
-        login_code = loginRequest.code
-        
-        url = f"https://api.weixin.qq.com/sns/jscode2session?appid=wxa35b788e7a7760be&secret=8ca4524d10d633e14e34ba449b0e0ef0&js_code={login_code}&grant_type=authorization_code"
-        user_account_logger.info("调用微信API获取用户信息")
-        result = requests.get(url)
-        result.raise_for_status()
-
-        data = result.json()
-        openid = data["openid"]
-        session_key = data["session_key"]
-
-        iat = time.time() # 当前时间戳
-        token = f"token-{openid}-{int(iat)}" # 生成token
-        # key = os.urandom(32) # 随机32字节密钥
-        # iv = os.urandom(16) # 随机16字节初始向量
-        # encrypted_token = encrypt(token, key, iv) # 加密token
-
-
-        db.query(Login).filter(Login.user_id == user_id).update({
-            "openid": openid,
-            "session_key": session_key,
-            "token": token,
-            "last_login_time": datetime.datetime.now(),
-            "login_source": "wechat"
-        })
-        db.commit()
-        user_account_logger.info(f"用户登录成功: ID={user_id}")
-
-        response = {
-            "data": {
-                "id": user_id,
-                "token": token
-            }
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+        if "errcode" in data:
+            error_msg = data.get('errmsg','未知错误')
+            user_account_logger.error(f"[get_wechat_user_info] 微信API错误: {data['errcode']}-{error_msg}")
+            raise HTTPException(status_code=data["errcode"], detail=error_msg)
+        openid = data.get('openid')
+        if not openid:
+            user_account_logger.error("[get_wechat_user_info] 未返回openid")
+            raise HTTPException(status_code=400, detail="未能获取用户openid")
+        user_account_logger.info(f"[get_wechat_user_info] 成功获取用户openid")
+        return {
+            "openid": openid
         }
-        return response
-    except HTTPException:
-        raise
-    except requests.exceptions.RequestException as e:
-        user_account_logger.error(f"微信API请求失败: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"用户ID={user_id}登录失败:微信API调用失败:,")
-    except json.JSONDecodeError as e:
-        user_account_logger.error(f"JSON解析失败: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"JSON解析失败: {str(e)}")
-    except KeyError as e:
-        user_account_logger.error(f"微信API返回数据缺少必要字段: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"KeyError: {str(e)}")
-    except OperationalError as e:
-        user_account_logger.error(f"数据库操作异常: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"用户登录时数据库连接错误：ID={user_id}")
-    except ProgrammingError as e:
-        user_account_logger.error(f"SQL语句执行异常: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"SQL执行错误: {str(e)}")
-    except DataError as e:
-        user_account_logger.error(f"数据类型不匹配: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"数据类型不匹配错误: {str(e)}")
-    except IntegrityError as e:
-        db.rollback()
-        user_account_logger.error(f"完整性约束异常: {str(e)}")
-        raise HTTPException(status_code=409, detail=f"违反完整性约束错误: {str(e)}")
+    except requests.exceptions.RequestException as re:
+        user_account_logger.error(f"[get_wechat_user_info] 微信API请求失败: {str(re)}")
+        raise HTTPException(status_code=500, detail=f"微信API请求失败:  {str(re)}")
+    except ValueError as ve:
+        user_account_logger.error(f"[get_wechat_user_info] JSON解析失败: {str(ve)}")
+        raise HTTPException(status_code=500, detail=f"JSON解析失败: {str(ve)}")
     except Exception as e:
-        if db.is_active:
-            db.rollback()
-        user_account_logger.error(f"用户ID={user_id}登录时遇到未知错误: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"用户ID={user_id}登录时遇到未知错误: {str(e)}")
+        user_account_logger.error(f"[get_wechat_user_info] 获取微信用户信息时发生未知错误: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"获取用户信息时发生未知错误: {str(e)}")
 
-# 更新用户登录时间请求数据模型
-class UpdateUserLoginTimeRequest(BaseModel):
-    id: int
+def create_access_token(data:dict,expires_delta:timedelta=None) -> str:
+    """ 生成 JWT Token """
+    if not isinstance(data, dict) or data is None:
+        user_account_logger.error("[create_access_token] data参数为None或参数类型不为dict")
+        raise HTTPException(status_code=500, detail="data参数为None或参数类型不为dict")
 
-# 更新登录时间API PUT请求
-@account_router.put('/user/updateLoginTime')
-def updateLoginTime(
-        updateUserLoginTimeRequest: UpdateUserLoginTimeRequest,
-        db: Session = Depends(get_database)
-):  
-    if updateUserLoginTimeRequest.id is None:
-        user_account_logger.error("更新登录时间请求中缺少用户ID或用户ID为空")
-        raise HTTPException(status_code=400, detail="更新登录时间请求中缺少用户ID或用户ID为空!")
-    if updateUserLoginTimeRequest.id <= 0:
-        user_account_logger.error("更新登录时间请求中用户ID小于1，用户ID无效")
-        raise HTTPException(status_code=422, detail="用户ID无效!")
-    user_id = updateUserLoginTimeRequest.id  # 符合要求的用户ID
-    
+    if expires_delta and not isinstance(expires_delta, timedelta):
+        user_account_logger.error("[create_access_token] expires_delta参数必须为None或timedelta类型")
+        raise HTTPException(status_code=500, detail="参数不合法 - expires_delta参数必须为None或timedelta类型")
+
+    openid = data.get("openid")
+    user_id = data.get("user_id")
+    if user_id is None or not isinstance(user_id, int) or user_id <= 0:
+        user_account_logger.error("[create_access_token] user_id参数必须为正整数")
+        raise HTTPException(status_code=500, detail="参数不合法 - user_id参数必须为正整数")
+
+    if not isinstance(openid, str) or not openid.strip():
+        user_account_logger.error("[create_access_token] openid参数必须为非空字符串")
+        raise HTTPException(status_code=500, detail="参数不合法 - openid参数必须为非空字符串")
+
     try:
-        user_account_logger.info(f"开始更新用户登录时间")
-        user = db.query(User).filter(User.id == user_id).first()
-        if user:
-            db.query(Login).filter(Login.user_id == updateUserLoginTimeRequest.id).update({
-                "last_login_time": func.now()
-            })
-            db.commit()
-            user_account_logger.info("更新用户登录时间成功")
+        # 计算过期时间
+        if expires_delta:
+            expire = datetime.now(TZ) + expires_delta
+        else:
+            expire = datetime.now(TZ) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+
+        # payload模板
+        base_payload = {
+            "sub": str(user_id),
+            "iat": datetime.now(TZ),
+            "nbf": datetime.now(TZ),
+            "exp": expire,
+            "jti": str(uuid.uuid4()),
+        }
+
+        # 小程序信息payload
+        mini_program_payload = {
+            "app_id":WX_APPID,
+            "platform":"wechat-mini-program"
+        }
+
+        # 处理openid
+        processed_data = data.copy()
+        openid_hash = hashlib.sha256(openid.encode()).hexdigest()
+        processed_data["openid_hash"] = openid_hash
+        del processed_data["openid"]
+
+        payload = {**base_payload, **mini_program_payload, **processed_data}
+        encoded_jwt = jwt.encode(payload, JWT_SECRET_KEY , algorithm=ALGORITHM)
+        return encoded_jwt
+    except Exception as e:
+        user_account_logger.error(f"[create_access_token] JWT Token 生成失败 - {str(e)}")
+        raise HTTPException(status_code=500, detail=f"JWT Token 生成失败 - {str(e)}")
+
+def is_openid_exists(db:Session,openid:str):
+    """ 检查给定的 openid 是否已存在于数据库中（通过比较解密后的值）"""
+    try:
+        login_records = db.query(User).filter(User.openid.isnot(None)).all()
+        for record in login_records:
+            try:
+                decrypted_openid = decrypt(record.openid)
+                if decrypted_openid == openid:
+                    return record
+            except Exception as decrypt_error:
+                user_account_logger.error(f"[is_openid_exists] 解密 openid 失败: {str(decrypt_error)}, 记录ID: {record.id}")
+                continue
+        return None
+    except Exception as e:
+        user_account_logger.error(f"[is_openid_exists] 检查openid是否存在时发生错误: {str(e)}")
+        return None
+
+@account_router.post("/auth")
+def auth(request:LoginRequest,db:Session = Depends(get_database),req:Request=None):
+    client_ip = req.client.host if req else "unknown"
+    user_account_logger.info(f"[auth] 接收到认证请求，IP: {client_ip}")
+
+    if not isinstance(request.code, str) or not request.code.strip():
+        user_account_logger.error("[auth] 登录凭证 (code) 为空")
+        raise HTTPException(status_code=400, detail="微信登录凭证 (code) 不能为空")
+
+    try:
+        wechat_user_info = get_wechat_user_info(request.code)
+        openid = wechat_user_info.get("openid")
+        encrypt_openid = encrypt(openid)
+
+        existing_user = is_openid_exists(db,openid)
+        if existing_user:
+            user_account_logger.info(f"[auth] 找到用户，开始认证")
+            user_id = existing_user.id
+            access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+            token_data = {"user_id": user_id,"openid":encrypt_openid,"type":"access"}
+            access_token = create_access_token(data=token_data,expires_delta=access_token_expires)
+            try:
+                existing_user.openid = encrypt_openid
+                existing_user.last_login_time = datetime.now(TZ)
+                db.commit()
+            except Exception as e:
+                user_account_logger.error(f"[auth] 更新用户信息时发生错误: {str(e)}")
+                db.rollback()
+                raise HTTPException(status_code=500, detail=f"更新用户信息时发生错误: {str(e)}")
+
+            # 计算过期时间戳
+            exp_timestamp = datetime.now(TZ) + access_token_expires
+            exp_timestamp = int(exp_timestamp.timestamp())
+
+            user_account_logger.info(f"[auth] 老用户认证成功")
             return {
-                "data": {
-                    "message": "更新用户登录时间成功"
+                "data":{
+                    "success":True,
+                    "isNewUser":False,
+                    "token":access_token,
+                    "token_expired_at":exp_timestamp
                 }
             }
         else:
-            user_account_logger.error(f"用户不存在: 用户ID={user_id}")
-            raise HTTPException(status_code=404, detail=f"无法查询到该用户")
-    except HTTPException:
-        raise
-    except OperationalError as e:
-        user_account_logger.error(f"数据库操作异常: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"数据库连接错误：{str(e)}")
-    except ProgrammingError as e:
-        user_account_logger.error(f"SQL语句执行异常: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"SQL执行错误: {str(e)}")
-    except DataError as e:
-        user_account_logger.error(f"数据类型不匹配: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"数据类型不匹配错误: {str(e)}")
-    except IntegrityError as e:
-        db.rollback()
-        user_account_logger.error(f"完整性约束异常: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"违反完整性约束错误: {str(e)}")
-    except Exception as e:
-        if db.is_active:
-            db.rollback()
-        user_account_logger.error(f"更新用户ID={user_id}登录时间时遇到未知错误: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"更新用户ID={user_id}登录时间时遇到未知错误: {str(e)}")
+            encrypt_openid = encrypt(openid)
+            try:
+                new_user = User(openid=encrypt_openid,last_login_time=None)
+                db.add(new_user)
+                db.commit()
+                db.refresh(new_user)
+            except Exception as e:
+                user_account_logger.error(f"[auth] 新用户注册时发生错误: {str(e)}")
+                db.rollback()
+                raise HTTPException(status_code=500, detail=f"新用户注册时发生错误: {str(e)}")
 
-# 用户注册API POST请求
-@account_router.post("/auth/register")
-def register(registerCode: RegisterRequest, db: Session = Depends(get_database)):
+            user_account_logger.info(f"[auth] 新用户注册成功")
+            return {
+                "data":{
+                    "success":True,
+                    "isNewUser":True,
+                }
+            }
+    except HTTPException:
+         raise
+    except Exception as e:
+        user_account_logger.error(f"[auth] 认证过程中发生错误 - {str(e)}")
+        raise HTTPException(status_code=500, detail=f"认证过程中发生错误 - {str(e)}")
+
+@account_router.post("/login")
+def login(request:LoginRequest,db:Session = Depends(get_database),req:Request=None):
+    """ 为新用户签发JWT token """
+    client_ip = req.client.host if req else "unknown"
+    user_account_logger.info(f"[login] 接收到登录请求，IP: {client_ip}")
+
+    if not isinstance(request.code, str) or not request.code.strip():
+        user_account_logger.error("[login] 登录凭证 (code) 为空")
+        raise HTTPException(status_code=400, detail="登录凭证不能为空")
+
     try:
-        user_account_logger.info("开始进行用户注册")
-        register_code = registerCode.code
-        if not register_code:
-            user_account_logger.error("注册请求中code为空")
-            raise HTTPException(status_code=400, detail="注册请求中code不能为空")
-        
-        # 调用微信API获取openid、session_key
-        user_account_logger.info("调用微信API获取openid、session_key")
-        url = f"https://api.weixin.qq.com/sns/jscode2session?appid=wxa35b788e7a7760be&secret=8ca4524d10d633e14e34ba449b0e0ef0&js_code={registerCode.code}&grant_type=authorization_code"
-        result = requests.get(url)
-        result.raise_for_status()
-        
-        data = result.json() 
-        openid = data["openid"] # 获取openid
-        session_key = data["session_key"] # 获取session_key
-        iat = time.time() # 获取当前时间戳
-        token = f"token-{openid}-{int(iat)}" # 生成token
-        # key = os.urandom(32) # 生成随机32字节密钥
-        # iv = os.urandom(16) # 生成随机16字节初始向量
-        # encrypted_session_key = encrypt(session_key, key, iv) # 加密session_key
-        # encrypted_token = encrypt(token, key, iv) # 加密token
-        
-        # 检查用户openid是否已存在，防止因缓存清除等原因而重复注册
-        user_account_logger.info("正在检查用户是否重复注册……")
-        existing_user = db.query(Login).filter(Login.openid == openid).first()
-        
-        # 如果用户已存在,则只更新登录信息，不再创建新用户
-        if existing_user:
-            user_id = existing_user.user_id
-            user_account_logger.info(f"用户已存在:ID={user_id},无需重复注册,正在更新用户登录信息")
-            db.query(Login).filter(Login.user_id == user_id).update({
-                "session_key": session_key,
-                "token": token,
-                "last_login_time": func.now(),
-                "login_source": "wechat"
-            })
+        wechat_user_info = get_wechat_user_info(request.code)
+        openid = wechat_user_info.get("openid")
+
+        # 检查用户是否存在
+        existing_user = is_openid_exists(db,openid)
+        if not existing_user:
+            user_account_logger.error("[login] 用户不存在")
+            raise HTTPException(status_code=404, detail="用户不存在!")
+
+        #  签发JWT token
+        user_id = existing_user.id
+        encrypt_openid = encrypt(openid)
+        access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+        token_data = {"user_id": user_id,"openid":encrypt_openid,"type":"access"}
+        access_token = create_access_token(data=token_data,expires_delta=access_token_expires)
+
+        try:
+            existing_user.last_login_time = datetime.now(TZ)
             db.commit()
-            user_account_logger.info(f"用户登录信息更新成功:ID={user_id}")
-        
-        # 若用户不存在，则创建新用户和登录记录
-        else:
-            new_user = User(gender=None, hobby=None)
-            db.add(new_user)
-            db.flush()
-            id = new_user.id
-            login_record = Login(
-                user_id=new_user.id,
-                openid=openid,
-                session_key=session_key,
-                token=token
-            )
-            db.add(login_record)
-            db.commit()
-            user_account_logger.info(f"用户注册成功:ID={id}")
-        
-        is_new_user = existing_user is None # 标记是否为新用户
-        response = {
-            "data": {
-                "isNewUser": is_new_user,
-                "token": token,
-                "message": "用户注册成功" if is_new_user else "用户登录信息已更新"
+            db.refresh(existing_user)
+        except Exception as e:
+            user_account_logger.error(f"[login] 用户登录时发生错误: {str(e)}")
+            db.rollback()
+            raise HTTPException(status_code=500, detail=f"用户登录时发生错误: {str(e)}")
+
+        exp_timestamp = datetime.now(TZ) + access_token_expires
+        exp_timestamp = int(exp_timestamp.timestamp())
+
+        user_account_logger.info(f"[login] 登录成功")
+        return {
+            "data":{
+                "success":True,
+                "isNewUser":False,
+                "token":access_token,
+                "token_expired_at":exp_timestamp
             }
         }
-        return response
-    except HTTPException:
+    except HTTPException as http_error:
         raise
-    except requests.exceptions.RequestException as e:
-        user_account_logger.error(f"微信API请求失败: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"微信API调用失败: {str(e)}")
-    except json.JSONDecodeError as e:
-        user_account_logger.error(f"JSON解析失败: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"JSON解析失败: {str(e)}")
-    except KeyError as e:
-        user_account_logger.error(f"微信API返回数据缺少必要字段: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"KeyError: {str(e)}")
-    except IntegrityError as e:
-        db.rollback()
-        user_account_logger.error(f"数据库约束错误: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"违反完整性约束错误: {str(e)}")
-    except DataError as e:
-        db.rollback()
-        user_account_logger.error(f"数据库数据类型错误: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"数据错误: {str(e)}")
     except Exception as e:
-        if db.is_active:
-            db.rollback()
-        user_account_logger.error(f"注册过程未知错误: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"未知错误: {str(e)}")
-    
-
-
+        user_account_logger.error(f"[login] 登录过程中发生错误 - {str(e)}")
+        raise HTTPException(status_code=500, detail=f"登录过程中发生错误!")
 
