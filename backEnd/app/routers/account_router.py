@@ -12,7 +12,8 @@ from fastapi import APIRouter, Depends, HTTPException,Request
 from pydantic import BaseModel
 from backEnd.app.database import get_database
 from backEnd.app.models import User
-from backEnd.app.utils.encryption import encrypt , decrypt , get_jwt_secret_key , get_key
+from backEnd.app.utils.encryption import encrypt,decrypt,get_key
+from backEnd.app.utils.jwt_handler import create_user_token
 from backEnd.app.utils.logger import setup_logger
 
 # 日志记录器
@@ -25,22 +26,7 @@ account_router = APIRouter()
 TZ = pytz.timezone('Asia/Shanghai')
 WX_APPID = "wxa35b788e7a7760be"
 WX_APP_SEC = get_key("WX_APP_SEC")
-
-# JWT配置
-try:
-    JWT_SECRET_KEY = get_jwt_secret_key()
-    ALGORITHM = os.getenv('ALGORITHM', 'HS256')
-    ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES', 30))
-    user_account_logger.info("成功从Redis和.env文件中获取JWT配置")
-except redis.exceptions.RedisError as re:
-    user_account_logger.critical(f"无法从获取 SECRET_KEY: {str(re)}")
-    raise RuntimeError(f"无法初始化JWT配置:{str(re)}")
-except ValueError as ve:
-    user_account_logger.critical(f"配置参数解析错误: {str(ve)}")
-    raise RuntimeError("无法初始化JWT配置:请检查配置参数。")
-except Exception as e:
-    user_account_logger.critical(f"初始化 JWT 配置时发生未知错误: {str(e)}")
-    raise RuntimeError("无法初始化JWT配置:请检查系统配置。")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES', 15))
 
 # 请求数据模型
 class RegisterRequest(BaseModel):
@@ -87,61 +73,6 @@ def get_wechat_user_info(code:str) -> dict:
         user_account_logger.error(f"[get_wechat_user_info] 获取微信用户信息时发生未知错误: {str(e)}")
         raise HTTPException(status_code=500, detail=f"获取用户信息时发生未知错误: {str(e)}")
 
-def create_access_token(data:dict,expires_delta:timedelta=None) -> str:
-    """ 生成 JWT Token """
-    if not isinstance(data, dict) or data is None:
-        user_account_logger.error("[create_access_token] data参数为None或参数类型不为dict")
-        raise HTTPException(status_code=500, detail="data参数为None或参数类型不为dict")
-
-    if expires_delta and not isinstance(expires_delta, timedelta):
-        user_account_logger.error("[create_access_token] expires_delta参数必须为None或timedelta类型")
-        raise HTTPException(status_code=500, detail="参数不合法 - expires_delta参数必须为None或timedelta类型")
-
-    openid = data.get("openid")
-    user_id = data.get("user_id")
-    if user_id is None or not isinstance(user_id, int) or user_id <= 0:
-        user_account_logger.error("[create_access_token] user_id参数必须为正整数")
-        raise HTTPException(status_code=500, detail="参数不合法 - user_id参数必须为正整数")
-
-    if not isinstance(openid, str) or not openid.strip():
-        user_account_logger.error("[create_access_token] openid参数必须为非空字符串")
-        raise HTTPException(status_code=500, detail="参数不合法 - openid参数必须为非空字符串")
-
-    try:
-        # 计算过期时间
-        if expires_delta:
-            expire = datetime.now(TZ) + expires_delta
-        else:
-            expire = datetime.now(TZ) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-
-        # payload模板
-        base_payload = {
-            "sub": str(user_id),
-            "iat": datetime.now(TZ),
-            "nbf": datetime.now(TZ),
-            "exp": expire,
-            "jti": str(uuid.uuid4()),
-        }
-
-        # 小程序信息payload
-        mini_program_payload = {
-            "app_id":WX_APPID,
-            "platform":"wechat-mini-program"
-        }
-
-        # 处理openid
-        processed_data = data.copy()
-        openid_hash = hashlib.sha256(openid.encode()).hexdigest()
-        processed_data["openid_hash"] = openid_hash
-        del processed_data["openid"]
-
-        payload = {**base_payload, **mini_program_payload, **processed_data}
-        encoded_jwt = jwt.encode(payload, JWT_SECRET_KEY , algorithm=ALGORITHM)
-        return encoded_jwt
-    except Exception as e:
-        user_account_logger.error(f"[create_access_token] JWT Token 生成失败 - {str(e)}")
-        raise HTTPException(status_code=500, detail=f"JWT Token 生成失败 - {str(e)}")
-
 def is_openid_exists(db:Session,openid:str):
     """ 检查给定的 openid 是否已存在于数据库中（通过比较解密后的值）"""
     try:
@@ -178,8 +109,8 @@ def auth(request:LoginRequest,db:Session = Depends(get_database),req:Request=Non
             user_account_logger.info(f"[auth] 找到用户，开始认证")
             user_id = existing_user.id
             access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-            token_data = {"user_id": user_id,"openid":encrypt_openid,"type":"access"}
-            access_token = create_access_token(data=token_data,expires_delta=access_token_expires)
+            token_data = {"user_id": user_id,"openid":encrypt_openid,}
+            access_token = create_user_token(data=token_data,expires_delta=access_token_expires)
             try:
                 existing_user.openid = encrypt_openid
                 existing_user.last_login_time = datetime.now(TZ)
@@ -251,8 +182,8 @@ def login(request:LoginRequest,db:Session = Depends(get_database),req:Request=No
         user_id = existing_user.id
         encrypt_openid = encrypt(openid)
         access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-        token_data = {"user_id": user_id,"openid":encrypt_openid,"type":"access"}
-        access_token = create_access_token(data=token_data,expires_delta=access_token_expires)
+        token_data = {"user_id": user_id,"openid":encrypt_openid,}
+        access_token = create_user_token(data=token_data,expires_delta=access_token_expires)
 
         try:
             existing_user.last_login_time = datetime.now(TZ)

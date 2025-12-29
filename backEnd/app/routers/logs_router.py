@@ -35,7 +35,7 @@ async def write_log(request: Request):
         log_level = level_mapping.get(level, logging.INFO)
 
         # 记录日志，使用与前端相同的格式
-        logger.log(level=log_level, message=message)
+        logger.log(level=log_level, msg=message)
         return JSONResponse(content={"status": "success", "message": "日志已记录"}, status_code=200)
     except Exception as e:
         # 如果发生错误，记录错误日志并返回 500

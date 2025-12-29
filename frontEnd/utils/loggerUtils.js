@@ -23,13 +23,15 @@ const writeLog = (name = 'frontend', level = 'INFO', message) => {
     },
     data: logData,
     success: (res) => {
+      // console.log(res)
       if (res.statusCode >= 200 && res.statusCode < 300) {
-        console.log('writeLog: 日志已成功发送到后端');
+        // console.log('writeLog: 日志已成功发送到后端');
       } else {
         console.error(`writeLog: 日志写入失败，状态码: ${res.statusCode}`);
       }
     },
     fail: (err) => {
+      // console.log(err)
       console.error(`writeLog: 发送日志时发生错误: ${err.errMsg}`);
     }
   });

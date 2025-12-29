@@ -88,7 +88,7 @@ const auth = (appInstance=null) =>{
                   login(appInstance)
                 } else {
                   if (!isValidToken(token) || !token_expired_at || typeof token_expired_at !== 'number'
-                      || token_expired_at <= Date.now()) {
+                      || token_expired_at*1000 <= Date.now()) {
                     writeLog('auth', 'ERROR', 'token或过期时间无效')
                     appInstance.setLoginStatus(false)
                     wx.showToast({
@@ -110,11 +110,6 @@ const auth = (appInstance=null) =>{
                     return
                   }
                   appInstance.setLoginStatus(true)
-                  wx.showToast({
-                    title: '老用户，欢迎回来！',
-                    icon: 'none',
-                    duration: 2000
-                  })
                 }
               } else {
                 appInstance.setLoginStatus(false)
@@ -199,7 +194,7 @@ const login = (appInstance=null) => {
               if(success && token && token_expired_at) {
                 // 登录成功，保存完整信息并设置全局已登录状态
                 if (!isValidToken(token) || !token_expired_at || typeof token_expired_at !== 'number'
-                    || token_expired_at <= Date.now()) {
+                    || token_expired_at*1000 <= Date.now()) {
                   writeLog('auth', 'ERROR', 'token或过期时间无效')
                   appInstance.setLoginStatus(false)
                   wx.showToast({
@@ -274,6 +269,7 @@ const login = (appInstance=null) => {
 const saveLoginInfo = (token,isNewUser=false,token_expired_at=null) => {
   if(typeof isNewUser !== 'boolean') return false;
   if(token_expired_at && !(typeof token_expired_at === 'number')) return false;
+  if(token_expired_at && token_expired_at*1000 <= Date.now()) return false;
   if(token&&!isValidToken(token)) return false;
   const tokenObj = {
     token,
@@ -286,12 +282,45 @@ const saveLoginInfo = (token,isNewUser=false,token_expired_at=null) => {
 
 // 初步验证token格式是否正确
 const isValidToken = (token) => {
-  if(!token||typeof token !== 'string') return false;
+  if (!token || typeof token !== 'string') return false;
   const parts = token.split('.');
-  if(parts.length !== 3) return false;
+  if (parts.length !== 3) return false;
+
   const PATTERN = /^[A-Za-z0-9-_]+$/;
-  return parts.every(part=>PATTERN.test(part));
-}
+  if (!parts.every(part => PATTERN.test(part))) return false;
+
+  try {
+    const payloadStr = atob(parts[1]);
+    if (!payloadStr) throw new Error('Empty payload');
+
+    let payload;
+    try {payload = JSON.parse(payloadStr);}
+    catch (e) {throw new Error('Invalid JSON in payload');}
+
+    if (typeof payload !== 'object' || payload === null) return false;
+    const now = Math.floor(Date.now() / 1000);
+
+    // 必要字段校验
+    if (!payload.sub || typeof payload.sub !== 'string') return false;
+    if (!payload.exp || typeof payload.exp !== 'number' || payload.exp < now) return false;
+    if (!payload.iat || typeof payload.iat !== 'number' || payload.iat > now) return false;
+    if (!payload.nbf || typeof payload.nbf !== 'number' || payload.nbf > now) return false;
+    if (!payload.jti || typeof payload.jti !== 'string') return false;
+
+    // 业务字段校验
+    const userIdNum = Number(payload.user_id);
+    if (isNaN(userIdNum) || userIdNum <= 0) return false;
+    if (!payload.openid_hash || typeof payload.openid_hash !== 'string') return false;
+    if (!payload.user_type || typeof payload.user_type !== 'string' || payload.user_type !== 'wechat_user') return false;
+    if (!payload.token_type || typeof payload.token_type !== 'string' || payload.token_type !== 'user_access') return false;
+
+    return true;
+  } catch (e) {
+    writeLog('auth', 'ERROR', `Token validation failed: ${e.message}`);
+    console.error(e);
+    return false;
+  }
+};
 
 export default {
   checkLogin,

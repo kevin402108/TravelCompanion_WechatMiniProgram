@@ -140,9 +140,9 @@ class Route(Base):
 # 旅游路线景点关联表
 class RouteSpotsMapping(Base):
     __tablename__ = 'route_spots_mapping'
-    
-    route_id = Column(INTEGER(unsigned=True),ForeignKey('route.id',ondelete='CASCADE',onupdate='CASCADE'))
-    spot_id = Column(INTEGER(unsigned=True),ForeignKey("spots.id",ondelete='CASCADE',onupdate='CASCADE'))
+
+    route_id = Column(INTEGER(unsigned=True),ForeignKey('route.id',ondelete='CASCADE',onupdate='CASCADE'),primary_key=True)
+    spot_id = Column(INTEGER(unsigned=True),ForeignKey("spots.id",ondelete='CASCADE',onupdate='CASCADE'),primary_key=True)
 
     __table_args__ = (
         Index('spot_id', 'spot_id'),
