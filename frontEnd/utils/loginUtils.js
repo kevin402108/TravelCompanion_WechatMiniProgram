@@ -5,7 +5,6 @@ const DURATION = 1800000
 
 /**
  * 检查用户登录状态，并执行相应的操作。
- * @param {App} appInstance - 应用实例
  **/
 // tokenObj对象：isNewUser, token, token_expired_at
 const checkLogin = (appInstance=null) => {
@@ -46,7 +45,6 @@ const checkLogin = (appInstance=null) => {
 
 /**
  * 认证流程 - 识别用户身份并区分新老用户
- * @param {App} appInstance - 应用实例
  */
 const auth = (appInstance=null) =>{
     wx.showLoading({
@@ -324,6 +322,5 @@ const isValidToken = (token) => {
 
 export default {
   checkLogin,
-  login,
-  saveLoginInfo
+  isValidToken,
 }

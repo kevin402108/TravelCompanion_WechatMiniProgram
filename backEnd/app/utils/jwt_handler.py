@@ -258,20 +258,20 @@ def validate_user_identity(token:str,db:Session) -> Dict[str, Any]:
         raise HTTPException(status_code=500, detail=f"验证过程中发生错误: {str(e)}")
 
 
-def get_user_info_from_token(token:str) -> Optional[Dict[str, Any]]:
+def get_user_info_from_token(token:str,db:Session) -> Optional[Dict[str, Any]]:
     if not token or not isinstance(token, str) or not token.strip():
         jwt_handler_logger.error("[get_user_info_from_token] token参数必须为非空字符串")
         raise HTTPException(status_code=500, detail="参数错误 - token参数必须为非空字符串")
 
     try:
-        validation_result = validate_user_identity(token)
+        validation_result = validate_user_identity(token,db)
         if validation_result.get("valid"):
             user_id = validation_result.get("user_id")
             openid = validation_result.get("openid")
             if user_id and isinstance(user_id, int) and openid and isinstance(openid, str):
                 return {
                     "user_id": user_id,
-                    "openid": openid
+                    # "openid": openid
                 }
             jwt_handler_logger.info(f"[get_user_info_from_token] 从JWT获取用户信息不完整: 缺少用户信息")
             return None

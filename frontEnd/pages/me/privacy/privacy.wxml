@@ -1,7 +1,7 @@
 <view class="container">
   <view class="header">
     <view class="title">旅伴奇遇工坊小程序 隐私保护指引</view>
-    <view class="update-date">更新日期：2025-07-23</view>
+    <view class="update-date">更新日期：2025-12-31</view>
   </view>
   <view class="body">
     <view class="intro">本指引是旅伴奇遇工坊小程序(以下简称"小程序")为处理你的个人信息而制定。</view>
@@ -9,66 +9,74 @@
       <view class="sec-title">(一) 小程序收集的信息</view>
       <view class="item">根据法律规定，小程序仅处理维持小程序功能及服务正常所需的必要信息。</view>
       <view class="item">
-        <text class="idx">1.1</text>小程序将在获取你的明示同意后，收集你的微信昵称、头像，用于创建个人账户标识、编辑和展示用户个人资料、编辑和展示组队发起者的个人资料。
+        <text class="idx">1.1</text>小程序将在获取你的明示同意后，收集你的微信昵称、头像，用途时创建个人账户标识、编辑和展示用户个人资料。
       </view>
       <view class="item">
-        <text class="idx">1.2</text>小程序收集你选中的照片或视频信息，用于设置用户个人头像、添加组队封面图。
+        <text class="idx">1.2</text>小程序收集你选中的照片或视频信息，用于设置用户个人头像、添加部分功能的封面图。
       </view>
       <view class="item">
         <text class="idx">1.3</text>小程序读取你的剪切板，用于粘贴文本等相关内容。
       </view>
       <view class="item">
-        <text class="idx">1.4</text>小程序将在获取你的明示同意后，访问你的摄像头，用于拍摄编辑组队封面图或用户个人头像的照片。
+        <text class="idx">1.4</text>小程序将在获取你的明示同意后，访问你的摄像头，用于拍摄编辑部分功能封面图或个人头像的照片。
       </view>
       <view class="item">
-        <text class="idx">1.5</text> 小程序收集你的设备信息，用于适配不同型号及尺寸的设备，保障你正常使用我们的服务，改进及优化服务体验。
+        <text class="idx">1.5</text> 小程序收集你的设备信息，用于适配不同型号的设备，保障你正常使用我们的服务，并改进及优化服务体验。
       </view>
     </view>
 
     <view class="section">
-      <view class="sec-title">(二) 你的权益</view>
+      <view class="sec-title">(二) 未成年人保护</view>
       <view class="item">
-        <text class="idx">2.1</text>关于你的个人信息，你可以通过以下方式与小程序联系，行使查阅、复制、更正、删除等法定权利。
+        <text class="idx">2.1</text>根据相关法律法规的规定，若你是14周岁以下的未成年人，你需要和你的监护人共同仔细阅读本指引，并在征得监护人明示同意后继续使用小程序服务。开发者将根据相关法律法规的规定及本指引内容，处理经监护人同意而收集的未成年人用户信息，并通过本指引中“你的权益”部分披露的内容保障未成年人在个人信息处理活动中的各项权利。
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="sec-title">(三) 你的权益</view>
+      <view class="item">
+        <text class="idx">3.1</text>关于你的个人信息，你可以通过以下方式与小程序联系，行使查阅、复制、更正、删除等法定权利。
       </view>
       <view class="item">
-        <text class="idx">2.2</text>若你在小程序中注册了账号，你可以通过本指引给出的联系方式与我们联系，申请注销你在小程序中使用的账号。在受理你的申请后，小程序承诺在 十五个工作日内 完成核查和处理，并按照法律法规要求处理你的相关信息。
+        <text class="idx">3.2</text>若你在小程序中注册了账号，你可以通过本指引给出的联系方式与我们联系，申请注销你在小程序中使用的账号。在受理你的申请后，小程序承诺在 十五个工作日内 完成核查和处理，并按照法律法规要求处理你的相关信息。
+        <view class="contact">
+          <view>✉️ 邮箱: 3077384244@qq.com</view>
+          <view>📞 电话: 18904881022</view>
+        </view>
       </view>
     </view>
     <view class="section">
-      <view class="sec-title">(三) 小程序对信息的存储</view>
+      <view class="sec-title">(四) 小程序对信息的存储</view>
       <view class="item">
-        <text class="idx">3.1</text>小程序承诺，除法律法规另有规定外，小程序对你的信息的保存期限应当为实现处理目的所必要的最短时间。
+        <text class="idx">4.1</text>小程序承诺，除法律法规另有规定外，小程序对你的信息的保存期限应当为实现处理目的所必要的最短时间。
       </view>
     </view>
     <view class="section">
-      <view class="sec-title">(四) 信息的使用规则</view>
+      <view class="sec-title">(五) 信息的使用规则</view>
       <view class="item">
-        <text class="idx">4.1</text>小程序将会在本指引所明示的用途内使用收集的信息。
+        <text class="idx">5.1</text>小程序将会在本指引所明示的用途内使用收集的信息。
       </view>
       <view class="item">
-        <text class="idx">4.2</text>如小程序使用你的信息超出本指引目的或合理范围，小程序必须在变更使用目的或范围前，再次以 页面提示 或 小程序首页公告 等方式告知并征得你的明示同意。
-      </view>
-    </view>
-    <view class="section">
-      <view class="sec-title">(五) 信息对外提供</view>
-      <view class="item">
-        <text class="idx">5.1</text>小程序承诺，不会主动共享或转让你的信息至任何第三方，如存在确需共享或转让时，小程序应当直接征得或确认第三方征得你的单独同意。
-      </view>
-      <view class="item">
-        <text class="idx">5.2</text>小程序承诺，不会对外公开披露你的信息，如必须公开披露时，小程序应当向你告知公开披露的目的、披露信息的类型及可能涉及的信息，并征得你的单独同意
+        <text class="idx">5.2</text>如小程序使用你的信息超出本指引目的或合理范围，小程序必须在变更使用目的或范围前，再次以 页面提示 或 小程序首页公告 等方式告知并征得你的明示同意。
       </view>
     </view>
     <view class="section">
-      <view class="sec-title">(六) 投诉与建议</view>
+      <view class="sec-title">(六) 信息对外提供</view>
       <view class="item">
-        <text class="idx">6.1</text>如你认为小程序未遵守上述约定，或有其他的投诉建议、或未成年人个人信息保护相关问题，可通过本指引给出的联系方式与我们联系；或者向微信进行投诉。</view>
+        <text class="idx">6.1</text>小程序承诺，不会主动共享或转让你的信息至任何第三方，如存在确需共享或转让时，小程序应当直接征得或确认第三方征得你的单独同意。
+      </view>
+      <view class="item">
+        <text class="idx">6.2</text>小程序承诺，不会对外公开披露你的信息，如必须公开披露时，小程序应当向你告知公开披露的目的、披露信息的类型及可能涉及的信息，并征得你的单独同意
+      </view>
     </view>
     <view class="section">
-      <view class="sec-title">(七) 联系方式</view>
-      <view class="contact">
-        <view>✉️ 邮箱: 3077384244@qq.com</view>
-        <view>📞 电话: 18904881022</view>
-      </view>
+      <view class="sec-title">(七) 投诉与建议</view>
+      <view class="item">
+        <text class="idx">7.1</text>如你认为小程序未遵守上述约定，或有其他的投诉建议、或未成年人个人信息保护相关问题，可通过本指引给出的联系方式与我们联系；或者向微信进行投诉。</view>
+        <view class="contact">
+          <view>✉️ 邮箱: 3077384244@qq.com</view>
+          <view>📞 电话: 18904881022</view>
+        </view>
     </view>
   </view>
 </view>

@@ -21,7 +21,6 @@ page {
 
 .user-info .login-box {
     margin: 20rpx 0;
-    height: 200rpx;
     font-size: 40rpx;
     text-align: center;
 }

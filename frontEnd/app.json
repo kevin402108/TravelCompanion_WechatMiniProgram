@@ -51,5 +51,13 @@
       }
     ]
   },
-  "__usePrivacyCheck__":true
+  "__usePrivacyCheck__":true,
+  "permission": {
+    "scope.writePhotosAlbum": {
+      "desc": "用于保存图片到相册"
+    },
+    "scope.camera": {
+      "desc": "用于拍摄照片"
+    }
+  }
 }

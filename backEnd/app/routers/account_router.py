@@ -109,7 +109,7 @@ def auth(request:LoginRequest,db:Session = Depends(get_database),req:Request=Non
             user_account_logger.info(f"[auth] 找到用户，开始认证")
             user_id = existing_user.id
             access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-            token_data = {"user_id": user_id,"openid":encrypt_openid,}
+            token_data = {"user_id": user_id,"openid":openid}
             access_token = create_user_token(data=token_data,expires_delta=access_token_expires)
             try:
                 existing_user.openid = encrypt_openid
@@ -182,7 +182,7 @@ def login(request:LoginRequest,db:Session = Depends(get_database),req:Request=No
         user_id = existing_user.id
         encrypt_openid = encrypt(openid)
         access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-        token_data = {"user_id": user_id,"openid":encrypt_openid,}
+        token_data = {"user_id": user_id,"openid":openid}
         access_token = create_user_token(data=token_data,expires_delta=access_token_expires)
 
         try:

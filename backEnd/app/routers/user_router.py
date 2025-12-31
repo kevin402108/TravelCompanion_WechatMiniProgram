@@ -1,20 +1,27 @@
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
+
+from backEnd.app.utils.jwt_handler import get_user_info_from_token
 from backEnd.app.utils.logger import setup_logger
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import OperationalError, ProgrammingError, DataError, IntegrityError
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter , Depends , HTTPException
 from backEnd.app.database import get_database
 from backEnd.app.models import User
 
 # 设置路由
 user_router = APIRouter()
 # 设置日志记录器
-logger = setup_logger('user_info_logger')
+user_info_logger = setup_logger( 'user_info' , fileName= 'user_info.log' )
+
 def get_user_info(user):
     """ 获取用户基本信息 """
+    if not user:
+        user_info_logger.error("[get_user_info] 用户信息不存在")
+        return None
+
+    user_info_logger.info(f"[get_user_info] 获取用户信息成功")
     return {
-        "id": user.id,
         "nickname": user.nickname,
         "avatar": user.avatar,
         "gender": user.gender,
@@ -23,48 +30,27 @@ def get_user_info(user):
     
 
 @user_router.get('/user/profile')
-def get_user(
-    id:int,
-    db=Depends(get_database)
+def get_user_profile(
+    token:str,
+    db:Session=Depends(get_database)
 ):
     try:
-        #从数据库中获取对应id的用户信息
-        user = db.query(User).filter(User.id == id).first()
-        if user:
-            # 用户信息
-            userInfo = get_user_info(user)
-            response = {
-                "data":{
-                    "userInfo":userInfo
-                }
+        current_user = get_current_user(token, db)
+        if not current_user:
+            raise HTTPException(status_code=404, detail="用户不存在")
+
+        userInfo = get_user_info(current_user)
+        response = {
+            "data":{
+                "userInfo": userInfo
             }
-            logger.info(f"获取用户信息成功 , 用户ID: {id}")
-            return response
-        else:
-            #未找到用户，抛出未找到对应用户异常
-            raise HTTPException(status_code=404, detail=f"无法查询到id为{id}的用户!")
+        }
+        return response
     except HTTPException:
         raise
-    except OperationalError as e:
-            # 数据库操作异常，抛出数据库操作异常
-            logger.error(f"数据库连接错误: {str(e)}")
-            raise HTTPException(status_code=500, detail=f"数据库连接错误: {str(e)}")
-    except ProgrammingError as e:
-        # 处理 SQL 语句执行异常
-        logger.error(f"SQL 执行错误: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"SQL 执行错误: {str(e)}")
-    except DataError as e:
-        # 处理数据类型不匹配异常
-        logger.error(f"数据类型不匹配错误: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"数据类型不匹配错误: {str(e)}")
-    except IntegrityError as e:
-        # 处理完整性约束异常
-        logger.error(f"完整性约束违反错误: {str(e)}")
-        raise HTTPException(status_code=409, detail=f"完整性约束违反错误: {str(e)}")
     except Exception as e:
-        # 处理其他未知异常
-        logger.error(f"未知错误: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"未知错误: {str(e)}")
+        user_info_logger.error(f"[get_user_profile] 获取用户信息时发生未知错误 - {str(e)}")
+        raise HTTPException(status_code=500, detail=f"获取用户信息时发生未知错误 - {str(e)}")
 
 
 class UserInfo(BaseModel):
@@ -112,3 +98,32 @@ async def update_user_info(
         return JSONResponse(status_code=500, content={"message": f"保存失败: {str(e)}"})
     finally:
         db.close()
+
+#  从请求数据中的token获取当前用户信息
+def get_current_user(token:str,db:Session=Depends(get_database)):
+    if not token or not isinstance(token, str) or not token.strip():
+        user_info_logger.error("[get_current_user] token无效 - token格式不符合要求")
+        raise HTTPException(status_code=401, detail="token无效 - token格式不符合要求")
+    try:
+        user_info = get_user_info_from_token(token,db)
+        user_info_logger.info(f"[get_current_user] 获取当前用户信息:{user_info}")
+        if not user_info:
+            user_info_logger.error("[get_current_user] token无效或已过期")
+            raise HTTPException(status_code=401, detail="token无效或已过期")
+
+        user_id = user_info.get("user_id")
+        if not user_id or not isinstance(user_id, int) or user_id <= 0:
+            user_info_logger.error("[get_current_user] 用户ID无效")
+            raise HTTPException(status_code=401, detail="用户ID无效")
+
+        user = db.query(User).filter(User.id == user_id).first()
+        if not user:
+            user_info_logger.error("[get_current_user] 用户不存在")
+            raise HTTPException(status_code=404, detail="用户不存在")
+        return user
+    except HTTPException:
+        raise
+    except Exception as e:
+        user_info_logger.error(f"[get_current_user] 获取当前用户信息时发生未知错误: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"获取当前用户信息时发生未知错误: {str(e)}")
+

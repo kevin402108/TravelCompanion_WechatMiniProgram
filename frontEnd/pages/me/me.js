@@ -1,17 +1,22 @@
-import loginUtils from "../../utils/loginUtils"
+import requestUtils from "../../utils/requestUtils";
+import loginUtils from "../../utils/loginUtils";
+import {writeLog} from "../../utils/loggerUtils";
 const app = getApp();
 
 Page({
   data: {
-    user: {
-      id: '',
-      token: '',
-      nickname: "微信用户",
-      avatar: app.globalData.DEFAULT_AVATAR_URL,
-    },
+      user: {
+        nickname: '',
+        avatar: app.globalData.DEFAULT_AVATAR_URL,
+      },
+      isLogin: false
   },
 
   editInfo() {
+    if(!this.data.isLogin) {
+        this.getUserInfo();
+        return;
+    }
     wx.navigateTo({
       url: "/pages/me/personalInfo/personalInfo",
     });
@@ -19,84 +24,88 @@ Page({
 
   //功能：获取用户昵称和头像，以便渲染页面时展示用户信息
   getUserInfo() {
-    //从本地缓存中尝试获取获取登录状态loginStatus和用户token信息
-    let tokenObj = wx.getStorageSync('tokenObj')
-
-    //若无法从localStorage找到tokenObj/token失效/loginStatus,则进行登录
-    if (!tokenObj || tokenObj.expiration_time <= Date.now() || !tokenObj.token) {
-      // console.log("登录过期或未登录！")
-      loginUtils.login()
-      tokenObj = wx.getStorageSync('tokenObj')
-    }
-
-    wx.showNavigationBarLoading()
-    //通过token获取用户头像和昵称 GET请求
-    wx.request({
-      url: `http://127.0.0.1:8001/user/profile`,
-      data: {
-        id: tokenObj.id
-      },
+    wx.showNavigationBarLoading();
+    requestUtils.requestWithAuth('http://127.0.0.1:8001/user/profile', {
+      method: "GET",
       timeout: 5000,
-      success: (res) => {
+    }).then((res) =>{
         console.log(res)
-        wx.hideNavigationBarLoading()
-        if (res.statusCode == 200) {
-          const { avatar, nickname } = res.data.data.userInfo
-          this.setData({
-            user: {
-              avatar: avatar || app.globalData.DEFAULT_AVATAR_URL,
-              nickname
-            }
-          })
-        } else {
-          wx.hideNavigationBarLoading();
-          wx.showToast({
-            title: "获取用户信息失败！",
-            icon: 'none'
-          })
-        }
-      },
-      fail: (err) => {
+       wx.hideNavigationBarLoading();
+       if (res.statusCode >= 200 && res.statusCode < 300) {
+         const { nickname, avatar } = res.data.data.userInfo;
+         this.setData({
+             user: {
+               avatar: avatar || app.globalData.DEFAULT_AVATAR_URL,
+               nickname
+             },
+             isLogin: true
+         });
+         writeLog('个人中心','INFO','获取用户信息成功!')
+       } else {
+         if (res.statusCode === 401) {
+             writeLog('个人中心','ERROR','获取用户信息失败 - 用户认证失败，token无效或已过期')
+             wx.showToast({
+               title: "登录已过期，正在重新登录",
+               icon: 'none',
+               duration: 2000,
+             });
+             loginUtils.checkLogin(app);
+         } else {
+             writeLog('个人中心','ERROR',`获取用户信息失败 - 错误状态码:${res.statusCode},错误详情：${res.data}`)
+             wx.showToast({
+               title: "获取用户信息时出错,请稍后重试！",
+               icon: 'none',
+               duration: 2000
+             });
+         }
+       }
+    }).catch((err)=>{
         wx.hideNavigationBarLoading();
-        wx.showToast({
-          title: "网络错误，请检查网络连接后重试！",
-          icon: 'none'
-        })
+        if(err.errMsg) {
+            writeLog('个人中心','ERROR',`获取用户信息失败 - 错误信息:${err.errMsg}`)
+            wx.showToast({
+                title: "网络错误，请检查网络连接后重试！",
+                icon: 'none',
+                duration: 2000,
+            });
+        } else if (err.message && err.message.includes('Authentication required')) {
+            writeLog('个人中心','ERROR',`获取用户信息失败 - 需要用户登录`)
+            return requestUtils.showLoginGuideModal();
+        } else {
+            console.error('获取用户信息时发生错误:', err);
+            wx.showToast({
+                title: "获取用户信息失败，请稍后再试！",
+                icon: 'none',
+                duration: 2000
+            });
+        }
+
         this.setData({
-          user: {
-            nickname: "微信用户",
-            avatar: app.globalData.DEFAULT_AVATAR_URL
-          },
+            user: {
+              nickname: '',
+              avatar: app.globalData.DEFAULT_AVATAR_URL,
+            },
+            isLogin: false
         });
-      },
     })
   },
 
   onLoad(options) {
-
+      const isUserLogin = app.getLoginStatus()
+      if(isUserLogin) {
+          this.setData({
+              isLogin: true
+          })
+      }
+      if(this.data.isLogin) {
+          this.getUserInfo()
+      }
   },
-
-  /*生命周期函数--监听页面初次渲染完成*/
-  onReady() { },
-
-  /*生命周期函数--监听页面显示*/
-  onShow() {
-    //若从别的页面nevigateBack回该页面，重新获取用户信息并渲染到页面上
-    this.getUserInfo()
-  },
-
-  /* 生命周期函数--监听页面隐藏*/
-  onHide() { },
-
-  /*生命周期函数--监听页面卸载*/
+  onReady() {},
+  onShow() {},
+  onHide() {},
   onUnload() { },
-
-  /*页面相关事件处理函数--监听用户下拉动作*/
   onPullDownRefresh() { },
-
-  /*页面上拉触底事件的处理函数*/
   onReachBottom() { },
-
-  /*用户点击右上角分享*/
   onShareAppMessage() { },
 });
