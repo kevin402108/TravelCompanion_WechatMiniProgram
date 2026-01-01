@@ -2,8 +2,8 @@
 <view class="user-info">
     <image class="user-img" src="{{user.avatar}}"></image>
     <view class="login-box">
-        <view class="text">{{isLogin?user.nickname:'用户未登录'}}</view>
-        <button class="btn" bindtap="editInfo" wx-if="{{isLogin}}">编辑个人信息</button>
+        <view class="text">你好，{{isLogin?user.nickname:'小程序访客'}}！</view>
+        <button class="btn" bindtap="editInfo">{{isLogin?'编辑资料':'登录'}}</button>
     </view>
 </view>
 

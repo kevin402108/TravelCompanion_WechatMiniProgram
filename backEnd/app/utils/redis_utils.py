@@ -40,7 +40,7 @@ class RedisManager:
             redis_host = os.getenv('REDIS_HOST','localhost')
             redis_port = int(os.getenv('REDIS_PORT',6379))
             redis_db = int(os.getenv('REDIS_DB',0))
-            redis_password = os.getenv('REDIS_PASSWORD',None)
+            redis_password = os.getenv('REDIS_PASSWORD')
 
             if not isinstance(redis_host, str) or not redis_host.strip():
                 error_msg = "REDIS_HOST 必须是一个非空字符串。"

@@ -32,13 +32,13 @@ page {
 
 .user-info .btn {
     margin: 30rpx 0;
-    width: 50vw;
-    height: 100rpx;
-    line-height: 100rpx;
+    width: 60vw;
+    height: 120rpx;
+    line-height: 120rpx;
     font-size: 40rpx;
     color:#fff;
     background-color: #4caf50;
-    border-radius: 50rpx; 
+    border-radius: 60rpx;
 }
 
 .box {
