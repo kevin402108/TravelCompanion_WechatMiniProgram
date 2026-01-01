@@ -31,6 +31,26 @@ Page({
         console.log('选择图片成功:', res)
         writeLog('个人信息编辑', 'INFO', '选择头像图片成功')
         const tmpAvatarURL = res.tempFiles[0].tempFilePath;
+        const fileSize = res.tempFiles[0].size;
+        const fileExtension = tmpAvatarURL.substring(tmpAvatarURL.lastIndexOf('.') + 1).toLowerCase();
+
+        const maxSize = 1024 * 1024 * 5;
+        const validExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+        if (fileSize > maxSize) {
+          wx.showToast({
+            title: '图片大小不能超过5MB!',
+            icon: 'none'
+          });
+          return;
+        }
+        if (!validExtensions.includes(fileExtension)) {
+          wx.showToast({
+            title: `不支持${fileExtension}格式的图片！`,
+            icon: 'none'
+          });
+          return;
+        }
+
         that.setData({
           avatar: tmpAvatarURL
         });
@@ -62,11 +82,16 @@ Page({
     if(!token){
       writeLog('uploadImage','ERROR','token为空，请检查token是否正确获取')
       return wx.showToast({
-        title: '更新头像失败!',
+        title:'登录凭证无效，请稍后再试！',
         icon: 'error',
         duration: 2000
       })
     }
+
+    wx.showLoading({
+      title: '上传中...',
+      mask: true
+    });
 
     wx.uploadFile({
       url:'http://127.0.0.1:8001/upload/image',
@@ -80,7 +105,8 @@ Page({
       timeout:5000,
       enableHttp2: true,
       success: (res) => {
-        console.log(res)
+        wx.hideLoading();
+        console.log(res);
         if(res.statusCode >= 200 && res.statusCode < 300){
           try {
             let data
@@ -91,12 +117,16 @@ Page({
               that.setData({
                 avatar: data.data.url||app.globalData.DEFAULT_AVATAR_URL
               })
-              writeLog('uploadImage', 'INFO', `头像上传成功`)
+              writeLog('uploadImage', 'INFO', `头像上传成功: ${data.data.url}`)
+              wx.showToast({
+                title: '更新头像成功!',
+                icon: 'success'
+              });
             } else {
               writeLog('uploadImage', 'ERROR', `上传失败: ${data.message || '未知错误'}`)
               wx.showToast({
-                title: '更新头像失败:',
-                icon: 'error',
+                title: '头像更新失败，请重试！',
+                icon: 'none',
                 duration: 2000
               });
             }
@@ -104,16 +134,69 @@ Page({
             writeLog('uploadImage', 'ERROR', `解析响应数据失败: ${parseError.message}`)
             console.error('解析响应数据失败:', parseError)
             wx.showToast({
-              title: '更新头像失败',
-              icon: 'error',
+              title: '头像更新失败，请重试！',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        } else {
+          if(res.statusCode === 401){
+            writeLog('uploadImage', 'ERROR', '认证失败，token可能已过期')
+            wx.showToast({
+              title:'登录凭证无效，请认证后再试！',
+              icon: 'none',
+              duration: 2000
+            });
+            loginUtils.checkLogin(app);
+          } else if (res.statusCode === 400) {
+            writeLog('uploadImage', 'ERROR', `上传请求参数错误: ${res.data}`)
+            wx.showToast({
+              title: '图片格式不支持，请选择其他图片！',
+              icon: 'none',
+              duration: 2000
+            });
+          } else {
+            writeLog('uploadImage', 'ERROR', `上传图片失败，HTTP状态码: ${res.statusCode},错误信息:${JSON.stringify(res.data)}`)
+            wx.showToast({
+              title: '头像更新失败，请稍后再试',
+              icon: 'none',
               duration: 2000
             });
           }
         }
-
       },
       fail:(err)=>{
-
+        wx.hideLoading();
+        console.log('上传图片失败:', err)
+        if(err.errMsg && err.errMsg.includes('timeout')){
+          writeLog('uploadImage', 'ERROR', `上传图片失败 - 超时: ${err.errMsg}`)
+          wx.showToast({
+            title: '网络连接超时，请稍后重试',
+            icon: 'none',
+            duration: 2000
+          });
+        } else if(err.errMsg && err.errMsg.includes('abort')){
+          writeLog('uploadImage', 'ERROR', `上传图片中断 - 用户取消上传: ${err.errMsg}`)
+          wx.showToast({
+            title: '头像更新已取消',
+            icon: 'none',
+            duration: 2000
+          });
+        } else if(err.errMsg && err.errMsg.includes('fail')){
+          writeLog('uploadImage', 'ERROR', `上传图片失败 - 网络错误: ${err.errMsg}`)
+          wx.showToast({
+            title: '网络错误，请稍后重试',
+            icon: 'none',
+            duration: 2000
+          });
+        } else {
+          writeLog('uploadImage', 'ERROR', `上传图片失败 - 其他错误: ${JSON.stringify(err)}`)
+          wx.showToast({
+            title: '头像更新失败，请稍后再试',
+            icon: 'error',
+            duration: 2000
+          });
+        }
       }
     });
   },

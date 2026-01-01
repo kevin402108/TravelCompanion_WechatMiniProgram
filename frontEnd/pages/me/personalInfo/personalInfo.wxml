@@ -4,23 +4,23 @@
     </view>
     <view class="bd">
         <view class="avatar-box item">
-            <view class="left">头像：</view>
+            <view class="left">头像</view>
             <view class="right">
                 <button class="avatar"  bindtap="onchooseAvatar">
                     <image class="avatar-img" src="{{avatar}}" mode="aspectFill"></image>
                 </button>
-                <text class="tip">(请点击选择头像)</text>
+                <text class="tip">(点击即可更换头像)</text>
             </view>
         </view>
         <view class="nickname-box item">
-            <view class="left">昵称：</view>
+            <view class="left">昵称</view>
             <view class="right">
                 <input class="nickname" model:value="{{nickname}}" placeholder="请输入昵称 (最多包含15个字符)" maxlength="15"></input>
             </view>
         </view>
         <view class="msg {{isNicknameValid?'correct':'error'}}" wx:if="{{nickname.length > 0}}">{{msg}}</view>
         <view class="item">
-            <view class="left">性别：</view>
+            <view class="left">性别</view>
             <view class="right">
                 <picker class="genderPicker" value="{{index}}"  range="{{genderArr}}" bindchange="ongenderChange">
                     <view class="gender" wx:if="{{gender}}">{{gender}}</view>
@@ -29,19 +29,21 @@
             </view>
         </view>
         <view class="hobby-box item">
-            <view class="left">兴趣爱好：</view>
+            <view class="left">兴趣爱好</view>
             <view class="right">
                 <textarea name="hobby" class="hobby" model:value="{{hobby}}" placeholder="请输入您的兴趣爱好(最多100个字)" maxlength="100"></textarea>
             </view>
         </view>
     </view>
     <view class="footer">
-        <button class="save-btn" type="primary" bindtap="saveInfo">保 存</button>
+        <button class="save-btn" type="primary" bindtap="saveInfo">保存</button>
         <view class="tip-area">
-            <view class="title">温 馨 提 示</view>
+            <view class="title">温馨提示</view>
             <view class="bd">
                 <view class="content"><text style="color:#999">1</text>. 昵称不超过<text> 15 </text>个字符，且只能包含 <text>大小写字母、0-9、下划线和中文字符</text>。</view>
-                <view class="content"><text style="color:#999">2</text>. 若已修改个人信息，请点击<text>“保存”按钮</text> 以确保能成功修改您的个人信息！</view>
+                <view class="content"><text style="color:#999">2</text>. 图片的大小不超过<text> 5MB </text>，且只能上传 <text>jpg、jpeg 、png、webp</text> 格式的图片。</view>
+                <view class="content"><text style="color:#999">3</text>. 若已修改个人信息，请务必点击<text>“保存”</text>以确保能成功修改您的个人信息！</view>
+                <view class="content"><text style="color:#999">4</text>. 所选择的图片及输入的文字必须符合规定，不得包含违规内容，否则将无法保存！</view>
             </view>
         </view>
     </view>
