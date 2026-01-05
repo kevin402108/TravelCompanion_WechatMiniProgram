@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from backEnd.app.routers.db_router import db_router
 from backEnd.app.routers.account_router import account_router
 from backEnd.app.routers.logs_router import frontend_logs_router
 from backEnd.app.routers.user_router import user_router
@@ -8,7 +7,6 @@ from backEnd.app.routers.routeGen_router import routeGen_router
 from backEnd.app.routers.planGen_router import planGen_router
 
 app = FastAPI()
-app.include_router(db_router)
 app.include_router(account_router)
 app.include_router(user_router)
 app.include_router(upload_router)

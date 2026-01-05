@@ -1,9 +1,10 @@
 import os
+import time
+from functools import wraps
 from typing import Optional, Tuple, Dict, Any, List
 
 from dotenv import load_dotenv
 from qcloud_cos import CosConfig, CosS3Client
-from qcloud_cos.cos_comm import format_region
 
 from backEnd.app.utils.logger import setup_logger
 
@@ -19,6 +20,26 @@ if not os.path.exists(DOTENV_PATH):
 else:
     tencentcloud_cos_logger.warning( "加载.env文件成功" )
     load_dotenv(DOTENV_PATH)
+
+def retry_on_cos_exception(max_retries=3):
+    """COS操作重试装饰器"""
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            last_exception = None
+            for attempt in range(max_retries):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    last_exception = e
+                    if attempt < max_retries - 1:
+                        tencentcloud_cos_logger.warning(f"COS操作失败，第{attempt + 1}次重试: {str(e)}")
+                        time.sleep(0.5 * (attempt + 1))
+                    else:
+                        tencentcloud_cos_logger.error(f"COS操作在{max_retries}次重试后仍然失败: {str(e)}")
+            raise last_exception
+        return wrapper
+    return decorator
 
 class TencentCloudCOSManager:
     def __init__(self, bucket_name: Optional[str] = None):
@@ -50,29 +71,10 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager __init__] {error_msg}")
             raise ValueError(error_msg)
 
-        # 初始化COS配置
-        try:
-            token = None
-            self.config = CosConfig(
-                Region=self.region,
-                SecretId=self.secret_id,
-                SecretKey=self.secret_key,
-                Token=token,
-            )
-        except Exception as e:
-            tencentcloud_cos_logger.error(f"[TencentCloudCOSManager __init__] COS配置初始化失败: {str(e)}")
-            raise RuntimeError(f"COS配置初始化失败: {str(e)}")
-
-        # 初始化COS客户端
-        try:
-            self.client = CosS3Client(self.config)
-        except Exception as e:
-            tencentcloud_cos_logger.error(f"[TencentCloudCOSManager __init__] COS客户端初始化失败: {str(e)}")
-            raise RuntimeError(f"COS客户端初始化失败: {str(e)}")
-
-        tencentcloud_cos_logger.info(f"[TencentCloudCOSManager __init__] 初始化腾讯云COS管理器成功")
+        self._init_cos_client_with_retry()
 
     # 存储桶相关操作
+    @retry_on_cos_exception(max_retries=3)
     def list_buckets(self) -> Tuple[bool, Dict[str, Any]]:
         """列出所有存储桶"""
         try:
@@ -83,6 +85,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager list_buckets] 存储桶列表获取失败: {str(e)}")
             return False, {"error": str(e)}
 
+    @retry_on_cos_exception(max_retries=3)
     def set_bucket(self, bucket_name: str) -> bool:
         """设置存储桶名称"""
         if not isinstance(bucket_name, str):
@@ -99,6 +102,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager set_bucket] 存储桶名称设置失败: {str(e)}")
             return False
 
+    @retry_on_cos_exception(max_retries=3)
     def create_bucket(self, bucket_name: Optional[str] = None, acl: str = 'private') -> Tuple[bool, Dict[str, Any]]:
         """创建存储桶"""
         bucket = bucket_name or self.bucket_name
@@ -123,6 +127,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager create_bucket] 创建存储桶失败: {str(e)}")
             return False, {"error": str(e)}
 
+    @retry_on_cos_exception(max_retries=3)
     def delete_bucket(self, bucket_name: Optional[str] = None) -> Tuple[bool, Dict[str, Any]]:
         """删除存储桶"""
         bucket = bucket_name or self.bucket_name
@@ -140,6 +145,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager delete_bucket] 存储桶删除失败: {str(e)}")
             return False, {"error": str(e)}
 
+    @retry_on_cos_exception(max_retries=3)
     def bucket_exists(self, bucket_name: Optional[str] = None) -> Tuple[bool, Dict[str, Any]]:
         """判断存储桶是否存在"""
         bucket = bucket_name or self.bucket_name
@@ -155,6 +161,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager bucket_exists] 存储桶不存在: {str(e)}")
             return False, {"error": str(e)}
 
+    @retry_on_cos_exception(max_retries=3)
     def head_bucket(self, bucket_name: Optional[str] = None) -> Tuple[bool, Dict[str, Any]]:
         """检索存储桶是否存在且是否有权限访问"""
         bucket = bucket_name or self.bucket_name
@@ -173,6 +180,7 @@ class TencentCloudCOSManager:
             return False, {"error": str(e)}
 
     # 存储对象操作
+    @retry_on_cos_exception(max_retries=3)
     def upload_file(self, local_file_path: str, cos_key: str, bucket_name: Optional[str] = None, enable_md5: bool = True) -> Tuple[bool, Dict[str, Any]]:
         """上传文件到COS"""
         bucket = bucket_name or self.bucket_name
@@ -199,6 +207,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager upload_file] 文件上传失败: {str(e)}")
             return False, {"error": str(e)}
 
+    @retry_on_cos_exception(max_retries=3)
     def download_file( self , cos_key: str , dest_file_path: str , bucket_name: Optional[str] = None) -> Tuple[bool, Dict[str, Any ] ]:
         """从COS下载文件"""
         bucket = bucket_name or self.bucket_name
@@ -221,6 +230,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager download_file] 文件下载失败: {str(e)}")
             return False, {"error": str(e)}
 
+    @retry_on_cos_exception(max_retries=3)
     def copy_object(self, source_cos_key: str, dest_cos_key: str, source_bucket: Optional[str] = None, dest_bucket: Optional[str] = None) -> Tuple[bool, Dict[str, Any]]:
         """复制对象"""
         src_bucket = source_bucket or self.bucket_name
@@ -250,6 +260,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager copy_object] 对象复制失败: {str(e)}")
             return False, {"error": str(e)}
 
+    @retry_on_cos_exception(max_retries=3)
     def delete_file(self, cos_key: str, bucket_name: Optional[str] = None) -> Tuple[bool, Dict[str, Any]]:
         """删除COS中的文件"""
         bucket = bucket_name or self.bucket_name
@@ -271,6 +282,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager delete_file] 文件删除失败: {str(e)}")
             return False, {"error": str(e)}
 
+    @retry_on_cos_exception(max_retries=3)
     def object_exists(self, cos_key: str, bucket_name: Optional[str] = None) -> Tuple[bool, Dict[str, Any]]:
         """判断对象是否存在"""
         bucket = bucket_name or self.bucket_name
@@ -289,6 +301,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager object_exists] 获取对象失败: {str(e)}")
             return False, {"error": str(e)}
 
+    @retry_on_cos_exception(max_retries=3)
     def list_files(self, prefix: str = "", max_keys: int = 1000, bucket_name: Optional[str] = None) -> Tuple[bool, Dict[str, Any]]:
         """列出存储桶中的文件"""
         bucket = bucket_name or self.bucket_name
@@ -311,6 +324,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager list_files] 文件列表获取失败: {str(e)}")
             return False, {"error": str(e)}
 
+    @retry_on_cos_exception(max_retries=3)
     def get_file_info(self, cos_key: str, bucket_name: Optional[str] = None) -> Tuple[bool, Dict[str, Any]]:
         """获取文件信息"""
         bucket = bucket_name or self.bucket_name
@@ -332,6 +346,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager get_file_info] 文件信息获取失败: {str(e)}")
             return False, {"error": str(e)}
 
+    @retry_on_cos_exception(max_retries=3)
     def restore_object(self, cos_key: str, days: int = 1, tier: str = 'Expedited', bucket_name: Optional[str] = None) -> Tuple[bool, Dict[str, Any]]:
         """恢复归档对象"""
         bucket = bucket_name or self.bucket_name
@@ -362,6 +377,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager restore_object] 对象恢复请求失败: {str(e)}")
             return False, {"error": str(e)}
 
+    @retry_on_cos_exception(max_retries=3)
     def get_presigned_url(self, cos_key: str, method: str = 'get', expires: int = 3600, bucket_name: Optional[str] = None) -> Tuple[bool, Dict[str, Any]]:
         """获取预签名URL"""
         bucket = bucket_name or self.bucket_name
@@ -389,6 +405,7 @@ class TencentCloudCOSManager:
             return False, {"error": str(e)}
 
     # 权限管理
+    @retry_on_cos_exception(max_retries=3)
     def set_bucket_acl(self, acl: str = 'private', bucket_name: Optional[str] = None) -> Tuple[bool, Dict[str, Any]]:
         """设置存储桶访问权限"""
         bucket = bucket_name or self.bucket_name
@@ -410,6 +427,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager set_bucket_acl] 存储桶权限设置失败: {str(e)}")
             return False, {"error": str(e)}
 
+    @retry_on_cos_exception(max_retries=3)
     def get_bucket_acl(self, bucket_name: Optional[str] = None) -> Tuple[bool, Dict[str, Any]]:
         """获取存储桶访问权限"""
         bucket = bucket_name or self.bucket_name
@@ -427,8 +445,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager get_bucket_acl] 存储桶权限获取失败: {str(e)}")
             return False, {"error": str(e)}
 
-
-
+    @retry_on_cos_exception(max_retries=3)
     def set_object_acl(self, cos_key: str, acl: str = 'private', bucket_name: Optional[str] = None) -> Tuple[bool, Dict[str, Any]]:
         """设置对象访问权限"""
         bucket = bucket_name or self.bucket_name
@@ -454,6 +471,7 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager set_object_acl] 对象权限设置失败: {str(e)}")
             return False, {"error": str(e)}
 
+    @retry_on_cos_exception(max_retries=3)
     def get_object_acl(self, cos_key: str, bucket_name: Optional[str] = None) -> Tuple[bool, Dict[str, Any]]:
         """获取对象访问权限"""
         bucket = bucket_name or self.bucket_name
@@ -475,4 +493,28 @@ class TencentCloudCOSManager:
             tencentcloud_cos_logger.error(f"[TencentCloudCOSManager get_object_acl] 对象权限获取失败: {str(e)}")
             return False, {"error": str(e)}
 
+    def _init_cos_client_with_retry(self) :
+        last_exception = None
+        for attempt in range(3):
+            try:
+                token = None
+                self.config = CosConfig(
+                    Region=self.region,
+                    SecretId=self.secret_id,
+                    SecretKey=self.secret_key,
+                    Token=token,
+                )
+                self.client = CosS3Client(self.config)
+                tencentcloud_cos_logger.info(f"[TencentCloudCOSManager _init_cos_client_with_retry] 初始化腾讯云COS管理器成功")
+                return
+            except Exception as e:
+                last_exception = e
+                error_msg = f"COS客户端初始化失败 - {str(e)} (第{attempt + 1}次尝试)"
+                tencentcloud_cos_logger.warning(error_msg)
+                if attempt < 2:
+                    time.sleep(1 * (attempt + 1))
+
+        # all retries failed - throw RuntimeError
+        tencentcloud_cos_logger.error(f"COS客户端初始化在3次重试后仍然失败: {str(last_exception)}")
+        raise RuntimeError(f"COS客户端初始化失败: {str(last_exception)}")
 
