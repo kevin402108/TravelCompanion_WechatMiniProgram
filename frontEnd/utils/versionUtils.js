@@ -15,7 +15,7 @@ function compareSDKVersion(ver1, ver2) {
 function isSDKVersionSuitable(ver1,ver2) {
     if(typeof ver1 !== 'string' || typeof ver2 !== 'string') return false
     const compareResult = compareSDKVersion(ver1,ver2)
-    return compareResult >= 0 ? true : false
+    return compareResult >= 0
 }
 
 function getLocalSDKVersion() {
