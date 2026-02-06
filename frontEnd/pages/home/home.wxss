@@ -1,8 +1,8 @@
-.homePage_slider {
-  height: 35vh;
+.slider {
+  height: 30vh;
 }
 
-.homePage_slider image {
+.slider image {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -25,47 +25,58 @@
 
 .common-func .bd {
   width: 100%;
-  min-height: 12vh;
-  margin: 10rpx auto;
+  min-height: 10vh;
+  margin: 20rpx auto;
   display: flex;
+  flex-wrap: wrap; 
   justify-content: space-around;
   align-items: center;
-  border-radius: 10rpx;
+  gap: 20rpx; 
+  padding: 0 10rpx;  
 }
 
 .common-func .bd > view {
   display: flex;
-  padding: 10rpx;
-  width: 130rpx;
-  height: 120rpx;
-  flex-direction: column; 
-  align-items: center; 
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  background-color:#faebd7;
-  border: 2rpx solid #000;
-  border-radius: 10rpx;
+  width: calc(40% - 20rpx);
+  max-width: 200rpx;
+  padding: 5rpx 10rpx;
+  background-color: #e3f2fd;
+  border: 2rpx solid #73b7fc;
+  border-radius: 12rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.common-func .bd > view:hover {
+  transform: translateY(-4rpx);
 }
 
 .common-func .bd image {
-  margin-bottom: 5px; 
-  width: 70%;  
-  height: 80%;  
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 16rpx; 
 }
 
 .common-func .bd .func-name {
-  font-size: 30rpx;
-  color: #1f1f1f;
+  font-size: 28rpx;
+  color: #333333; /* ???????? */
+  font-weight: 500; /* ?��??? */
 }
 
 .notice .bd .article{
-  margin: 10rpx 0;
+  margin: 5rpx 0;
   padding: 10rpx ; 
   display: flex;
-  width: 100vw;
-  border: 4rpx solid #999;
+  width: 100%;
+  border: 4rpx solid #dfdfdf;
   border-left:0;
   border-right:0;
+  background-color: #f5f5f5;
 }
+
 
 .notice .bd image {
   padding: 5rpx;

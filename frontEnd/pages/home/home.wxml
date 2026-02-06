@@ -1,44 +1,46 @@
-<!--轮播图-->
-<swiper class="homePage_slider" indicator-dots="true" display-multiple-items="1" indicator-active-color="#fff" indicator-color="#999" autoplay="true" interval="3000" duration="500" circular="true">
-        <swiper-item wx:for="{{swiperList}}" wx:key="id">
-            <image src="{{item.url}}"></image>
-        </swiper-item>
-</swiper>
+<view class="container">
+  <!--轮播图-->
+  <swiper class="slider" indicator-dots="true" display-multiple-items="1" indicator-active-color="#fff" indicator-color="#999" autoplay="true" interval="3000" duration="500" circular="true">
+    <swiper-item wx:for="{{swiperList}}" wx:key="id">
+      <image src="{{item.url}}"></image>
+    </swiper-item>
+  </swiper>
 
-<!-- 常用功能 -->
-<view class="common-func">
-    <view class="title">常 用 功 能</view>
+  <!-- 常用功能 -->
+  <view class="common-func">
+    <view class="title">常用功能</view>
     <view class="bd">
-        <view wx:for="{{commonFunc}}" wx:key="id" class="{{item.className}}">
-            <navigator url="{{item.navUrl}}" open-type="{{item.openType?item.openType:'navigate'}}">
-                <image src="{{item.imgUrl}}" alt=""/>
-                <view class="func-name">{{item.name}}</view>
-            </navigator>
-        </view>
-    </view>    
-</view>
-
-<!-- 公告 需从后端获取数据 仅由后台添加删除 无需用户数据-->
-<view class="notice">
-    <view class="title">公 告</view>
-    <view class="bd">
-        <view class="article" wx:for="{{article}}" wx:key="id"> 
-            <image src="{{item.picSrc}}" alt=""/>
-            <view class="right">
-                <view class="header">{{item.title}}</view>
-                <view class="content">{{item.content}}</view>
-                <view class="pub-date">发布时间：<text>{{item.pubDate}}</text></view>
-            </view>
-        </view>
+      <view wx:for="{{commonFunc}}" wx:key="id" class="{{item.className}}">
+        <navigator url="{{item.navUrl}}" open-type="navigate">
+          <image src="{{item.imgUrl}}" alt=""/>
+          <view class="func-name">{{item.name}}</view>
+        </navigator>
+      </view>
     </view>
+  </view>
+
+  <view class="notice">
+    <view class="title">公告</view>
+    <view class="bd">
+      <view class="article" wx:for="{{article}}" wx:key="id">
+        <image src="{{item.picSrc}}" alt=""/>
+        <view class="right">
+          <view class="header">{{item.title}}</view>
+          <view class="content">{{item.content}}</view>
+          <view class="pub-date"><text>{{item.pubDate}}</text></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部 -->
+  <!-- <view class="footer">
+    <view class="text"> ---- 旅行寻伴 尽在旅伴奇遇工坊 ---- </view>
+  </view> -->
 </view>
 
-<!-- 底部 -->
- <view class="footer">
-    <view class="text"> ---- 旅行寻伴 尽在旅伴奇遇工坊 ---- </view>
- </view>
 
-   
+
 
 
 

@@ -1,0 +1,310 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: #faf9f5;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.custom-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.nav-left {
+  width: 80rpx;
+  display: flex;
+  align-items: center;
+}
+
+.nav-left .iconfont {
+  font-size: 36rpx;
+  color: #666;
+}
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.5;
+}
+
+.nav-subtitle {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1.2;
+}
+
+.nav-right {
+  width: 120rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-right .iconfont {
+  font-size: 36rpx;
+  color: #666;
+}
+
+.content-area {
+  flex: 1;
+  padding: 20rpx;
+  box-sizing: border-box;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+
+.message-list {
+  height: 100%;
+  width: 100%;
+}
+
+.message-item {
+  display: flex;
+  margin-bottom: 30rpx;
+  padding: 20rpx;
+  position: relative;
+}
+
+.message-avatar {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2rpx solid #e0e0e0;
+}
+
+.message-avatar image {
+  width: 100%;
+  height: 100%;
+}
+
+.message-content-wrapper {
+  flex: 1;
+  min-width: 0;
+  padding: 0 20rpx;
+}
+
+/* 用户消息：靠左 */
+.user-message {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.user-message .message-avatar {
+  margin-right: 20rpx;
+}
+
+.user-message .message-content-wrapper {
+  max-width: 70%;
+}
+
+.user-message .message-content {
+  background-color: #4caf50;
+  color: #fff;
+  border-radius: 16rpx 16rpx 16rpx 4rpx;
+  border: 1rpx solid #4caf50;
+}
+
+.user-message .message-sender {
+  display: none;
+}
+
+/* AI消息：靠右 */
+.ai-message {
+  text-align: right;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
+
+.ai-message .message-avatar {
+  margin-left: 20rpx;
+}
+
+.ai-message .message-content-wrapper {
+  max-width: 70%;
+}
+
+.ai-message .message-content {
+  background-color: #f8f9fa;
+  color: #333;
+  border-radius: 16rpx 16rpx 4rpx 16rpx;
+  border: 1rpx solid #e0e0e0;
+}
+
+.ai-message .message-sender {
+  display: none;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 水平居左 */
+  justify-content: center; /* 垂直居中 */
+  height: 100%;
+  padding: 40rpx;
+  box-sizing: border-box;
+  padding-left: 30rpx; /* 与左边有一定距离 */
+}
+
+.welcome-illustration {
+  margin-bottom: 40rpx;
+}
+
+.illustration-img {
+  width: 120rpx;
+  height: 120rpx;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 16rpx;
+}
+
+.welcome-text {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+  text-align: center;
+}
+
+.welcome-subtext {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 50rpx;
+  text-align: center;
+}
+
+/* 快捷提问垂直排列 */
+.quick-actions-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  width: 100%;
+  max-width: 700rpx;
+  margin-top: 40rpx;
+}
+
+/* 快捷提问框背景色区分 */
+.quick-actions-vertical .action-btn {
+  background-color: #ffffff;
+  color: #333;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  border: 2rpx solid #e0e0e0;
+  padding: 20rpx 30rpx;
+  transition: all 0.3s ease;
+  margin: 0;
+}
+
+.action-btn {
+  padding: 20rpx 30rpx;
+  background-color: #ffffff;
+  color: #333;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  border: 2rpx solid #e0e0e0;
+  margin-bottom: 20rpx;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  background-color: #f5f7fa;
+  border-color: #4caf50;
+}
+
+.input-area {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  border-top: 2rpx solid #e0e0e0;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 输入框内部背景色进一步区分 */
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff; /* 白色背景，与输入区域背景区分 */
+  border-radius: 50rpx;
+  padding: 15rpx 20rpx;
+  border: 2rpx solid #e0e0e0;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.03);
+}
+
+.input-left {
+  margin-right: 15rpx;
+}
+
+.input-left .iconfont {
+  font-size: 40rpx;
+  color: #666;
+}
+
+.input-box {
+  flex: 1;
+  height: 60rpx;
+  padding: 0 20rpx;
+  font-size: 30rpx;
+  background-color: transparent;
+  border-radius: 30rpx;
+  color: #333;
+  border: none;
+}
+
+.input-right {
+  display: flex;
+  align-items: center;
+}
+
+.input-right .iconfont {
+  font-size: 40rpx;
+  color: #666;
+  margin-right: 15rpx;
+}
+
+.send-btn {
+  padding: 15rpx 30rpx;
+  background-color: #4caf50;
+  color: #fff;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  border: none;
+  line-height: 1;
+  min-width: 100rpx;
+  border: 2rpx solid #4caf50;
+}
+
+.send-btn[disabled] {
+  background-color: #ccc;
+  border-color: #ccc;
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}

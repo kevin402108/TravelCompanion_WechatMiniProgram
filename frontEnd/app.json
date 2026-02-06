@@ -1,63 +1,58 @@
 {
-  "pages": [
-    "pages/home/home",
-    "pages/me/me",
-    "pages/chatspace/chatspace",
-    "pages/teamup/teamup",
-    "pages/routeGen/routeGen",
-    "pages/planGen/planGen",
-    "pages/routeGen/routeGenResult/routeGenResult",
-    "pages/planGen/planGenResult/planGenResult",
-    "pages/teamup/teamupForm/teamupForm",
-    "pages/me/personalInfo/personalInfo",
-    "pages/me/aboutUs/aboutUs",
-    "pages/me/myStatistic/myStatistic",
-    "pages/me/privacy/privacy"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "旅伴奇遇工坊",
-    "navigationBarBackgroundColor": "#ffe4c4"
-  },
-  "tabBar": {
-    "position": "bottom",
-    "borderStyle": "white",
-    "backgroundColor": "#ffe4c4",
-    "list": [
-      {
-        "pagePath": "pages/home/home",
-        "text": "首页",
-        "iconPath": "/images/navbar/home.png",
-        "selectedIconPath": "/images/navbar/home_active.png"
-      },
-      {
-        "pagePath": "pages/teamup/teamupForm/teamupForm",
-        "text": "组队",
-        "iconPath": "/images/navbar/teamup.png",
-        "selectedIconPath": "/images/navbar/teamup_active.png"
-      },
-      {
-        "pagePath": "pages/chatspace/chatspace",
-        "text": "聊天室",
-        "iconPath": "/images/navbar/chat.png",
-        "selectedIconPath": "/images/navbar/chat_active.png"
-      },
-      {
-        "pagePath": "pages/me/me",
-        "text": "我的",
-        "iconPath": "/images/navbar/my.png",
-        "selectedIconPath": "/images/navbar/my_active.png"
-      }
-    ]
-  },
-  "__usePrivacyCheck__":true,
-  "permission": {
-    "scope.writePhotosAlbum": {
-      "desc": "用于保存图片到相册"
-    },
-    "scope.camera": {
-      "desc": "用于拍摄照片"
-    }
-  }
+	"pages": [
+		"pages/home/home",
+		"pages/me/me",
+		"pages/ai-chat/ai-chat",
+		"pages/chatspace/chatspace",
+		"pages/teamup/teamup",
+		"pages/routeGen/routeGen",
+		"pages/planGen/planGen",
+		"pages/routeGen/routeGenResult/routeGenResult",
+		"pages/planGen/planGenResult/planGenResult",
+		"pages/teamup/teamupForm/teamupForm",
+		"pages/me/personalInfo/personalInfo",
+		"pages/me/aboutUs/aboutUs",
+		"pages/me/myStatistic/myStatistic",
+		"pages/me/privacy/privacy"
+	],
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "旅伴奇遇工坊",
+		"navigationBarBackgroundColor": "#ffe4c4"
+	},
+	"tabBar": {
+		"position": "bottom",
+		"borderStyle": "white",
+		"backgroundColor": "#ffe4c4",
+		"list": [
+			{
+				"pagePath": "pages/home/home",
+				"text": "首页",
+				"iconPath": "/images/navbar/home.png",
+				"selectedIconPath": "/images/navbar/home_active.png"
+			},
+			{
+				"pagePath": "pages/ai-chat/ai-chat",
+				"text": "AI助手",
+				"iconPath": "/images/navbar/ai-chat.png",
+				"selectedIconPath": "/images/navbar/ai-chat_active.png"
+			},
+			{
+				"pagePath": "pages/me/me",
+				"text": "我的",
+				"iconPath": "/images/navbar/my.png",
+				"selectedIconPath": "/images/navbar/my_active.png"
+			}
+		]
+	},
+	"__usePrivacyCheck__": true,
+	"permission": {
+		"scope.writePhotosAlbum": {
+			"desc": "用于保存图片到相册"
+		},
+		"scope.camera": {
+			"desc": "用于拍摄照片"
+		}
+	}
 }

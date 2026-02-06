@@ -1,0 +1,77 @@
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-content">
+      <view class="nav-left" bindtap="onHistoryTap">
+        <text class="iconfont icon-history"></text>
+      </view>
+      <view class="nav-center">
+        <view class="nav-title">AI旅行助手</view>
+        <view class="nav-subtitle">在线 · 24小时为您服务</view>
+      </view>
+      <view class="nav-right">
+        <text class="iconfont icon-mute" bindtap="onMuteTap"></text>
+        <text class="iconfont icon-plus" bindtap="onPlusTap"></text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-area" style="margin-top: {{navBarHeight}}px;">
+    <!-- 消息列表 -->
+    <block wx:if="{{messages.length > 0}}">
+      <scroll-view class="message-list" scroll-y="true" scroll-into-view="{{scrollToView}}" enable-back-to-top="true">
+        <view class="message-item" wx:for="{{messages}}" wx:key="index" id="msg-{{index}}">
+          <view class="message-avatar" wx:if="{{item.sender === '您'}}">
+            <image src="/images/avatar-default.png" mode="aspectFill"></image>
+          </view>
+          <view class="message-content-wrapper {{item.sender === '您' ? 'user-message' : 'ai-message'}}">
+            <view class="message-sender">{{item.sender}}</view>
+            <view class="message-content">{{item.content}}</view>
+          </view>
+          <view class="message-avatar" wx:if="{{item.sender !== '您'}}">
+            <image src="/images/ai-avatar.png" mode="aspectFill"></image>
+          </view>
+        </view>
+      </scroll-view>
+    </block>
+
+    <!-- 空状态 -->
+    <block wx:else>
+        <view class="empty-state">
+            <view class="welcome-illustration">
+            <image class="illustration-img" src="/images/ai-assistant-icon.png" mode="aspectFit"></image>
+            </view>
+            <view class="welcome-text">欢迎使用AI旅行助手</view>
+            <view class="welcome-subtext">随时为您解答旅行相关问题</view>
+            
+            <view class="quick-actions-vertical">
+            <button class="action-btn" data-action="travel-plan" bindtap="onQuickActionTap">旅行规划</button>
+            <button class="action-btn" data-action="route-recommend" bindtap="onQuickActionTap">路线推荐</button>
+            <button class="action-btn" data-action="destination-info" bindtap="onQuickActionTap">目的地咨询</button>
+            </view>
+        </view>
+    </block>
+  </view>
+
+  <!-- 底部输入区域 -->
+  <view class="input-area safe-area-bottom">
+    <view class="input-wrapper">
+      <view class="input-left">
+        <text class="iconfont icon-microphone" bindtap="onMicrophoneTap"></text>
+      </view>
+      <input 
+        class="input-box" 
+        placeholder="请输入您的问题..." 
+        value="{{inputValue}}" 
+        bindinput="onInput" 
+        bindconfirm="onSend"
+        maxlength="500"
+      />
+      <view class="input-right">
+        <text class="iconfont icon-camera" bindtap="onCameraTap"></text>
+        <button class="send-btn" bindtap="onSend" disabled="{{!inputValue.trim()}}">发送</button>
+      </view>
+    </view>
+  </view>
+</view>

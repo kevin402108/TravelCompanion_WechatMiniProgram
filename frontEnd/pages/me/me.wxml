@@ -8,7 +8,7 @@
 </view>
 
 <view class="box" >
-    <!-- 导航 -->
+    <!-- 导航
     <view class="nav-bar wrapper" wx-if="{{isLogin}}">
         <navigator class="nav-item" url="/pages/me/myStatistic/myStatistic?column=0">
             <image class="nav-img" src="https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%88%91%E5%8A%A0%E5%85%A5%E7%9A%84.png"></image>
@@ -22,7 +22,7 @@
             <image class="nav-img" src="https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%88%91%E5%8F%91%E5%B8%83%E7%9A%84.png"></image>
             <view class="nav-text">我发布的</view>
         </navigator>
-    </view>
+    </view> -->
 
     <view class="other wrapper">
         <navigator class="item" url="/pages/me/personalInfo/personalInfo" wx-if="{{isLogin}}">
