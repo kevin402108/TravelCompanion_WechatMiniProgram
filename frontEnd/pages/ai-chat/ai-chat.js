@@ -14,7 +14,7 @@ Page({
     const systemInfo = wx.getSystemInfoSync();
     const statusBarHeight = systemInfo.statusBarHeight;
     const navBarHeight = statusBarHeight + 88;
-    
+
     this.setData({
       statusBarHeight: statusBarHeight,
       navBarHeight: navBarHeight
@@ -112,7 +112,7 @@ Page({
   },
 
   onMuteTap: function () {
-    writeLog('ai-chat', 'INFO', '点击静音图标');
+    writeLog('ai-chat', 'INFO', '切换语音输入模式');
     wx.showToast({
       title: '静音功能待实现',
       icon: 'none'

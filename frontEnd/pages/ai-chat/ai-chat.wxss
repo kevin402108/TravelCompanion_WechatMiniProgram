@@ -1,7 +1,12 @@
+page {
+  background:linear-gradient(to bottom,#dafbda,#ffffff);
+  color:#333;
+}
+
 .container {
   width: 100%;
   height: 100vh;
-  background-color: #faf9f5;
+  background-color: linear-gradient(to bottom,#dafbda,#ffffff);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -16,7 +21,10 @@
   width: 100%;
   box-sizing: border-box;
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  background-color: #e0ffe0;
+  backdrop-filter: blur(10rpx);
 }
+
 
 .nav-content {
   display: flex;
@@ -72,8 +80,6 @@
   flex: 1;
   padding: 20rpx;
   box-sizing: border-box;
-  overflow-y: auto;
-  background-color: #ffffff;
 }
 
 .message-list {
@@ -84,14 +90,14 @@
 .message-item {
   display: flex;
   margin-bottom: 30rpx;
-  padding: 20rpx;
+  padding: 0rpx;
   position: relative;
 }
 
 .message-avatar {
   width: 48rpx;
   height: 48rpx;
-  border-radius: 50%;
+  border-radius: 16rpx;
   overflow: hidden;
   flex-shrink: 0;
   border: 2rpx solid #e0e0e0;
@@ -105,7 +111,7 @@
 .message-content-wrapper {
   flex: 1;
   min-width: 0;
-  padding: 0 20rpx;
+  padding: 0 10rpx;
 }
 
 /* 用户消息：靠左 */
@@ -115,14 +121,15 @@
 }
 
 .user-message .message-avatar {
-  margin-right: 20rpx;
+  margin-right: 15rpx;
 }
 
 .user-message .message-content-wrapper {
-  max-width: 70%;
+  max-width: 60%;
 }
 
 .user-message .message-content {
+  padding:10rpx 15rpx;
   background-color: #4caf50;
   color: #fff;
   border-radius: 16rpx 16rpx 16rpx 4rpx;
@@ -133,9 +140,9 @@
   display: none;
 }
 
-/* AI消息：靠右 */
+/* AI回答：靠右 */
 .ai-message {
-  text-align: right;
+  text-align: left;
   justify-content: flex-end;
   flex-direction: row-reverse;
 }
@@ -149,9 +156,10 @@
 }
 
 .ai-message .message-content {
-  background-color: #f8f9fa;
+  padding:10rpx 15rpx;
   color: #333;
-  border-radius: 16rpx 16rpx 4rpx 16rpx;
+  background-color: #f7f6f6;
+  border-radius: 16rpx 4rpx 16rpx 16rpx;
   border: 1rpx solid #e0e0e0;
 }
 
@@ -162,12 +170,12 @@
 .empty-state {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* 水平居左 */
-  justify-content: center; /* 垂直居中 */
+  align-items: flex-start;
+  justify-content: center;
   height: 100%;
   padding: 40rpx;
   box-sizing: border-box;
-  padding-left: 30rpx; /* 与左边有一定距离 */
+  padding-left: 30rpx;
 }
 
 .welcome-illustration {
@@ -177,8 +185,6 @@
 .illustration-img {
   width: 120rpx;
   height: 120rpx;
-  border: 2rpx solid #e0e0e0;
-  border-radius: 16rpx;
 }
 
 .welcome-text {
@@ -196,18 +202,19 @@
   text-align: center;
 }
 
-/* 快捷提问垂直排列 */
+/* 快捷提问按钮区 */
 .quick-actions-vertical {
   display: flex;
   flex-direction: column;
-  gap: 20rpx;
+  gap: 30rpx;
   width: 100%;
   max-width: 700rpx;
   margin-top: 40rpx;
 }
 
-/* 快捷提问框背景色区分 */
 .quick-actions-vertical .action-btn {
+  display: flex;
+  flex-direction: column;
   background-color: #ffffff;
   color: #333;
   border-radius: 16rpx;
@@ -220,9 +227,9 @@
 
 .action-btn {
   padding: 20rpx 30rpx;
-  background-color: #ffffff;
+  background-color: #4fcd40;
   color: #333;
-  border-radius: 16rpx;
+  border-radius: 30rpx;
   font-size: 28rpx;
   border: 2rpx solid #e0e0e0;
   margin-bottom: 20rpx;
@@ -235,23 +242,20 @@
 }
 
 .input-area {
+  box-sizing: border-box;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 20rpx;
+  padding: 20rpx 20rpx calc(env(safe-area-inset-bottom) + 20rpx);
   background-color: #ffffff;
-  box-sizing: border-box;
-  border-top: 2rpx solid #e0e0e0;
-  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
 }
 
-/* 输入框内部背景色进一步区分 */
 .input-wrapper {
   display: flex;
   align-items: center;
-  background-color: #ffffff; /* 白色背景，与输入区域背景区分 */
-  border-radius: 50rpx;
+  background-color: #ffffff;
+  border-radius: 25rpx;
   padding: 15rpx 20rpx;
   border: 2rpx solid #e0e0e0;
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.03);
@@ -289,15 +293,14 @@
 }
 
 .send-btn {
-  padding: 15rpx 30rpx;
-  background-color: #4caf50;
-  color: #fff;
-  border-radius: 30rpx;
-  font-size: 28rpx;
-  border: none;
+  padding: 15rpx;
   line-height: 1;
   min-width: 100rpx;
+  color: #fff;
+  font-size: 28rpx;
   border: 2rpx solid #4caf50;
+  border-radius: 20rpx;
+  background-color: #4caf50;
 }
 
 .send-btn[disabled] {

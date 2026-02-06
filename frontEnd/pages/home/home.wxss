@@ -1,3 +1,8 @@
+page {
+  background:linear-gradient(to bottom,#dafbda,#ffffff);
+  color:#333;
+}
+
 .slider {
   height: 30vh;
 }
@@ -62,8 +67,8 @@
 
 .common-func .bd .func-name {
   font-size: 28rpx;
-  color: #333333; /* ???????? */
-  font-weight: 500; /* ?��??? */
+  color: #333;
+  font-weight: 500;
 }
 
 .notice .bd .article{

@@ -19,12 +19,12 @@
 		"backgroundTextStyle": "light",
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "旅伴奇遇工坊",
-		"navigationBarBackgroundColor": "#ffe4c4"
+		"navigationBarBackgroundColor": "#dafbda"
 	},
 	"tabBar": {
 		"position": "bottom",
 		"borderStyle": "white",
-		"backgroundColor": "#ffe4c4",
+		"backgroundColor": "#e0ffe0",
 		"list": [
 			{
 				"pagePath": "pages/home/home",
