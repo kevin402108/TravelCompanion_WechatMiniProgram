@@ -24,7 +24,6 @@
 	"tabBar": {
 		"position": "bottom",
 		"borderStyle": "white",
-		"backgroundColor": "#e0ffe0",
 		"list": [
 			{
 				"pagePath": "pages/home/home",

@@ -25,7 +25,6 @@ page {
   backdrop-filter: blur(10rpx);
 }
 
-
 .nav-content {
   display: flex;
   align-items: center;
@@ -258,7 +257,6 @@ page {
   border-radius: 25rpx;
   padding: 15rpx 20rpx;
   border: 2rpx solid #e0e0e0;
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.03);
 }
 
 .input-left {

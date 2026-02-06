@@ -46,9 +46,9 @@
             <view class="welcome-subtext">随时为您解答旅行相关问题</view>
             
             <view class="quick-actions-vertical">
-            <button class="action-btn" data-action="travel-plan" bindtap="onQuickActionTap">旅行规划</button>
-            <button class="action-btn" data-action="route-recommend" bindtap="onQuickActionTap">路线推荐</button>
-            <button class="action-btn" data-action="destination-info" bindtap="onQuickActionTap">目的地咨询</button>
+            <button class="action-btn" data-action="travel-plan" bindtap="onQuickActionTap">帮我生成旅游路线</button>
+            <button class="action-btn" data-action="route-recommend" bindtap="onQuickActionTap">帮我规划下旅游路线</button>
+            <button class="action-btn" data-action="destination-info" bindtap="onQuickActionTap">介绍下这个地方</button>
             </view>
         </view>
     </block>

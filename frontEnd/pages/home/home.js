@@ -19,14 +19,14 @@ Page({
       commonFunc:[
         {
           id:0,
-          name:'旅游路线生成',
+          name:'生成旅游路线',
           className:'route-gen',
           imgUrl:'https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%97%85%E6%B8%B8_%E8%B7%AF%E7%BA%BF.png',
           navUrl:'/pages/routeGen/routeGen',
         },
         {
           id:1,
-          name:'个性化旅游方案',
+          name:'规划旅游方案',
           className:'trip-plan',
           imgUrl:'https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%97%85%E8%A1%8C.png',
           navUrl:'/pages/planGen/planGen',
