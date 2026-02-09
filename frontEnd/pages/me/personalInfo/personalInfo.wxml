@@ -6,10 +6,7 @@
         <view class="avatar-box item">
             <view class="left">头像</view>
             <view class="right">
-                <button class="avatar"  bindtap="onchooseAvatar">
-                    <image class="avatar-img" src="{{avatar}}" mode="aspectFill"></image>
-                </button>
-                <text class="tip">(点击即可更换头像)</text>
+                <image class="avatar-img" src="{{avatar}}" mode="aspectFill"></image>
             </view>
         </view>
         <view class="nickname-box item">
@@ -41,9 +38,8 @@
             <view class="title">温馨提示</view>
             <view class="bd">
                 <view class="content"><text style="color:#999">1</text>. 昵称不超过<text> 15 </text>个字符，且只能包含 <text>大小写字母、0-9、下划线和中文字符</text>。</view>
-                <view class="content"><text style="color:#999">2</text>. 图片的大小不超过<text> 5MB </text>，且只能上传 <text>jpg、jpeg 、png、webp</text> 格式的图片。</view>
-                <view class="content"><text style="color:#999">3</text>. 若已修改个人信息，请务必点击<text>“保存”</text>以确保能成功修改您的个人信息！</view>
-                <view class="content"><text style="color:#999">4</text>. 所选择的图片及输入的文字必须符合规定，不得包含违规内容，否则将无法保存！</view>
+                <view class="content"><text style="color:#999">2</text>. 若已修改个人信息，请务必点击<text>“保存”</text>以确保能成功修改您的个人信息！</view>
+                <view class="content"><text style="color:#999">3</text>. 所输入的文字必须符合法律法规，不得包含违规内容，否则将无法保存！</view>
             </view>
         </view>
     </view>

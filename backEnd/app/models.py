@@ -204,7 +204,7 @@ class User(Base):
     id = Column(INTEGER(unsigned=True), primary_key=True, autoincrement=True)
     openid = Column(String(150),nullable=False,unique=True)
     nickname = Column(String(15), nullable=False,default=lambda:User.generate_default_nickname())
-    avatar = Column(Text, nullable=False,default='https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0')
+    avatar = Column(Text, nullable=False,default='https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%97%85%E8%A1%8C.png')
     gender = Column(Enum('男','女'), nullable=True,default=None)
     hobby = Column(String(50), nullable=True,default=None)
     create_time = Column(DateTime(timezone=True),nullable=False,server_default=func.now())

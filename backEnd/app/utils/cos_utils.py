@@ -6,10 +6,10 @@ from typing import Optional, Tuple, Dict, Any, List
 from dotenv import load_dotenv
 from qcloud_cos import CosConfig, CosS3Client
 
-from backEnd.app.utils.logger import setup_logger
+from backEnd.app.utils.logger import setupLogger
 
 # 日志记录器
-tencentcloud_cos_logger = setup_logger('tencentcloud_cos_logger', 'tencentcloud_cos.log')
+tencentcloud_cos_logger = setupLogger( 'tencentcloud_cos_logger' , 'tencentcloud_cos.log' )
 
 # 加载环境变量
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

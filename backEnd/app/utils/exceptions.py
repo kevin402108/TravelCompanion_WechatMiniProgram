@@ -1,9 +1,9 @@
 # 封装的常用异常处理模块
 from fastapi import HTTPException
-from backEnd.app.utils.logger import setup_logger
+from backEnd.app.utils.logger import setupLogger
 
 # 设置异常相关的日志记录器
-exception_logger = setup_logger("exception_logger")
+exception_logger = setupLogger( "exception_logger" )
 
 
 # 处理数据库连接异常

@@ -8,7 +8,7 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(CURRENT_DIR))))
 
-def setup_logger(name,fileName=LOG_FILE,level=logging.INFO):
+def setupLogger( name , fileName=LOG_FILE , level=logging.INFO ):
     """
     设置日志记录器
     :param name: 日志记录器的名称

@@ -2,11 +2,13 @@
 import {writeLog} from "./loggerUtils";
 
 const DURATION = 1800000
+const sitePrefix = "http://127.0.0.1:8001"
 
 /**
  * 检查用户登录状态，并执行相应的操作。
+ * tokenObj对象：isNewUser, token, token_expired_at
  **/
-// tokenObj对象：isNewUser, token, token_expired_at
+
 const checkLogin = (appInstance=null) => {
   const tokenObj = wx.getStorageSync('tokenObj')
   if (tokenObj) {
@@ -56,7 +58,7 @@ const auth = (appInstance=null) =>{
         if(res.code){
           writeLog('auth', 'INFO', '获取登录凭证成功，发送至后端验证')
           wx.request({
-            url: 'http://127.0.0.1:8001/auth',
+            url: `${sitePrefix}/users`,
             method: 'POST',
             data: {
               code: res.code
@@ -180,7 +182,7 @@ const login = (appInstance=null) => {
       if(res.code){
         writeLog('auth', 'INFO', '获取登录凭证成功，发送至后端验证')
         wx.request({
-          url: 'http://127.0.0.1:8001/login',
+          url: `${sitePrefix}/sessions`,
           method: 'POST',
           data: {
             code: res.code

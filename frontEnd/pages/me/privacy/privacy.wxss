@@ -10,7 +10,7 @@
   padding: 40rpx 0 30rpx;
   text-align: center;
   border-radius: 30rpx;
-  background: linear-gradient(to right, #f7e1c0, #fae6c9);
+  background: #dafbda;
   box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
 }
 
@@ -54,7 +54,7 @@
   top: 10rpx;
   height: 30rpx;
   width: 8rpx;
-  background-color: #e8c9a8;
+  background-color: #dafbda;
   border-radius: 4rpx;
 }
 

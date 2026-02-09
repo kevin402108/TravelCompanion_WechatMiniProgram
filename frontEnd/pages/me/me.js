@@ -25,7 +25,7 @@ Page({
   //功能：获取用户昵称和头像，以便渲染页面时展示用户信息
   getUserInfo() {
     wx.showNavigationBarLoading();
-    requestUtils.requestWithAuth('http://127.0.0.1:8001/user/profile', {
+    requestUtils.requestWithAuth('/users/profile', {
       method: "GET",
       timeout: 5000,
     }).then((res) =>{
@@ -50,6 +50,7 @@ Page({
                duration: 2000,
              });
              loginUtils.checkLogin(app);
+
          } else {
              writeLog('个人中心','ERROR',`获取用户信息失败 - 错误状态码:${res.statusCode},错误详情：${res.data}`)
              wx.showToast({
@@ -102,7 +103,23 @@ Page({
       }
   },
   onReady() {},
-  onShow() {},
+  onShow() {
+      const currentIsLogin = app.getLoginStatus();
+      const { isLogin } = this.data;
+
+      if (currentIsLogin && !isLogin) {
+        // 检测到登录状态变为 true（即刚登录成功）
+        this.setData({ isLogin: true });
+        this.getUserInfo(); // 自动刷新用户信息
+      } else if (!currentIsLogin && isLogin) {
+        // 登出情况
+        this.setData({
+          user: { nickname: '', avatar: app.globalData.DEFAULT_AVATAR_URL },
+          isLogin: false
+        });
+      }
+  },
+
   onHide() {},
   onUnload() { },
   onPullDownRefresh() { },

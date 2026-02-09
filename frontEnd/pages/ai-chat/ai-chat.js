@@ -7,7 +7,8 @@ Page({
     inputValue: '',
     messages: [],
     scrollToView: '',
-    scrollAnimation: true
+    scrollAnimation: true,
+    hasInput: false
   },
 
   onLoad: function (options) {
@@ -34,13 +35,14 @@ Page({
   onInput: function (e) {
     const value = e.detail.value;
     this.setData({
-      inputValue: value
+      inputValue: value,
+      hasInput: value.trim() !== ''
     });
     writeLog('ai-chat', 'INFO', '用户输入框内容更新');
   },
 
   onSend: function () {
-    if (!this.data.inputValue.trim()) {
+    if (!this.data.hasInput) {
       writeLog('ai-chat', 'WARNING', '尝试发送空消息');
       return;
     }
@@ -57,6 +59,7 @@ Page({
     this.setData({
       messages: newMessages,
       inputValue: '',
+      hasInput:true,
       scrollToView: `msg-${newMessages.length - 1}`
     });
 
@@ -169,13 +172,9 @@ Page({
         prompt = '你好';
     }
 
-    this.setData({
-      inputValue: prompt
-    });
-
-    setTimeout(() => {
+    this.setData({ inputValue: prompt,hasInput:true}, () => {
       this.onSend();
-    }, 100);
+    });
   },
   
   onPageScroll: function(e) {

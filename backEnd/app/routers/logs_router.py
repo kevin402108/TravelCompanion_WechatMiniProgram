@@ -2,10 +2,10 @@ import os
 import logging
 from fastapi import APIRouter, Request, HTTPException
 from fastapi.responses import JSONResponse
-from backEnd.app.utils.logger import setup_logger
+from backEnd.app.utils.logger import setupLogger
 
 # 定义后端专门接受前端日志的日志记录器
-logger = setup_logger('frontend_logger', fileName='frontend.log')
+logger = setupLogger( 'frontend_logger' , fileName= 'frontend.log' )
 
 # 定义处理前端日志专用路由
 frontend_logs_router = APIRouter()

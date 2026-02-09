@@ -6,10 +6,10 @@ from functools import wraps
 import redis
 from dotenv import load_dotenv
 from redis.exceptions import RedisError , ConnectionError
-from backEnd.app.utils.logger import setup_logger
+from backEnd.app.utils.logger import setupLogger
 
 # 创建 Redis 连接日志
-redis_connection_logger = setup_logger('redis-connection', fileName='redis-connection.log')
+redis_connection_logger = setupLogger( 'redis-connection' , fileName= 'redis-connection.log' )
 
 # 加载.env文件
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

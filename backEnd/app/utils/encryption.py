@@ -9,10 +9,10 @@ from cryptography.hazmat.primitives import padding
 from dotenv import load_dotenv
 
 from backEnd.app.utils.redis_utils import get_key_from_redis , RedisManager
-from backEnd.app.utils.logger import setup_logger
+from backEnd.app.utils.logger import setupLogger
 
 # 日志记录器
-encryption_logger = setup_logger( 'crypt_logger' , 'crypt_logger.log' )
+encryption_logger = setupLogger( 'crypt_logger' , 'crypt_logger.log' )
 
 # 加载.env文件
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

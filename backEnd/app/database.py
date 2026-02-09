@@ -5,10 +5,10 @@ from sqlalchemy import create_engine , text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-from backEnd.app.utils.logger import setup_logger
+from backEnd.app.utils.logger import setupLogger
 from backEnd.config.db_config import DB_URL , DB_CONFIG
 
-mysql_logger = setup_logger('mysql-connection', fileName='mysql-connection.log')
+mysql_logger = setupLogger( 'mysql-connection' , fileName= 'mysql-connection.log' )
 engine = create_engine(DB_URL, **DB_CONFIG)
 sessionLocal = sessionmaker(
     bind=engine,

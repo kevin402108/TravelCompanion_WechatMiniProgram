@@ -23,14 +23,14 @@
       <scroll-view class="message-list" style="height: {{contentAreaHeight}}px;" scroll-y="true" scroll-into-view="{{scrollToView}}" enable-back-to-top="true">
         <view class="message-item" wx:for="{{messages}}" wx:key="index" id="msg-{{index}}">
           <view class="message-avatar" wx:if="{{item.sender === '您'}}">
-            <image src="/images/avatar-default.png" mode="aspectFill"></image>
+            <image src="/images/ai-chat/user-default-avatar.png" mode="aspectFill"></image>
           </view>
           <view class="message-content-wrapper {{item.sender === '您' ? 'user-message' : 'ai-message'}}">
             <view class="message-sender">{{item.sender}}</view>
             <view class="message-content">{{item.content}}</view>
           </view>
           <view class="message-avatar" wx:if="{{item.sender !== '您'}}">
-            <image src="/images/ai-avatar.png" mode="aspectFill"></image>
+            <image src="/images/ai-chat/ai-avatar.png" mode="aspectFill"></image>
           </view>
         </view>
       </scroll-view>
@@ -43,7 +43,7 @@
             <image class="illustration-img" src="/images/ai-chat/ai-assistance-icon.png" mode="aspectFit"></image>
             </view>
             <view class="welcome-text">欢迎使用AI旅行助手</view>
-            <view class="welcome-subtext">随时为您解答旅行相关问题</view>
+            <view class="welcome-subtext">我可以随时为您解答旅行相关问题！</view>
             
             <view class="quick-actions-vertical">
             <button class="action-btn" data-action="travel-plan" bindtap="onQuickActionTap">帮我生成旅游路线</button>
@@ -58,7 +58,7 @@
   <view class="input-area safe-area-bottom">
     <view class="input-wrapper">
       <view class="input-left">
-        <text class="iconfont icon-microphone" bindtap="onMicrophoneTap"></text>
+        <text class="iconfont icon-yuyin" bindtap="onMicrophoneTap"></text>
       </view>
       <input 
         class="input-box" 
@@ -70,7 +70,7 @@
       />
       <view class="input-right">
         <text class="iconfont icon-camera" bindtap="onCameraTap"></text>
-        <button class="send-btn" bindtap="onSend" disabled="{{!inputValue.trim()}}">发送</button>
+        <button class="send-btn" bindtap="onSend" disabled="{{!hasInput}}">发送</button>
       </view>
     </view>
   </view>

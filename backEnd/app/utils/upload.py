@@ -2,23 +2,16 @@ import os
 import re
 import urllib
 import urllib.parse
-import uuid
-from datetime import datetime
-from pathlib import Path
-from urllib.parse import quote
 
-from dotenv import load_dotenv
 from fastapi import APIRouter , Depends , File , UploadFile , Header , HTTPException
-from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 
 from backEnd.app.database import get_database
-from backEnd.app.utils.jwt_handler import get_user_info_from_token
 from backEnd.app.utils.cos_utils import TencentCloudCOSManager
-from backEnd.app.utils.logger import setup_logger
+from backEnd.app.utils.logger import setupLogger
 
 upload_router = APIRouter()
-upload_logger = setup_logger( 'upload_logger')
+upload_logger = setupLogger( 'upload_logger' )
 
 # 上传图片接口
 @upload_router.post("/upload/image")
@@ -35,10 +28,10 @@ async def upload_image(
         token = authorization.replace("Bearer ", "").strip()
 
         # 验证用户身份
-        user_info = get_user_info_from_token(token,db)
-        if not user_info or not user_info.get("valid"):
-            upload_logger.error("[upload_image] token无效，用户身份验证失败！")
-            raise HTTPException(status_code=401, detail="token无效，用户身份验证失败！")
+        # user_info = getUserInfoFromToken( token , db )
+        # if not user_info or not user_info.get("valid"):
+        #     upload_logger.error("[upload_image] token无效，用户身份验证失败！")
+        #     raise HTTPException(status_code=401, detail="token无效，用户身份验证失败！")
 
         # 格式验证
         allowed_extensions = ["image/jpeg", "image/jpg", "image/png", "image/webp"]

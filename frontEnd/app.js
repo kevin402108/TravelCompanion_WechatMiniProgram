@@ -8,7 +8,7 @@ App({
         LocalSDKVersion: null,
         MIN_SDK_VERSION: '3.2.5',
         PRIVACY_CONTRACT_NAME: '旅伴奇遇工坊隐私保护指引',
-        DEFAULT_AVATAR_URL: "https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0",
+        DEFAULT_AVATAR_URL: "https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%97%85%E8%A1%8C.png",
         isSuitableVersion: false,
         resolvePricay: null,
         isUserLogin: false
