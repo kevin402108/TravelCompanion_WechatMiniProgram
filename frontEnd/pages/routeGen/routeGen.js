@@ -7,6 +7,18 @@ Page({
     preferences: '',
   },
 
+  navigateToAIPlan() {
+    wx.switchTab({
+      url: '/pages/ai-chat/ai-chat',
+    });
+  },
+
+  navigateToHistory() {
+    wx.navigateTo({
+      url: '/pages/historyRoutes/historyRoutes'
+    });
+  },
+
   //多个滑块共用此函数，用所点击滑块的id来区别设置的数据项
   onSliderChange(e) {
     const typeId = e.target.id;

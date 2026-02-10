@@ -1,0 +1,40 @@
+<view class="page">
+  <view class="empty-state" wx:if="{{routes.length === 0 && loaded}}">
+    <text class="empty-icon">📅</text>
+    <text class="empty-title">暂无历史路线</text>
+    <text class="empty-subtitle">您尚未生成任何旅游路线</text>
+  </view>
+
+  <view class="routes-list" wx:else>
+    <view class="route-card" wx:for="{{routes}}" wx:key="id">
+      <text class="create-time">{{item.create_time}}</text>
+      <view class="info-section">
+        <text class="field">📍 目的地：{{item.destination}}</text>
+        <text class="field">📅 天数：{{item.travel_days}} 天</text>
+        <text class="field">💰 预算：{{item.budget || 0}} 元</text>
+        <text class="field">🎯 偏好：{{item.preference || '无'}}</text>
+      </view>
+      <view class="btn-row">
+        <text class="detail-btn" bindtap="showRouteDetail" data-id="{{item.id}}">查看详情</text>
+        <text class="delete-btn" bindtap="confirmDelete" data-id="{{item.id}}">删除</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="modal-overlay" wx:if="{{showDetailModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">路线详情</text>
+      </view>
+      <view class="modal-body">
+        <text class="line">📍 目的地：{{detailRoute.destination}}</text>
+        <text class="line">📅 天数：{{detailRoute.travel_days}} 天</text>
+        <text class="line">💰 预算：{{detailRoute.budget || 0}} 元</text>
+        <text class="line">🎯 偏好：{{detailRoute.preference || '无'}}</text>
+        <text class="line">🕒 创建时间：{{detailRoute.create_time}}</text>
+        <text class="line">📌 包含景点：{{detailSpotsText}}</text>
+      </view>
+      <button class="confirm-btn" bindtap="hideDetailModal">关闭</button>
+    </view>
+  </view>
+</view>

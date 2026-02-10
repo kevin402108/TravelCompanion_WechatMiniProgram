@@ -1,6 +1,4 @@
 <!--pages/routeGen/routeGen.wxml-->
-<view class="page-title">旅游路线生成</view>
-<view class="tip">请您先填写以下表单</view>
 <view class="container">
   <!-- 旅行目的地 -->
   <view class="form-item">
@@ -40,4 +38,7 @@
     <button class="submit-btn" bindtap="submitForm">提交</button>
     <button class="reset-btn" bindtap="resetForm">重置</button>
   </view>
+
+  <view class="round-btn ai-plan-btn" bindtap="navigateToAIPlan">还没想好？让AI帮你规划！</view>
+  <view class="round-btn history-btn" bindtap="navigateToHistory">查看历史生成路线</view>
 </view>

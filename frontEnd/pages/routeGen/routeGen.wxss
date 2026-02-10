@@ -1,18 +1,8 @@
-.page-title {
-    margin: 10rpx;
-    padding:5rpx 0;
-    height: 50rpx;
-    text-align: center;
-    line-height: 50rpx;
-    font-size: 40rpx;
-    border: 2rpx solid #999;
-    border-radius: 25rpx;
-}
-
 .tip {
-    font-size: 30rpx;
-    color: #999;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20rpx 0;
 }
 
 .container {
@@ -73,3 +63,42 @@
 .reset-btn {
     background-color: #f44336;
 }
+
+.round-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40rpx auto 0;
+    width: 100%;
+    max-width: 600rpx;
+    height: 88rpx;
+    text-align: center;
+    font-size: 32rpx;
+    font-weight: 500;
+    border-radius: 44rpx; /* 椭圆（非 50% 是因高度固定，44rpx 更协调） */
+    box-shadow: 0 6rpx 16rpx rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.round-btn:active {
+    transform: scale(0.98);
+}
+
+.ai-plan-btn {
+    background-color: #4caf50;
+    color: white;
+    box-shadow: 0 6rpx 16rpx rgba(76, 175, 80, 0.2);
+}
+
+.ai-plan-btn:active {
+    background-color: #388e3c;
+}
+
+.history-btn {
+    background-color: #e1e1e1;
+    color: #484848;
+}
+
+
+

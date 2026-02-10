@@ -1,77 +1,141 @@
-.page-title {
-  margin: 10rpx;
-  padding: 10rpx 0;
-  height: 50rpx;
+.page {
+  padding: 28rpx 24rpx;
+  background-color: #f5f7fa; /* 浅灰蓝，清新自然 */
+  min-height: 100vh;
+}
+
+/* 标题栏 */
+.title-bar {
   text-align: center;
-  line-height: 50rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 32rpx;
+  line-height: 1.4;
+}
+
+.round-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40rpx auto 0;
+  width: 100%;
+  max-width: 600rpx;
+  height: 88rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 44rpx; /* 椭圆（非 50% 是因高度固定，44rpx 更协调） */
+  box-shadow: 0 6rpx 16rpx rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.round-btn:active {
+  transform: scale(0.98);
+}
+
+.ai-plan-btn {
+  margin-bottom:15rpx;
+  background-color: #4caf50;
+  color: white;
+  box-shadow: 0 6rpx 16rpx rgba(76, 175, 80, 0.2);
+}
+
+.ai-plan-btn:active {
+  background-color: #388e3c;
+}
+
+.history-btn {
+  margin-bottom:15rpx;
+  background-color: #e1e1e1;
+  color: #484848;
+}
+
+/* 景点列表容器 */
+.spot-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+/* 景点卡片 —— 核心！四角圆弧 + 背景对比 */
+.spot-card {
+  position: relative;
+  background: #ffffff; /* 白卡 vs 页面浅灰蓝 → 清晰分离 */
+  border-radius: 20rpx;
+  padding: 32rpx 28rpx 24rpx;
+  box-shadow: 0 6rpx 20rpx rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.spot-card:active {
+  transform: translateY(2rpx);
+}
+
+/* 右上角删除按钮（×） */
+.delete-icon {
+  position: absolute;
+  top: 24rpx;
+  right: 24rpx;
   font-size: 40rpx;
-  border: 2rpx solid #999;
-  border-radius: 25rpx;
-}
-
-.tip {
-  margin: 10rpx 0;
-  line-height: 60rpx;
-  font-size: 30rpx;
   color: #999;
-  text-align: center;
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
 }
 
-.dash-hr {
-  height: 5rpx;
-  background-image: repeating-linear-gradient(
-    to right,
-    #999,
-    #999 10rpx,
-    transparent 20rpx
-  );
-  margin: 10rpx 0;
+.delete-icon:active {
+  color: #ff4d4f;
+  background-color: rgba(255, 77, 79, 0.1);
 }
 
-.route-res {
-  margin: 10rpx;
-  font-size: 45rpx;
+/* 景点名称 */
+.spot-name {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 16rpx;
+  line-height: 1.3;
+}
+
+/* 景点描述 */
+.spot-desc {
+  font-size: 28rpx;
+  color: #555;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 40rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  margin-top: 24rpx;
   color: #999;
 }
 
-.route-res .header {
-  height: 50rpx;
-  line-height: 50rpx;
-  font-weight: bold;
+.empty-icon {
+  font-size: 64rpx;
+  margin-bottom: 24rpx;
 }
 
-.route-res .bd {
-  margin-top: 12.5rpx;
-  word-wrap: break-word;
-  font-size: 38rpx;
+.empty-title {
+  font-size: 36rpx;
+  font-weight: 600;
   color: #333;
+  margin-bottom: 12rpx;
 }
 
-.card {
-  padding: 12.5rpx;
-  border:2rpx solid #999;
-  border-left: 0;
-  border-right:0;
+.empty-subtitle {
+  font-size: 28rpx;
+  color: #777;
 }
-
-.card .title {
-  line-height: 75rpx;
-}
-
-.card .describe {
-  font-size: 35rpx;
-  padding: 10rpx;
-  color:#999;
-}
-
-.route-res .empty-box {
-  height:25vh;
-  text-align: center;
-  line-height: 25vh;
-  font-size: 50rpx;
-  font-weight: bold;
-  background-color: #f9f9f9;
-  border:2rpx solid #999;
-  border-radius:25rpx;
-}
-
