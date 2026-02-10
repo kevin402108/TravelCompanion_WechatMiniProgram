@@ -98,7 +98,7 @@ Page({
               isLogin: true
           })
       }
-      if(this.data.isLogin) {
+      if(this.data.isLogin||options.refresh === 'true') {
           this.getUserInfo()
       }
   },

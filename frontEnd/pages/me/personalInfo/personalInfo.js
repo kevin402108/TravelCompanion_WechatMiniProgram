@@ -68,8 +68,8 @@ Page({
             title: '保存成功!',
             icon: 'success'
           });
-          wx.navigateBack({
-            url: '/pages/me/me'
+          wx.navigateTo({
+            url: '/pages/me/me?refresh=true'
           });
         } else if (res.statusCode === 422) {
           console.error('验证错误详情:', res.data);

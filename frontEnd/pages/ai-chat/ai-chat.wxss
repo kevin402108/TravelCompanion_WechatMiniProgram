@@ -1,16 +1,3 @@
-@font-face {
-  font-family: 'iconfont';
-  src: url('../../assets/fonts/iconfont.ttf') format('truetype');
-}
-
-.iconfont {
-  font-family: 'iconfont', serif !important;
-  font-size: 36rpx;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 page {
   background:linear-gradient(to bottom,#dafbda,#ffffff);
   color:#333;
