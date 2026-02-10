@@ -49,7 +49,7 @@ class Plan(Base):
     budget = Column(Budget,nullable=False)
     preference = Column(Preference,nullable=False)
     total_spending = Column(INTEGER(unsigned=True),nullable=False,index=True)
-    arrange_data = Column('arrange',JSON,nullable=False)
+    arrange_data = Column('arrange_data',JSON,nullable=False)
     create_time = Column(DateTime(timezone=True),nullable=False,server_default=func.now())
     status = Column(Enum('0','1',name='planAvailableStatus'),nullable=False,server_default='0')
     
