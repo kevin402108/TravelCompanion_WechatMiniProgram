@@ -62,7 +62,7 @@ Page({
       data: requestData,
       timeout: 5000
     }).then((res) => {
-        console.log('保存响应:', res);
+        // console.log('保存响应:', res);
         if (res.statusCode === 200) {
           wx.showToast({
             title: '保存成功!',

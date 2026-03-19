@@ -16,8 +16,8 @@ account_router = APIRouter()
 
 # 一般配置
 TZ = pytz.timezone('Asia/Shanghai')
-WX_APPID = "wxa35b788e7a7760be"
-WX_APP_SEC = get_key("WX_APP_SEC")
+WX_APPID = os.getenv('WX_APPID')
+WX_APP_SEC = os.getenv('WX_APP_SEC')
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES', 15))
 
 # 请求数据模型

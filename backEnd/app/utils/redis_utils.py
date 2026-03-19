@@ -62,9 +62,9 @@ class RedisManager:
         last_exception = None
         for attempt in range(3):
             try:
-                redis_host = os.getenv('REDIS_HOST','localhost')
-                redis_port = int(os.getenv('REDIS_PORT',6379))
-                redis_db = int(os.getenv('REDIS_DB',0))
+                redis_host = os.getenv('REDIS_HOST')
+                redis_port = int(os.getenv('REDIS_PORT'))
+                redis_db = int(os.getenv('REDIS_DB'))
                 redis_password = os.getenv('REDIS_PASSWORD')
 
                 if not isinstance(redis_host, str) or not redis_host.strip():

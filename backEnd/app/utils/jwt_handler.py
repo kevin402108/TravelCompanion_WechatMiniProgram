@@ -18,7 +18,7 @@ TZ = pytz.timezone('Asia/Shanghai')
 redis_manager_for_jwt_operations = RedisManager()
 
 # JWT配置
-ALGORITHM = os.getenv('ALGORITHM', 'HS256')
+ALGORITHM = os.getenv('ALGORITHM')
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES', 15))
 try:
     JWT_SECRET_KEY = get_jwt_secret_key()
