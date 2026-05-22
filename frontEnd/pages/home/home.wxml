@@ -11,7 +11,7 @@
     <view class="title">常用功能</view>
     <view class="bd">
       <view wx:for="{{commonFunc}}" wx:key="id" class="{{item.className}}">
-        <navigator url="{{item.navUrl}}" open-type="navigate">
+        <navigator url="{{item.navUrl}}" open-type="{{item.openType?item.openType:'navigate'}}">
           <image src="{{item.imgUrl}}" alt=""/>
           <view class="func-name">{{item.name}}</view>
         </navigator>

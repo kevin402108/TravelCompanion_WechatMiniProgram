@@ -1,6 +1,6 @@
 <view class="container">
   <!-- 自定义导航栏 -->
-  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+  <!-- <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
     <view class="nav-content">
       <view class="nav-left" bindtap="onHistoryTap">
         <text class="iconfont icon-history"></text>
@@ -14,7 +14,7 @@
         <text class="iconfont icon-plus" bindtap="onPlusTap"></text>
       </view>
     </view>
-  </view>
+  </view> -->
 
   <!-- 内容区域 -->
   <view class="content-area" style="margin-top: {{navBarHeight}}px;">

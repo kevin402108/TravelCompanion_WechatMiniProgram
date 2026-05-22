@@ -21,15 +21,15 @@ Page({
       navBarHeight: navBarHeight
     });
 
-    writeLog('ai-chat', 'INFO', 'AI聊天页面加载成功');
+    // writeLog('ai-chat', 'INFO', 'AI聊天页面加载成功');
   },
 
   onReady: function () {
-    writeLog('ai-chat', 'INFO', 'AI聊天页面就绪');
+    // writeLog('ai-chat', 'INFO', 'AI聊天页面就绪');
   },
 
   onShow: function () {
-    writeLog('ai-chat', 'INFO', 'AI聊天页面显示');
+    // writeLog('ai-chat', 'INFO', 'AI聊天页面显示');
   },
 
   onInput: function (e) {
@@ -38,7 +38,7 @@ Page({
       inputValue: value,
       hasInput: value.trim() !== ''
     });
-    writeLog('ai-chat', 'INFO', '用户输入框内容更新');
+    // writeLog('ai-chat', 'INFO', '用户输入框内容更新');
   },
 
   onSend: function () {

@@ -17,10 +17,6 @@
     </block>
 
     <block wx:if="{{tabIndex === 1}}">
-        ~ 看看其他旅友的帖子吧！ ~
-    </block>
-    
-    <block wx:if="{{tabIndex === 2}}">
     
         <view class="chat-space">
           <!-- 输入框和提交按钮 -->

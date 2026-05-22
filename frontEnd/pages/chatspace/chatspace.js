@@ -1,7 +1,7 @@
 // pages/chatspace/chatspace.js
 Page({
   data: {
-    tabList:['讨论旅游行程','帖子广场','发布帖子'],
+    tabList:['讨论旅游行程','发布帖子'],
     tabIndex:0,
     msgContent:'',
     postContent:''  

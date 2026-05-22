@@ -11,14 +11,14 @@ App({
         DEFAULT_AVATAR_URL: "https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%97%85%E8%A1%8C.png",
         isSuitableVersion: false,
         resolvePricay: null,
-        isUserLogin: false
+        isUserLogin: true
     },
 
     onLaunch: function () {
       const LocalSDKVer = versionUtils.getLocalSDKVersion()
       this.globalData.LocalSDKVersion = LocalSDKVer
-      this.globalData.isUserLogin = false;
-      loginUtils.checkLogin(this);
+      // this.globalData.isUserLogin = false;
+      // loginUtils.checkLogin(this);
     },
 
     getLoginStatus: function(){

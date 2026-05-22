@@ -2,8 +2,8 @@
 <view class="user-info">
     <image class="user-img" src="{{user.avatar}}"></image>
     <view class="login-box">
-        <view class="text">你好，{{isLogin?user.nickname:'小程序访客'}}！</view>
-        <button class="btn" bindtap="editInfo">{{isLogin?'编辑资料':'登录'}}</button>
+        <view class="text">你好，{{user.nickname}}！</view>
+        <button class="btn" bindtap="editInfo">编辑资料</button>
     </view>
 </view>
 

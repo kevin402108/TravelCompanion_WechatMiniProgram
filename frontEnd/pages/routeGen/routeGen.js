@@ -8,7 +8,7 @@ Page({
   },
 
   navigateToAIPlan() {
-    wx.switchTab({
+    wx.navigateTo({
       url: '/pages/ai-chat/ai-chat',
     });
   },

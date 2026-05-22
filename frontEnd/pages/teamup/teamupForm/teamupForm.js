@@ -108,7 +108,7 @@ Page({
     }) */
    const gender = ''
     this.setData({
-      gender,
+      gender:gender,
       travelDays:0,
       budget: 0,
       isDisabled:gender ? true : false

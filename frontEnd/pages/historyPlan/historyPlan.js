@@ -15,7 +15,11 @@ Page({
 
   onLoad() {
     wx.showLoading({ title: '加载中...' });
-    this.loadPlans();
+    // this.loadPlans();
+    setTimeout(()=>{
+      wx.hideLoading();
+      this.setData({ plans:[], loaded: true});
+    },2000)
   },
 
   loadPlans() {

@@ -47,7 +47,7 @@ page {
   text-align: center;
   width: calc(40% - 20rpx);
   max-width: 200rpx;
-  padding: 5rpx 10rpx;
+  padding: 5rpx 5rpx;
   background-color: #e3f2fd;
   border: 2rpx solid #73b7fc;
   border-radius: 12rpx;

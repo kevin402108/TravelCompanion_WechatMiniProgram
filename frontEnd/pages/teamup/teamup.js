@@ -1,5 +1,7 @@
 import loginUtils from "../../utils/loginUtils";
 import userUtils from "../../utils/userUtils";
+import requestUtils from '../../utils/requestUtils'
+import {writeLog} from '../../utils/loggerUtils'
 
 const app = getApp();
 
@@ -319,49 +321,65 @@ Page({
   },
 
   onnicknameChange: userUtils.onnicknameChange,
-
+  handleChoice: userUtils.onGenderChange,
   onSliderChange: userUtils.onSliderChange,
 
   onLoad(options) {
-    loginUtils.checkLogin()
-    const tokenObj = wx.getStorageSync('tokenObj')
-    //通过token获取用户昵称 GET请求
-    wx.request({
-      url: 'http://127.0.0.1:8001/user/profile',
-      data: {
-        id:tokenObj.id
-      },
-      success: (res) => {
-        console.log(res);
-        wx.hideNavigationBarLoading();
-  
-        if (res.statusCode == 200) {
-          const { nickname,gender } = res.data.data.userInfo;
-          this.setData({
-            nickname,
-            gender
-          })
-        } else {
-          wx.hideNavigationBarLoading();
-          wx.showToast({
-            title:'获取昵称失败！',
-            icon:'none'
-          })
-        }
-      },
-      fail: (err) => {
-        wx.hideNavigationBarLoading();
-        wx.showToast({
-          title:'获取昵称失败！',
-          icon:'none'
-        })
-      },
-    })
-    Object.keys(options).forEach((key) =>
-      this.setData({
-        [key]: decodeURIComponent(options[key]),
-      })
-    );
+    wx.showNavigationBarLoading();
+    // requestUtils.requestWithAuth('/users/profile', {
+    //   method: "GET",
+    //   timeout: 5000,
+    // }).then((res) =>{
+    //     console.log(res)
+    //    wx.hideNavigationBarLoading();
+    //    if (res.statusCode >= 200 && res.statusCode < 300) {
+    //      const { nickname, gender } = res.data.data.userInfo;
+    //      this.setData({
+    //          nickname: nickname,
+    //          gender: gender,
+    //          isLogin: true
+    //      });
+    //      writeLog('个人中心','INFO','获取用户信息成功!')
+    //    } else {
+    //      if (res.statusCode === 401) {
+    //          writeLog('个人中心','ERROR','获取用户信息失败 - 用户认证失败，token无效或已过期')
+    //          wx.showToast({
+    //            title: "登录已过期，正在重新登录",
+    //            icon: 'none',
+    //            duration: 2000,
+    //          });
+    //          loginUtils.checkLogin(app);
+
+    //      } else {
+    //          writeLog('个人中心','ERROR',`获取用户信息失败 - 错误状态码:${res.statusCode},错误详情：${res.data}`)
+    //          wx.showToast({
+    //            title: "获取用户信息时出错,请稍后重试！",
+    //            icon: 'none',
+    //            duration: 2000
+    //          });
+    //      }
+    //    }
+    // }).catch((err)=>{
+    //     wx.hideNavigationBarLoading();
+    //     if(err.errMsg) {
+    //         writeLog('个人中心','ERROR',`获取用户信息失败 - 错误信息:${err.errMsg}`)
+    //         wx.showToast({
+    //             title: "网络错误，请检查网络连接后重试！",
+    //             icon: 'none',
+    //             duration: 2000,
+    //         });
+    //     } else if (err.message && err.message.includes('Authentication required')) {
+    //         writeLog('个人中心','ERROR',`获取用户信息失败 - 需要用户登录`)
+    //         return requestUtils.showLoginGuideModal();
+    //     } else {
+    //         console.error('获取用户信息时发生错误:', err);
+    //         wx.showToast({
+    //             title: "获取用户信息失败，请稍后再试！",
+    //             icon: 'none',
+    //             duration: 2000
+    //         });
+    //     }
+    // })
     this.findPartner();
   },
   onReady() {},

@@ -56,49 +56,68 @@ Page({
       hobby: hobby || ''
     };
 
-    // PUT请求
-    requestUtils.requestWithAuth('/users/me', {
-      method: 'PUT',
-      data: requestData,
-      timeout: 5000
-    }).then((res) => {
-        // console.log('保存响应:', res);
-        if (res.statusCode === 200) {
-          wx.showToast({
-            title: '保存成功!',
-            icon: 'success'
-          });
-          wx.navigateTo({
-            url: '/pages/me/me?refresh=true'
-          });
-        } else if (res.statusCode === 422) {
-          console.error('验证错误详情:', res.data);
-          const errorMsg = res.data?.detail
-            ? res.data.detail.map(err => `${err.loc[1]}: ${err.msg}`).join('; ')
-            : '数据格式错误，请检查填写内容';
-          wx.showToast({
-            title: errorMsg,
-            icon: 'none',
-            duration: 3000
-          });
-        } else {
-          wx.showToast({
-            title: '保存失败！',
-            icon: 'error'
-          });
-        }
-      }).catch((err) => {
-        console.log('网络错误:', err);
-        if (err.message && err.message.includes('Authentication required')) {
-          writeLog('个人信息编辑', 'ERROR', '保存用户信息失败 - 需要用户登录');
-          requestUtils.showLoginGuideModal();
-        } else {
-          wx.showToast({
-            title: '网络错误，请检查网络连接后重试！',
-            icon: 'none'
-          });
-        }
+    try {
+      wx.setStorageSync('userInfo', requestData);
+      // writeLog('个人信息编辑', 'INFO', '用户信息已缓存到本地 Storage');
+      wx.showToast({
+        title: '保存成功!',
+        icon: 'success'
       });
+
+      setTimeout(() => {
+        wx.navigateBack({
+          delta: 1
+        });
+      }, 1500);
+    } catch (e) {
+      // writeLog('个人信息编辑', 'ERROR', `本地存储失败: ${e.message}`);
+    }
+
+
+
+    // // PUT请求
+    // requestUtils.requestWithAuth('/users/me', {
+    //   method: 'PUT',
+    //   data: requestData,
+    //   timeout: 5000
+    // }).then((res) => {
+    //     // console.log('保存响应:', res);
+    //     if (res.statusCode === 200) {
+    //       wx.showToast({
+    //         title: '保存成功!',
+    //         icon: 'success'
+    //       });
+    //       wx.navigateTo({
+    //         url: '/pages/me/me?refresh=true'
+    //       });
+    //     } else if (res.statusCode === 422) {
+    //       console.error('验证错误详情:', res.data);
+    //       const errorMsg = res.data?.detail
+    //         ? res.data.detail.map(err => `${err.loc[1]}: ${err.msg}`).join('; ')
+    //         : '数据格式错误，请检查填写内容';
+    //       wx.showToast({
+    //         title: errorMsg,
+    //         icon: 'none',
+    //         duration: 3000
+    //       });
+    //     } else {
+    //       wx.showToast({
+    //         title: '保存失败！',
+    //         icon: 'error'
+    //       });
+    //     }
+    //   }).catch((err) => {
+    //     console.log('网络错误:', err);
+    //     if (err.message && err.message.includes('Authentication required')) {
+    //       writeLog('个人信息编辑', 'ERROR', '保存用户信息失败 - 需要用户登录');
+    //       requestUtils.showLoginGuideModal();
+    //     } else {
+    //       wx.showToast({
+    //         title: '网络错误，请检查网络连接后重试！',
+    //         icon: 'none'
+    //       });
+    //     }
+    //   });
   },
 
   //打开时自动获取并填充用户信息
@@ -107,67 +126,32 @@ Page({
       title: '加载中...',
       mask: true
     });
-    requestUtils.requestWithAuth('/users/profile', {
-      method: "GET",
-      timeout: 5000,
-    }).then((res) => {
-      console.log(res)
-      wx.hideLoading();
-      if (res.statusCode >= 200 && res.statusCode < 300) {
-        const {nickname, avatar, gender, hobby} = res.data.data.userInfo;
-        this.setData({
-            avatar: avatar || app.globalData.DEFAULT_AVATAR_URL,
-            nickname: nickname || '',
-            gender: gender || '',
-            hobby: hobby || ''
-        });
-        writeLog('个人信息编辑', 'INFO', '获取用户信息成功!')
-      } else {
-        if (res.statusCode === 401) {
-          writeLog('个人信息编辑', 'ERROR', '获取用户信息失败 - 用户认证失败，token无效或已过期')
-          wx.showToast({
-            title: "登录已过期，正在重新登录",
-            icon: 'none',
-            duration: 2000,
-          });
-          loginUtils.checkLogin(app);
-        } else {
-          writeLog('个人信息编辑', 'ERROR', `获取用户信息失败 - 错误状态码:${res.statusCode},错误详情：${res.data}`)
-          wx.showToast({
-            title: "获取用户信息时出错,请稍后重试！",
-            icon: 'none',
-            duration: 2000
-          });
-        }
-      }
-    }).catch((err) => {
-      wx.hideLoading();
-      if (err.errMsg) {
-        writeLog('个人信息编辑', 'ERROR', `获取用户信息失败 - 错误信息:${err.errMsg}`)
-        wx.showToast({
-          title: "网络错误，请检查网络连接后重试！",
-          icon: 'none',
-          duration: 2000,
-        });
-      } else if (err.message && err.message.includes('Authentication required')) {
-        writeLog('个人中心', 'ERROR', `获取用户信息失败 - 需要用户登录`)
-        return requestUtils.showLoginGuideModal();
-      } else {
-        console.error('获取用户信息时发生错误:', err);
-        wx.showToast({
-          title: "获取用户信息失败，请稍后再试！",
-          icon: 'none',
-          duration: 2000
-        });
-      }
-
+    
+    let localUserInfo = null;
+    try {
+      localUserInfo = wx.getStorageSync('userInfo');
+    } catch (e) {
+      // writeLog('个人信息加载', 'ERROR', `读取本地存储失败: ${e.message}`);
+    }
+    wx.hideLoading();
+    if (localUserInfo && typeof localUserInfo === 'object') {
+      // 如果本地有数据，直接使用本地数据填充
       this.setData({
-          nickname: '',
-          avatar: app.globalData.DEFAULT_AVATAR_URL,
-          gender: '',
-          hobby: ''
+        nickname: localUserInfo.nickname || '小程序访客', 
+        avatar: localUserInfo.avatar || app.globalData.DEFAULT_AVATAR_URL,
+        gender: localUserInfo.gender || '',
+        hobby: localUserInfo.hobby || '',
+        gender:localUserInfo.gender || '',
       });
-    })
+      // writeLog('个人信息加载', 'INFO', '已从本地 Storage 恢复用户信息');
+    } else {
+      this.setData({
+        nickname: '小程序访客',
+        avatar: app.globalData.DEFAULT_AVATAR_URL,
+        gender: '',
+        hobby: '',
+      });
+    } 
   },
 
   //选择图片，上传服务器，返回的生成网络图片地址 POST请求（待完善）

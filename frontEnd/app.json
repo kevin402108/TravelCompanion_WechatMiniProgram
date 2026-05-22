@@ -34,10 +34,16 @@
         "selectedIconPath": "/images/navbar/home_active.png"
       },
       {
-        "pagePath": "pages/ai-chat/ai-chat",
-        "text": "AI助手",
-        "iconPath": "/images/navbar/ai-chat.png",
-        "selectedIconPath": "/images/navbar/ai-chat_active.png"
+        "pagePath": "pages/teamup/teamupForm/teamupForm",
+        "text": "组队",
+        "iconPath": "/images/navbar/teamup.png",
+        "selectedIconPath": "/images/navbar/teamup_active.png"
+      },
+      {
+        "pagePath": "pages/chatspace/chatspace",
+        "text": "聊天室",
+        "iconPath": "/images/navbar/chat.png",
+        "selectedIconPath": "/images/navbar/chat_active.png"
       },
       {
         "pagePath": "pages/me/me",

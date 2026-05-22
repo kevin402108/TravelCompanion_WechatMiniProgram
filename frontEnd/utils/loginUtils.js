@@ -2,7 +2,7 @@
 import {writeLog} from "./loggerUtils";
 
 const DURATION = 1800000
-const sitePrefix = "http://43.138.103.184:8001"
+const sitePrefix = "http://127.0.0.1:8001"
 
 /**
  * 检查用户登录状态，并执行相应的操作。

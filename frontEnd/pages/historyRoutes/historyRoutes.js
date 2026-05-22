@@ -15,8 +15,12 @@ Page({
 
   onLoad() {
     wx.showLoading({ title: '加载中...' });
-    this.loadRoutes();
-    wx.hideLoading();
+    // this.loadRoutes();
+    setTimeout(()=>{
+      wx.hideLoading();
+      this.setData({ routes: [], loaded: true });
+    },2500)
+  
   },
 
   loadRoutes() {

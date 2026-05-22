@@ -1,7 +1,7 @@
 import loginUtils from "./loginUtils";
 import {writeLog} from "./loggerUtils";
 const app = getApp()
-const sitePrefix = "http://43.138.103.184:8001"
+const sitePrefix = "http://127.0.0.1:8001"
 
 /**
  * 带token验证的请求模板

@@ -91,33 +91,65 @@ Page({
     })
   },
 
-  onLoad(options) {
-      const isUserLogin = app.getLoginStatus()
-      if(isUserLogin) {
-          this.setData({
-              isLogin: true
-          })
+  loadLocalUserInfo() {
+    try {
+      const userInfo = wx.getStorageSync('userInfo');
+      if (userInfo && typeof userInfo === 'object') {
+        this.setData({
+          user: {
+            nickname: userInfo.nickname || '小程序访客',
+            avatar: userInfo.avatar || app.globalData.DEFAULT_AVATAR_URL
+          },
+          isLogin: true // 如果有本地数据，可视作“已初始化”状态
+        });
+        writeLog('个人中心', 'INFO', '已从本地 Storage 加载用户信息');
+      } else {
+        // 如果没有本地数据，保持默认访客状态
+        this.setData({
+          user: {
+            nickname: '小程序访客',
+            avatar: app.globalData.DEFAULT_AVATAR_URL
+          },
+          isLogin: true
+        });
+        // writeLog('个人中心', 'INFO', '未找到本地用户信息，使用默认访客状态');
       }
-      if(this.data.isLogin||options.refresh === 'true') {
-          this.getUserInfo()
+    } catch (e) {
+      console.error('读取本地用户信息失败:', e);
+      // writeLog('个人中心', 'ERROR', `读取本地存储失败: ${e.message}`);
+    }
+  },
+  onLoad(options) {
+      // const isUserLogin = app.getLoginStatus()
+      // if(isUserLogin) {
+      //     this.setData({
+      //         isLogin: true
+      //     })
+      // }
+      if(options.refresh === 'true') {
+        // this.getUserInfo()
+        this.loadLocalUserInfo();
+      } else {
+        this.loadLocalUserInfo();
       }
   },
+  
   onReady() {},
   onShow() {
-      const currentIsLogin = app.getLoginStatus();
-      const { isLogin } = this.data;
-
-      if (currentIsLogin && !isLogin) {
-        // 检测到登录状态变为 true（即刚登录成功）
-        this.setData({ isLogin: true });
-        this.getUserInfo(); // 自动刷新用户信息
-      } else if (!currentIsLogin && isLogin) {
-        // 登出情况
-        this.setData({
-          user: { nickname: '', avatar: app.globalData.DEFAULT_AVATAR_URL },
-          isLogin: false
-        });
-      }
+      // const currentIsLogin = app.getLoginStatus();
+      // const { isLogin } = this.data;
+      // if (currentIsLogin && !isLogin) {
+      //   // 检测到登录状态变为 true（即刚登录成功）
+      //   this.setData({ isLogin: true });
+      //   this.getUserInfo(); // 自动刷新用户信息
+      // } else if (!currentIsLogin && isLogin) {
+      //   // 登出情况
+      //   this.setData({
+      //     user: { nickname: '', avatar: app.globalData.DEFAULT_AVATAR_URL },
+      //     isLogin: false
+      //   });
+      // }
+      this.loadLocalUserInfo();
   },
 
   onHide() {},

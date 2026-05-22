@@ -31,14 +31,14 @@ Page({
           imgUrl:'https://img-storage-1336210390.cos.ap-guangzhou.myqcloud.com/%E6%97%85%E8%A1%8C.png',
           navUrl:'/pages/planGen/planGen',
         },
-        /*{
+        {
           id:2,
           name:'组队',
           className:'teamup',
           imgUrl:'../../images/navbar/teamup_active.png',
           navUrl:'/pages/teamup/teamupForm/teamupForm',
           openType:'switchTab'
-        }*/
+        }
       ],
       article:[
         {
